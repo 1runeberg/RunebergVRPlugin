@@ -9,3 +9,5 @@ Upcoming:
   - Fly & Dive Function
 
 Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for detailed instructions.
+
+Licensed under [GPLv3](http://www.gnu.org/licenses/gpl-3.0.en.html)
