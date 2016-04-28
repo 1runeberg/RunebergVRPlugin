@@ -8,4 +8,4 @@ Upcoming:
   - Confiugrable Teleport Function
   - Fly & Dive Function
 
-Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for more detailed instructions.
+Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for detailed instructions.
