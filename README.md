@@ -1,2 +1,11 @@
-# VR_CPP
-Unreal Engine VR Pawn with C++ &amp; Blueprint accesible common interface functions (Compatible with VIVE Motion Controllers and Room-Scale VR Projects)
+# Unreal Engine Virtual Reality-ready Pawn
+
+UE4 C++ VR Pawn for use in both C++ and Blueprint projects (Pawn is Blueprintable so no knowledge of C++ is required to use it). Contains common VR interface functions and compatible with the VIVE Motion Controllers/Room-Scale VR projects.
+
+WIP: Currently published version contains flexible grabbing (with range), pushing and pulling (with speed) functions.
+
+Upcoming:
+  - Confiugrable Teleport Function
+  - Fly & Dive Function
+
+Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for more detailed instructions.
