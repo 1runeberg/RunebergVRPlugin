@@ -2,6 +2,8 @@
 
 UE4 C++ VR Pawn for use in both C++ and Blueprint projects (Pawn is Blueprintable so no knowledge of C++ is required to use it). Contains common VR interface functions and compatible with the VIVE Motion Controllers/Room-Scale VR projects.
 
+You can also use this project as a lightweight base SteamVR template.
+
 WIP: Currently published version contains flexible grabbing (with range), pushing and pulling (with speed) functions.
 
 Upcoming:
