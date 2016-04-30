@@ -1,0 +1,7 @@
+.vs/
+Binaries/
+Intermediate/
+Saved/
+*.sln
+*.db
+*.opendb

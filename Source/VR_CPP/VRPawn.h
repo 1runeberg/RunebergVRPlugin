@@ -44,69 +44,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	// Set the location of the motion controller(s)
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void UpdateGrabbedObjectLocation(FVector LeftControllerLocation, FRotator LeftControllerRotation, FVector RightControllerLocation, FRotator RightControllerRotation);
-
-	// Grab something within ray-cast range of controller
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Grab(bool Left, bool Right, float Reach, bool ShowDebugLine, bool SetLocationManually, FVector LeftControllerLocation, FRotator LeftControllerRotation, FVector RightControllerLocation, FRotator RightControllerRotation);
-
-	// Release grabbed object
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Release(bool Left, bool Right);
-
-	// Pull grabbed object(s) 
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void PullGrabbedObjects(bool ObjectInLeftController, bool ObjectInRightController, int Speed = 1);
-
-	// Pull grabbed object(s) 
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void PushGrabbedObjects(bool ObjectInLeftController, bool ObjectInRightController, int Speed = 1);
-
-	// Set distance from left controller
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void SetDistanceFromLeftController(float NewDistance);
-
-	// Set distance from right controller
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void SetDistanceFromRightController(float NewDistance);
-
-	/// Current Distance of Grabbed items from their respective controllers
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
-	float DistanceFromControllerLeft = MinDistanceFromLeftController;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
-	float DistanceFromControllerRight = MinDistanceFromRightController;
-
-	/// Original distance difference of grabbed actors from controller during grabbing
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float MinDistanceFromLeftController = 10.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float MinDistanceFromRightController = 10.0f;
-
-	/// Original distance difference of grabbed actors from controller during grabbing
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float MaxDistanceFromLeftController = 250.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float MaxDistanceFromRightController = 250.0f;
-
 private:
-	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* InputComponent = nullptr;
-	
-	/// Motion Controller Location
-	FVector ControllerLocationLeft;
-	FRotator ControllerRotationLeft;
-	FVector ControllerLocationRight;
-	FRotator ControllerRotationRight;
 
-	/// Grabbed Actors
-	UPhysicsHandleComponent* GrabbedLeft = nullptr;
-	UPhysicsHandleComponent* GrabbedRight = nullptr;
-
-	AActor* GetHit(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Get Actor hit by Ray-Cast
-	void AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bGrabLeft, bool bShowDebugLine);	// Attempt to Grab Actor
 };
