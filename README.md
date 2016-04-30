@@ -4,10 +4,13 @@ UE4 C++ VR Pawn for use in both C++ and Blueprint projects (Pawn is Blueprintabl
 
 You can also use this project as a lightweight base SteamVR template.
 
-WIP: Currently published version contains flexible grabbing (with range), pushing and pulling (with speed) functions.
+WIP: Currently published version includes the following Blueprint callable C++ functions:
+  - Grabbing function via the Grabber Component (with configurable range)
+  - Push function (with configurable range, min & max distance values)
+  - Pull function (with configurable range, min & max distance values)
+  - Teleport (via the Targetter component) with support for both spawnable Particle System & Static Mesh
 
 Upcoming:
-  - Confiugrable Teleport Function
   - Fly & Dive Function
 
 Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for detailed instructions.
