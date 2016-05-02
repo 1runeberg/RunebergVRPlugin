@@ -4,7 +4,7 @@ UE4 C++ VR Pawn for use in both C++ and Blueprint projects (Pawn is Blueprintabl
 
 You can also use this project as a lightweight base SteamVR template.
 
-*Current engine version: 4.11.2*
+**Current engine version: 4.11.2**
 
 WIP: Currently published version includes the following Blueprint callable C++ functions:
   - Grabbing function via the Grabber Component (with configurable range)
