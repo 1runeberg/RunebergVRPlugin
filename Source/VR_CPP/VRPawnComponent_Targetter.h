@@ -59,7 +59,7 @@ public:
 
 	// Move Marker
 	UFUNCTION(BlueprintCallable, Category = "VR")
-		void MoveMarker(USceneComponent* TargettingSource = nullptr, bool MoveForward = false, bool MoveRight = false, bool MoveBack = false, bool MoveLeft = false, int Rate = 25);
+	void MoveMarker(USceneComponent* TargettingSource = nullptr, bool MoveForward = false, bool MoveRight = false, bool MoveBack = false, bool MoveLeft = false, int Rate = 25);
 	// Remove marker
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void RemoveMarker();
