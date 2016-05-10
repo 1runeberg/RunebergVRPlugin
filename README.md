@@ -6,6 +6,8 @@ You can also use this project as a lightweight base SteamVR template.
 
 **Current engine version: 4.11.2**
 
+**Current VR Pawn & Components version: 0.5 (beta)**
+
 *Click image below to watch the setup/overview video in YouTube:*
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/QFaPWG1H8TM/0.jpg)](https://www.youtube.com/watch?v=QFaPWG1H8TM?vq=hd1080)
 
@@ -14,9 +16,8 @@ WIP: Currently published version includes the following Blueprint callable C++ f
   - Push function (with configurable range, min & max distance values)
   - Pull function (with configurable range, min & max distance values)
   - Teleport (via the Targetter component) with support for both spawnable Particle System & Static Mesh
+  - Fly around VR Space (via the VRMovement component)
 
-Upcoming:
-  - Fly & Dive Function
 
 Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for detailed instructions.
 
