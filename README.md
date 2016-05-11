@@ -1,4 +1,4 @@
-# Unreal Engine Virtual Reality-ready Pawn
+# Unreal Engine Virtual Reality Pawn & Components
 
 UE4 C++ VR Pawn for use in both C++ and Blueprint projects (Pawn is Blueprintable so no knowledge of C++ is required to use it). Contains common VR interface functions and compatible with the VIVE Motion Controllers/Room-Scale VR projects.
 
