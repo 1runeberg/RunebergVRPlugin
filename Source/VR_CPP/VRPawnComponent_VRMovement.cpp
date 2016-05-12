@@ -58,7 +58,7 @@ void UVRPawnComponent_VRMovement::EnableVRMovement(float PawnMovementSpeed, USce
 		}
 
 		// Set Movement speed
-		if (PawnMovementSpeed > 0.0f) {
+		if (PawnMovementSpeed != 0.0f) {
 			MovementSpeed = PawnMovementSpeed;
 		}
 
