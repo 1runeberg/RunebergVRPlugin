@@ -35,7 +35,15 @@ public:
 
 	// Indicator if the pawn is moving
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	bool IsMoving = false;		
+	bool IsMoving = false;	
+
+	// Enable VR Movement
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	void EnableVRMovement(float PawnMovementSpeed, USceneComponent* PawnMovementReference = nullptr, FRotator PawnManualRotation = FRotator::ZeroRotator);
+
+	// Disable VR Movement
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	void DisableVRMovement();
 
 private:
 	AActor* VRPawn = nullptr;	// The VR Pawn that this component is attached to

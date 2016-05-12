@@ -43,3 +43,33 @@ void UVRPawnComponent_VRMovement::TickComponent( float DeltaTime, ELevelTick Tic
 	}
 }
 
+// Enable VR Movement
+void UVRPawnComponent_VRMovement::EnableVRMovement(float PawnMovementSpeed, USceneComponent* PawnMovementReference, FRotator PawnManualRotation)
+{
+	if (VRPawn) {
+
+		// Check if there's a movement reference actor
+		if (PawnMovementReference) {
+			MovementReference = PawnMovementReference;
+		}
+		else {
+			MovementReference = nullptr;
+			TargetRotation = PawnManualRotation;
+		}
+
+		// Set Movement speed
+		if (PawnMovementSpeed > 0.0f) {
+			MovementSpeed = PawnMovementSpeed;
+		}
+
+		// Set the Pawn to moving state
+		IsMoving = true;
+	}
+}
+
+// Disable VR Movement
+void UVRPawnComponent_VRMovement::DisableVRMovement()
+{
+	// Set the Pawn to static state
+	IsMoving = false;
+}
