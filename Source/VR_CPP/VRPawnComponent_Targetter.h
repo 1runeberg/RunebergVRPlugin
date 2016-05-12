@@ -54,12 +54,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FRotator MarkerRotation = FRotator::ZeroRotator;
 
+	// Spawn marker in the world
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void SpawnMarker(USceneComponent* TargettingSource, float Distance, bool FixedRotation = true, bool AtFloor = true, UParticleSystem* UseThisParticleSystem = nullptr, UStaticMesh* UseThisStaticMesh = nullptr);
 
 	// Move Marker
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void MoveMarker(USceneComponent* TargettingSource = nullptr, bool MoveForward = false, bool MoveRight = false, bool MoveBack = false, bool MoveLeft = false, int Rate = 25);
+
 	// Remove marker
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void RemoveMarker();
