@@ -95,11 +95,13 @@ void UVRPawnComponent_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& Lin
 	{
 		// Only grab an object with a Physics Handle
 		PhysicsHandle = ActorHit->FindComponentByClass<UPhysicsHandleComponent>();
+		// UE_LOG(LogTemp, Warning, TEXT("I grabbed : %s"), *ActorHit->GetName());
 
 		if (PhysicsHandle)
 		{
 			// Physics Handle found! Attempt to Grab Object
 			UPrimitiveComponent* ComponentToGrab = Cast<UPrimitiveComponent>(ActorHit->GetRootComponent());
+
 
 			PhysicsHandle->GrabComponent(
 				ComponentToGrab,
@@ -144,7 +146,7 @@ AActor* UVRPawnComponent_Grabber::GetHit(FVector& LineTraceStart, FVector& LineT
 	);
 
 	// See what we hit
-	AActor* ActorHit = Hit.GetActor();
+	auto ActorHit = Hit.GetActor();
 
 	// Return any hits
 	if (ActorHit) { 
