@@ -3,17 +3,17 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "VRPawnComponent_VRMovement.generated.h"
+#include "RunebergVR_Movement.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class VR_CPP_API UVRPawnComponent_VRMovement : public UActorComponent
+class RUNEBERGVRPLUGIN_API URunebergVR_Movement : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UVRPawnComponent_VRMovement();
+	URunebergVR_Movement();
 
 	// Called when the game starts
 	virtual void BeginPlay() override;

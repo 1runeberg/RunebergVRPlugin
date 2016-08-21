@@ -1,6 +1,6 @@
 // Copyright (C) 2016  Runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
-/* 
+/*
 The MIT License (MIT)
 Copyright (c) 2016 runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
@@ -11,30 +11,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#pragma once
+#include "Engine.h"
+#include "RunebergVRPlugin.h"
+#include "RunebergVR_Grabber.h"
+#include "RunebergVR_Movement.h"
+#include "RunebergVR_Teleporter.h"
+#include "CoreUObject.h"
 
-#include "GameFramework/Pawn.h"
-#include "VRPawn.generated.h"
-
-UCLASS(Blueprintable)
-class VR_CPP_API AVRPawn : public APawn
-{
-	GENERATED_BODY()
-	
-public:
-	// Sets default values for this pawn's properties
-	AVRPawn();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
-
-private:
-	UInputComponent* InputComponent = nullptr;
-
-};
+// You should place include statements to your module's private header files here.  You only need to
+// add includes for headers that are used in most of your module's source files though.

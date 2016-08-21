@@ -14,17 +14,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "VRPawnComponent_Grabber.generated.h"
+#include "RunebergVR_Grabber.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class VR_CPP_API UVRPawnComponent_Grabber : public USceneComponent
+class RUNEBERGVRPLUGIN_API URunebergVR_Grabber : public USceneComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UVRPawnComponent_Grabber();
+	URunebergVR_Grabber();
 
 	// Called when the game starts
 	virtual void BeginPlay() override;

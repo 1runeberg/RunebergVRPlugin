@@ -3,11 +3,11 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class VR_CPPTarget : TargetRules
+public class RunebergVREditorTarget : TargetRules
 {
-	public VR_CPPTarget(TargetInfo Target)
+	public RunebergVREditorTarget(TargetInfo Target)
 	{
-		Type = TargetType.Game;
+		Type = TargetType.Editor;
 	}
 
 	//
@@ -20,6 +20,6 @@ public class VR_CPPTarget : TargetRules
 		ref List<string> OutExtraModuleNames
 		)
 	{
-		OutExtraModuleNames.AddRange( new string[] { "VR_CPP" } );
+		OutExtraModuleNames.AddRange( new string[] { "RunebergVR" } );
 	}
 }

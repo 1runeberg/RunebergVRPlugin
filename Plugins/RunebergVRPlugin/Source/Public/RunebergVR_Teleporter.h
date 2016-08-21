@@ -14,17 +14,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "VRPawnComponent_Targetter.generated.h"
+#include "RunebergVR_Teleporter.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class VR_CPP_API UVRPawnComponent_Targetter : public USceneComponent
+class RUNEBERGVRPLUGIN_API URunebergVR_Teleporter : public USceneComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UVRPawnComponent_Targetter();
+	URunebergVR_Teleporter();
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -33,13 +33,13 @@ public:
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 	// See if targetting system is active / visible
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "VR")
 	bool IsTargetting = false;
 
 	// Starting Distance Offset of Teleport Marker (Mesh or Particle System)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	float RespawnDistance = 0.0f;
-	
+
 	// Minimum range for teleport
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	int MinRange = 125;
@@ -48,11 +48,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	int MaxRange = 1000;
 
+	// Z Adjustment for Teleported Object
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float ZAdjustment = 110.0f;
+
 	// Marker Location
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FVector MarkerLocation = FVector::ZeroVector;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FRotator MarkerRotation = FRotator::ZeroRotator;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	bool IsMarkerAtFloor = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	bool IsMarkerRotationFixed = false;
 
 	// Spawn marker in the world
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -71,9 +79,8 @@ public:
 	void TeleportObject(AActor* ObjectToTeleport, USceneComponent* TargettingSource = nullptr, bool ReSpawnMarker = true);
 
 private:
-	// Location indicators for targettign marker
-	bool IsMarkerAtFloor = false;
-	bool IsMarkerRotationFixed = false;
+	// Object / Pawn's target location
+	FVector TargetLocation = FVector::ZeroVector;
 
 	// Spawned visible components for targetting marker
 	UParticleSystemComponent* ParticleSystemComponent = nullptr;

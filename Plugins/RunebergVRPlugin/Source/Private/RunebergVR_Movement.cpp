@@ -1,11 +1,11 @@
 // Copyright (C) 2016  Runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
-#include "VR_CPP.h"
-#include "VRPawnComponent_VRMovement.h"
+#include "RunebergVRPluginPrivatePCH.h"
+#include "RunebergVR_Movement.h"
 
 
 // Sets default values for this component's properties
-UVRPawnComponent_VRMovement::UVRPawnComponent_VRMovement()
+URunebergVR_Movement::URunebergVR_Movement()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -17,7 +17,7 @@ UVRPawnComponent_VRMovement::UVRPawnComponent_VRMovement()
 
 
 // Called when the game starts
-void UVRPawnComponent_VRMovement::BeginPlay()
+void URunebergVR_Movement::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -28,7 +28,7 @@ void UVRPawnComponent_VRMovement::BeginPlay()
 
 
 // Called every frame
-void UVRPawnComponent_VRMovement::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
+void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
@@ -44,7 +44,7 @@ void UVRPawnComponent_VRMovement::TickComponent( float DeltaTime, ELevelTick Tic
 }
 
 // Enable VR Movement
-void UVRPawnComponent_VRMovement::EnableVRMovement(float PawnMovementSpeed, USceneComponent* PawnMovementReference, FRotator PawnManualRotation)
+void URunebergVR_Movement::EnableVRMovement(float PawnMovementSpeed, USceneComponent* PawnMovementReference, FRotator PawnManualRotation)
 {
 	if (VRPawn) {
 
@@ -68,7 +68,7 @@ void UVRPawnComponent_VRMovement::EnableVRMovement(float PawnMovementSpeed, USce
 }
 
 // Disable VR Movement
-void UVRPawnComponent_VRMovement::DisableVRMovement()
+void URunebergVR_Movement::DisableVRMovement()
 {
 	// Set the Pawn to static state
 	IsMoving = false;

@@ -11,11 +11,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "VR_CPP.h"
-#include "VRPawnComponent_Targetter.h"
+#include "RunebergVRPluginPrivatePCH.h"
+#include "RunebergVR_Teleporter.h"
 
 // Sets default values for this component's properties
-UVRPawnComponent_Targetter::UVRPawnComponent_Targetter()
+URunebergVR_Teleporter::URunebergVR_Teleporter()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -27,9 +27,8 @@ UVRPawnComponent_Targetter::UVRPawnComponent_Targetter()
 
 }
 
-
 // Called when the game starts
-void UVRPawnComponent_Targetter::BeginPlay()
+void URunebergVR_Teleporter::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -38,9 +37,8 @@ void UVRPawnComponent_Targetter::BeginPlay()
 	
 }
 
-
 // Called every frame
-void UVRPawnComponent_Targetter::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
+void URunebergVR_Teleporter::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
@@ -48,7 +46,7 @@ void UVRPawnComponent_Targetter::TickComponent( float DeltaTime, ELevelTick Tick
 }
 
 // Teleport object
-void UVRPawnComponent_Targetter::TeleportObject(AActor* ObjectToTeleport, USceneComponent* TargettingSource, bool ReSpawnMarker)
+void URunebergVR_Teleporter::TeleportObject(AActor* ObjectToTeleport, USceneComponent* TargettingSource, bool ReSpawnMarker)
 {
 	// Only teleport if targetting is enabled
 	if (IsTargetting && ObjectToTeleport) {
@@ -57,12 +55,16 @@ void UVRPawnComponent_Targetter::TeleportObject(AActor* ObjectToTeleport, UScene
 		//GetWorld()->FindTeleportSpot(ObjectToTeleport, MarkerLocation, MarkerRotation);
 
 		// Teleport object
+		TargetLocation.X = MarkerLocation.X;
+		TargetLocation.Y = MarkerLocation.Y;
+
 		if (IsMarkerAtFloor) { 
-			MarkerLocation.Z = 0.0f;
-			ObjectToTeleport->SetActorLocationAndRotation(MarkerLocation, ObjectToTeleport->GetActorRotation()); 
+			TargetLocation.Z = ZAdjustment;
+			ObjectToTeleport->SetActorLocationAndRotation(TargetLocation, ObjectToTeleport->GetActorRotation());
 		}
 		else { 
-			ObjectToTeleport->SetActorLocationAndRotation(MarkerLocation, ObjectToTeleport->GetActorRotation()); 
+			TargetLocation.Z = MarkerLocation.Z + ZAdjustment;
+			ObjectToTeleport->SetActorLocationAndRotation(TargetLocation, ObjectToTeleport->GetActorRotation());
 		}
 
 		// Respawn marker forward
@@ -73,7 +75,7 @@ void UVRPawnComponent_Targetter::TeleportObject(AActor* ObjectToTeleport, UScene
 }
 
 // Spawn marker at given location
-void UVRPawnComponent_Targetter::SpawnMarker(USceneComponent* TargettingSource, float Distance, bool FixedRotation, bool AtFloor, UParticleSystem* UseThisParticleSystem, UStaticMesh* UseThisStaticMesh ) {
+void URunebergVR_Teleporter::SpawnMarker(USceneComponent* TargettingSource, float Distance, bool FixedRotation, bool AtFloor, UParticleSystem* UseThisParticleSystem, UStaticMesh* UseThisStaticMesh ) {
 	
 	// Only spawn marker if not yet targetting 
 	if (!IsTargetting && TargettingSource) {
@@ -135,7 +137,7 @@ void UVRPawnComponent_Targetter::SpawnMarker(USceneComponent* TargettingSource, 
 }
 
 // Remove Marker
-void UVRPawnComponent_Targetter::RemoveMarker() 
+void URunebergVR_Teleporter::RemoveMarker()
 {
 
 	// Destroy Particle System if available
@@ -155,7 +157,7 @@ void UVRPawnComponent_Targetter::RemoveMarker()
 }
 
 // Move marker
-void UVRPawnComponent_Targetter::MoveMarker(USceneComponent* TargettingSource, bool MoveForward, bool MoveRight, bool MoveBack, bool MoveLeft, int Rate)
+void URunebergVR_Teleporter::MoveMarker(USceneComponent* TargettingSource, bool MoveForward, bool MoveRight, bool MoveBack, bool MoveLeft, int Rate)
 {
 	// Only move marker if it is visible and active
 	if (IsTargetting) {

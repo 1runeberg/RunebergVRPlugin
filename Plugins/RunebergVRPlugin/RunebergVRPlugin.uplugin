@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Runeberg's Virtual Reality Component Plugin",
+	"Description": "Contains common VR interface functions and compatible with the VIVE Motion Controllers/Room-Scale VR projects.",
+	"Category": "Virtual Reality",
+	"CreatedBy": "runeberg",
+	"CreatedByURL": "https://twitter.com/1runeberg",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "https://github.com/1runeberg/VR_CPP/issues",
+	"Modules": [
+		{
+			"Name": "RunebergVRPlugin",
+			"Type": "Developer",
+			"LoadingPhase": "Default"
+		}
+	],
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false
+}

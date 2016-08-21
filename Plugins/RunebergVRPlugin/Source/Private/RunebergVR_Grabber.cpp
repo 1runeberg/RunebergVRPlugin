@@ -11,12 +11,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "VR_CPP.h"
-#include "VRPawnComponent_Grabber.h"
+#include "RunebergVRPluginPrivatePCH.h"
+#include "RunebergVR_Grabber.h"
 
 
 // Sets default values for this component's properties
-UVRPawnComponent_Grabber::UVRPawnComponent_Grabber()
+URunebergVR_Grabber::URunebergVR_Grabber()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -28,7 +28,7 @@ UVRPawnComponent_Grabber::UVRPawnComponent_Grabber()
 
 
 // Called when the game starts
-void UVRPawnComponent_Grabber::BeginPlay()
+void URunebergVR_Grabber::BeginPlay()
 {
 	Super::BeginPlay();
 	
@@ -36,7 +36,7 @@ void UVRPawnComponent_Grabber::BeginPlay()
 
 
 // Called every frame
-void UVRPawnComponent_Grabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
+void URunebergVR_Grabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
@@ -52,7 +52,7 @@ void UVRPawnComponent_Grabber::TickComponent( float DeltaTime, ELevelTick TickTy
 }
 
 // Ray-Cast and grab an Actor
-void UVRPawnComponent_Grabber::Grab(float Reach, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation)
+void URunebergVR_Grabber::Grab(float Reach, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation)
 {
 
 	// Set Motion Controller Location & Rotation
@@ -70,7 +70,7 @@ void UVRPawnComponent_Grabber::Grab(float Reach, bool ShowDebugLine, bool SetLoc
 }
 
 // Attempt to grab object
-void UVRPawnComponent_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine)
+void URunebergVR_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine)
 {
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 
@@ -123,7 +123,7 @@ void UVRPawnComponent_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& Lin
 }
 
 // Set distance from controller
-void UVRPawnComponent_Grabber::SetDistanceFromController(float NewDistance)
+void URunebergVR_Grabber::SetDistanceFromController(float NewDistance)
 {
 	if (NewDistance > MinDistanceFromController && NewDistance < MaxDistanceFromController) { 
 			DistanceFromController = NewDistance; 
@@ -131,7 +131,7 @@ void UVRPawnComponent_Grabber::SetDistanceFromController(float NewDistance)
 }
 
 // Raycast and get any object hit by the line trace
-AActor* UVRPawnComponent_Grabber::GetHit(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine)
+AActor* URunebergVR_Grabber::GetHit(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine)
 {
 	FHitResult	Hit;
 
@@ -158,7 +158,7 @@ AActor* UVRPawnComponent_Grabber::GetHit(FVector& LineTraceStart, FVector& LineT
 }
 
 // Update grabbed object location & render
-void UVRPawnComponent_Grabber::UpdateGrabbedObjectLocation(FVector _ControllerLocation, FRotator _ControllerRotation)
+void URunebergVR_Grabber::UpdateGrabbedObjectLocation(FVector _ControllerLocation, FRotator _ControllerRotation)
 {
 	// Set Left Controller Location & Rotation
 	_ControllerLocation = ControllerLocation;
@@ -172,7 +172,7 @@ void UVRPawnComponent_Grabber::UpdateGrabbedObjectLocation(FVector _ControllerLo
 }
 
 // Release hold of object
-void UVRPawnComponent_Grabber::Release()
+void URunebergVR_Grabber::Release()
 {
 	if (GrabbedObject) {
 
@@ -183,7 +183,7 @@ void UVRPawnComponent_Grabber::Release()
 }
 
 // Pull grabbed object
-void UVRPawnComponent_Grabber::PullGrabbedObject(int Speed)
+void URunebergVR_Grabber::PullGrabbedObject(int Speed)
 {
 	if (GrabbedObject) { 
 		SetDistanceFromController(DistanceFromController - Speed);
@@ -191,7 +191,7 @@ void UVRPawnComponent_Grabber::PullGrabbedObject(int Speed)
 }
 
 // Push grabbed object
-void UVRPawnComponent_Grabber::PushGrabbedObject(int Speed)
+void URunebergVR_Grabber::PushGrabbedObject(int Speed)
 {
 	if (GrabbedObject) {
 		SetDistanceFromController(DistanceFromController + Speed);
