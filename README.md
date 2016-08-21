@@ -1,8 +1,8 @@
-# Unreal Engine Virtual Reality Pawn & Components
+# Unreal Engine Virtual Reality Plugin
 
-UE4 C++ VR Pawn for use in both C++ and Blueprint projects (Pawn is Blueprintable so no knowledge of C++ is required to use it). Contains common VR interface functions and compatible with the VIVE Motion Controllers/Room-Scale VR projects.
+UE4 Plugin - Common VR interface functions exposed in Blueprint as Pawn Components and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
-You can also use this project as a lightweight base SteamVR template.
+You can also use this project as a lightweight base SteamVR template. Developed in C++ for speed but all functions are available in Blueprint.
 
 **Current engine supported: 4.12.x**
 
