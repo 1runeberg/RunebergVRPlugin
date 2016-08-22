@@ -7,8 +7,7 @@ You can also use this project as a lightweight base SteamVR template. Developed 
 **Current engine supported: 4.12.x**
 
 *Click image below to watch the setup/overview video in YouTube:*
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/QFaPWG1H8TM/0.jpg)]([![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs))
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs)
 
 Currently published version includes the following functions:
   - Grabbing function via the Grabber Component (with configurable range)
