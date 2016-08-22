@@ -7,16 +7,15 @@ You can also use this project as a lightweight base SteamVR template. Developed 
 **Current engine supported: 4.12.x**
 
 *Click image below to watch the setup/overview video in YouTube:*
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/QFaPWG1H8TM/0.jpg)](https://www.youtube.com/watch?v=QFaPWG1H8TM?vq=hd1080)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/QFaPWG1H8TM/0.jpg)]([![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs))
 
-Currently published version includes the following Blueprint callable C++ functions:
+
+Currently published version includes the following functions:
   - Grabbing function via the Grabber Component (with configurable range)
   - Push function (with configurable range, min & max distance values)
   - Pull function (with configurable range, min & max distance values)
   - Teleport (via the Targetter component) with support for both spawnable Particle System & Static Mesh
   - Fly around VR Space (via the VRMovement component)
 
-
-Check out the [project wiki](https://github.com/1runeberg/VR_CPP/wiki) for detailed instructions.
 
 Completely free for personal and commercial use under the [MIT] (https://opensource.org/licenses/MIT) License
