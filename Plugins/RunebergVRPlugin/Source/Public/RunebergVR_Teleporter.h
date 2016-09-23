@@ -29,9 +29,6 @@ public:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 	
-	// Called every frame
-	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
-
 	// See if targetting system is active / visible
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "VR")
 	bool IsTargetting = false;

@@ -27,14 +27,6 @@ URunebergVR_Grabber::URunebergVR_Grabber()
 }
 
 
-// Called when the game starts
-void URunebergVR_Grabber::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
 // Called every frame
 void URunebergVR_Grabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
@@ -46,7 +38,7 @@ void URunebergVR_Grabber::TickComponent( float DeltaTime, ELevelTick TickType, F
 		ControllerRotation = FRotator(GetAttachParent()->GetComponentTransform().GetRotation());
 
 		// Update Grabbed Object Location and Controller location	
-		UpdateGrabbedObjectLocation(GetAttachParent()->GetComponentTransform().GetLocation(), FRotator(GetAttachParent()->GetComponentTransform().GetRotation()));
+		UpdateGrabbedObjectLocation();
 	}
 	
 }
@@ -57,8 +49,8 @@ void URunebergVR_Grabber::Grab(float Reach, bool ShowDebugLine, bool SetLocation
 
 	// Set Motion Controller Location & Rotation
 	if (SetLocationManually) {
-		_ControllerLocation = ControllerLocation;
-		_ControllerRotation = ControllerRotation;
+		ControllerLocation = _ControllerLocation;
+		ControllerRotation = _ControllerRotation;
 	}
 
 	// Set Line Trace (Ray-Cast) endpoints
@@ -158,12 +150,8 @@ AActor* URunebergVR_Grabber::GetHit(FVector& LineTraceStart, FVector& LineTraceE
 }
 
 // Update grabbed object location & render
-void URunebergVR_Grabber::UpdateGrabbedObjectLocation(FVector _ControllerLocation, FRotator _ControllerRotation)
+void URunebergVR_Grabber::UpdateGrabbedObjectLocation()
 {
-	// Set Left Controller Location & Rotation
-	_ControllerLocation = ControllerLocation;
-	_ControllerRotation = ControllerRotation;
-
 	// Update Location of Grabbed Actor(s) if present
 	if (GrabbedObject) {
 		GrabbedObject->SetTargetLocation(ControllerLocation + (ControllerRotation.Vector() * DistanceFromController));

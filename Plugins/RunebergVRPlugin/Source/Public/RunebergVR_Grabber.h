@@ -26,9 +26,6 @@ public:
 	// Sets default values for this component's properties
 	URunebergVR_Grabber();
 
-	// Called when the game starts
-	virtual void BeginPlay() override;
-	
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
@@ -57,10 +54,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void SetDistanceFromController(float NewDistance);
 
-	// Set the location of the motion controller
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void UpdateGrabbedObjectLocation(FVector _ControllerLocation, FRotator _ControllerRotation);
-
 	// Release grabbed object
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void Release();
@@ -74,11 +67,8 @@ public:
 	void PushGrabbedObject(int Speed = 1);
 
 private:
-	UInputComponent* InputComponent = nullptr;
-
-	// Grabbed Actor
-	UPhysicsHandleComponent* GrabbedObject = nullptr;
-
+	UPhysicsHandleComponent* GrabbedObject = nullptr;										// Grabbed Actor
 	AActor* GetHit(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Get Actor hit by line trace
 	void AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Attempt to Grab Object in line trace		
+	void UpdateGrabbedObjectLocation();														// Update grabbed object location
 };

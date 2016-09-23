@@ -37,14 +37,6 @@ void URunebergVR_Teleporter::BeginPlay()
 	
 }
 
-// Called every frame
-void URunebergVR_Teleporter::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
-{
-	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
-
-	// ...
-}
-
 // Teleport object
 void URunebergVR_Teleporter::TeleportObject(AActor* ObjectToTeleport, USceneComponent* TargettingSource, bool ReSpawnMarker)
 {
