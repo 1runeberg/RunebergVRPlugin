@@ -1,5 +1,6 @@
 {
 	"FileVersion": 3,
+	"EngineVersion": "4.13.0",
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "Runeberg's Virtual Reality Component Plugin",
@@ -8,7 +9,7 @@
 	"CreatedBy": "runeberg",
 	"CreatedByURL": "https://twitter.com/1runeberg",
 	"DocsURL": "",
-	"MarketplaceURL": "",
+	"MarketplaceURL" : "com.epicgames.launcher://ue/marketplace/content/4dfd0c5b4c97427c860bd2cf7c207136",
 	"SupportURL": "https://github.com/1runeberg/VR_CPP/issues",
 	"Modules": [
 		{
