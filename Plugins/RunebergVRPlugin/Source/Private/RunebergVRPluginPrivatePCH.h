@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "Engine.h"
 #include "RunebergVRPlugin.h"
 #include "RunebergVR_Grabber.h"
+#include "RunebergVR_SimpleGrabber.h"
 #include "RunebergVR_Movement.h"
 #include "RunebergVR_Teleporter.h"
 #include "CoreUObject.h"

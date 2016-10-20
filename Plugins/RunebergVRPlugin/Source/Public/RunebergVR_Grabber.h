@@ -48,7 +48,7 @@ public:
 
 	// Grab something within line trace range of controller
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Grab(float Reach, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation);
+	void Grab(float Reach, bool LockGrab, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation);
 
 	// Set distance from controller
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -67,8 +67,15 @@ public:
 	void PushGrabbedObject(int Speed = 1);
 
 private:
+	bool isLockGrab;																		// Wether this grabber is doing a locked (rotation) grab
+	bool isJustGrabbed;																		// True only during actual grab action/input
+	FTransform transformCache1, transformCache2;
+
+	FVector newGrabbedLocation;																// Target location for grabbed object
+	FVector diffGrabbedLocation;															// Difference between previous and old grabbed object locations
+	FQuat diffGrabbedRotation;																// Difference between controller rotation and grabbed object rotation
 	UPhysicsHandleComponent* GrabbedObject = nullptr;										// Grabbed Actor
 	AActor* GetHit(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Get Actor hit by line trace
-	void AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Attempt to Grab Object in line trace		
-	void UpdateGrabbedObjectLocation();														// Update grabbed object location
+	void AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Attempt to Grab Object in line trace	
+
 };

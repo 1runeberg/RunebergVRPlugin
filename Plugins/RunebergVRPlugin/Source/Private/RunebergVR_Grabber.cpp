@@ -23,7 +23,9 @@ URunebergVR_Grabber::URunebergVR_Grabber()
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	// Set defaults
+	isLockGrab = false;
+
 }
 
 
@@ -33,19 +35,55 @@ void URunebergVR_Grabber::TickComponent( float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
 	if (GetAttachParent()) {
-		// Update controller location
+		// Update controller location & rotation
 		ControllerLocation = GetAttachParent()->GetComponentTransform().GetLocation();
 		ControllerRotation = FRotator(GetAttachParent()->GetComponentTransform().GetRotation());
 
-		// Update Grabbed Object Location and Controller location	
-		UpdateGrabbedObjectLocation();
+		// Update grabbed object location & rotation (if any)
+		if (GrabbedObject) {
+			if (isLockGrab) {
+				// Get grabbed object & controller transforms and place into cache (save on future calls)
+				transformCache1 = GrabbedObject->GetOwner()->GetRootComponent()->GetComponentTransform(); // Grabbed object's original transform
+				transformCache2 = GetAttachParent()->GetComponentTransform();							  // Controller's transform
+
+				newGrabbedLocation = ControllerLocation + (ControllerRotation.Vector() * DistanceFromController);
+				diffGrabbedRotation = transformCache1.GetRotation() - transformCache2.GetRotation();
+				
+				if (isJustGrabbed) {
+					diffGrabbedLocation = GrabbedObject->GetOwner()->GetActorLocation() - newGrabbedLocation;	
+					isJustGrabbed = false;
+				}
+
+				// Move grabbed object to target location and add the original offset
+				GrabbedObject->SetTargetLocation(newGrabbedLocation + diffGrabbedLocation);
+				transformCache1.SetRotation(transformCache2.GetRotation() + diffGrabbedRotation);
+
+			}
+			else {
+				// Do a regular ranged grab (snaps to 0,0,0 of grabbed object)
+				GrabbedObject->SetTargetLocation(ControllerLocation + (ControllerRotation.Vector() * DistanceFromController));
+				GrabbedObject->SetTargetRotation(ControllerRotation);
+				
+			}
+
+		}
 	}
 	
 }
 
 // Ray-Cast and grab an Actor
-void URunebergVR_Grabber::Grab(float Reach, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation)
+void URunebergVR_Grabber::Grab(float Reach, bool LockGrab, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation)
 {
+	// Set if this grab is a precision grab
+	if (LockGrab) {
+		isLockGrab = true;
+		isJustGrabbed = true;
+	}
+	else {
+		isLockGrab = false;
+		isJustGrabbed = false;
+	}
+
 
 	// Set Motion Controller Location & Rotation
 	if (SetLocationManually) {
@@ -59,7 +97,9 @@ void URunebergVR_Grabber::Grab(float Reach, bool ShowDebugLine, bool SetLocation
 	
 	// Attempt Grab
 	AttemptGrab(LineTraceStart, LineTraceEnd, ShowDebugLine);
+
 }
+
 
 // Attempt to grab object
 void URunebergVR_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine)
@@ -146,16 +186,6 @@ AActor* URunebergVR_Grabber::GetHit(FVector& LineTraceStart, FVector& LineTraceE
 	}
 	else { 
 		return nullptr; 
-	}
-}
-
-// Update grabbed object location & render
-void URunebergVR_Grabber::UpdateGrabbedObjectLocation()
-{
-	// Update Location of Grabbed Actor(s) if present
-	if (GrabbedObject) {
-		GrabbedObject->SetTargetLocation(ControllerLocation + (ControllerRotation.Vector() * DistanceFromController));
-		GrabbedObject->SetTargetRotation(ControllerRotation);
 	}
 }
 
