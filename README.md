@@ -7,7 +7,7 @@ You can also use this project as a lightweight base SteamVR template. Developed 
 **Current engine supported: 4.13.x**
 
 *Click image below to watch the setup/overview video in YouTube:*
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs)
+[![RunebergVR Plugin Overview](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs)
 
 Currently published version includes the following functions:
   - Grabbing function via the Grabber Component (with configurable range)
@@ -18,3 +18,20 @@ Currently published version includes the following functions:
 
 
 Completely free for personal and commercial use under the [MIT] (https://opensource.org/licenses/MIT) License
+
+
+# Tutorial Series
+
+1. Tutorial 1 (click image below for video)
+[![Creating a VR Project from Scratch](https://raw.githubusercontent.com/1runeberg/blobs/master/RunebergVRPlugin_VRProjectFromScratch.png)](https://youtu.be/DwOaxg-Czwc)
+
+
+2. Tutorial 2 (click image below for video)
+[![Adding the plugin to your VR Project](https://raw.githubusercontent.com/1runeberg/blobs/master/RunebergVRPlugin_AddingToProjects.png)](https://youtu.be/8DYwI_r-uM4)
+
+
+3. Tutorial 3 (click image below for video)
+[![Using the "SimpleGrabber" & (Ranged) Grabber Components](https://raw.githubusercontent.com/1runeberg/blobs/master/RunebergVRPlugin_GrabberComponents.png)](https://youtu.be/1GA0PWtXEQE)
+
+
+*... and more to come!*
