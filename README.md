@@ -31,7 +31,7 @@ Completely free for personal and commercial use under the [MIT] (https://opensou
 
 
 3. Tutorial 3 (click image below for video)
-[![Using the "SimpleGrabber" & (Ranged) Grabber Components](https://raw.githubusercontent.com/1runeberg/blobs/master/RunebergVRPlugin_GrabberComponents.png)](https://youtu.be/1GA0PWtXEQE)
+[![Using the "SimpleGrabber" & (Ranged) Grabber Components](https://raw.githubusercontent.com/1runeberg/blobs/master/RunebergVRPlugin_GrabberComponents.png)](https://youtu.be/ssQm80sRRl0)
 
 
 *... and more to come!*
