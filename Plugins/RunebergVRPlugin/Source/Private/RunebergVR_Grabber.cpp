@@ -20,7 +20,6 @@ URunebergVR_Grabber::URunebergVR_Grabber()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// Set defaults
@@ -134,13 +133,12 @@ void URunebergVR_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& LineTrac
 			// Physics Handle found! Attempt to Grab Object
 			UPrimitiveComponent* ComponentToGrab = Cast<UPrimitiveComponent>(ActorHit->GetRootComponent());
 
-
-			PhysicsHandle->GrabComponent(
+			PhysicsHandle->GrabComponentAtLocation(
 				ComponentToGrab,
 				NAME_None,
-				ActorHit->GetActorLocation(),
-				true		// allow for rotation
+				ActorHit->GetActorLocation()
 			);
+
 
 			// If object is successfully grabbed, move object with Controller
 			if (PhysicsHandle->GrabbedComponent)

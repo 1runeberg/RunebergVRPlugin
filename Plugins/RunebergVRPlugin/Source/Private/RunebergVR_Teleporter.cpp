@@ -19,7 +19,6 @@ URunebergVR_Teleporter::URunebergVR_Teleporter()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = false;
 
 	// Auto Activate this component
@@ -113,7 +112,7 @@ void URunebergVR_Teleporter::SpawnMarker(USceneComponent* TargettingSource, floa
 			// Create new static mesh component and attach to actor
 			StaticMeshComponent = NewObject<UStaticMeshComponent>(this);
 			StaticMeshComponent->RegisterComponentWithWorld(GetWorld());
-			StaticMeshComponent->AttachTo(GetOwner()->GetRootComponent());
+			StaticMeshComponent->AttachToComponent(GetOwner()->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
 			
 			//Set Mesh
 			StaticMeshComponent->SetStaticMesh(UseThisStaticMesh);
