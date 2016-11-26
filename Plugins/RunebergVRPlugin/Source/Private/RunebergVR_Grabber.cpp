@@ -133,13 +133,13 @@ void URunebergVR_Grabber::AttemptGrab(FVector& LineTraceStart, FVector& LineTrac
 			// Physics Handle found! Attempt to Grab Object
 			UPrimitiveComponent* ComponentToGrab = Cast<UPrimitiveComponent>(ActorHit->GetRootComponent());
 
-
-			PhysicsHandle->GrabComponent(
+			PhysicsHandle->GrabComponentAtLocationWithRotation(
 				ComponentToGrab,
 				NAME_None,
 				ActorHit->GetActorLocation(),
-				true		// constrain rotation
+				FRotator(0.0f, 0.0f, 0.0f)
 			);
+
 
 			// If object is successfully grabbed, move object with Controller
 			if (PhysicsHandle->GrabbedComponent)

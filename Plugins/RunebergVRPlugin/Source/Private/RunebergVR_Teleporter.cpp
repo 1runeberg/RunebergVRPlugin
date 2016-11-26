@@ -112,7 +112,7 @@ void URunebergVR_Teleporter::SpawnMarker(USceneComponent* TargettingSource, floa
 			// Create new static mesh component and attach to actor
 			StaticMeshComponent = NewObject<UStaticMeshComponent>(this);
 			StaticMeshComponent->RegisterComponentWithWorld(GetWorld());
-			StaticMeshComponent->AttachTo(GetOwner()->GetRootComponent());
+			StaticMeshComponent->AttachToComponent(GetOwner()->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
 			
 			//Set Mesh
 			StaticMeshComponent->SetStaticMesh(UseThisStaticMesh);
