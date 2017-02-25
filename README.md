@@ -4,7 +4,7 @@ UE4 Plugin - Common VR interface functions exposed in Blueprint as Pawn Componen
 
 You can also use this project as a lightweight base SteamVR template. Developed in C++ for speed but all functions are available in Blueprint.
 
-**Current engine supported: 4.14.x**
+**Current engine supported: 4.15.x**
 
 *Click image below to watch the setup/overview video in YouTube:*
 [![RunebergVR Plugin Overview](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs)
