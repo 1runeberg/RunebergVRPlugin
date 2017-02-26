@@ -1,4 +1,4 @@
-// Copyright (C) 2016  Runeberg (github: 1runeberg, UE4 Forums: runeberg)
+// Copyright (C) 2017 Runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Movement.h"
@@ -11,7 +11,6 @@ URunebergVR_Movement::URunebergVR_Movement()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
 

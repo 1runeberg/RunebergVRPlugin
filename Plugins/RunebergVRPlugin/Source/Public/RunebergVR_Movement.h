@@ -1,4 +1,4 @@
-// Copyright (C) 2016  Runeberg (github: 1runeberg, UE4 Forums: runeberg)
+// Copyright (C) 2017 Runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
 #pragma once
 

@@ -6,6 +6,11 @@ You can also use this project as a lightweight base SteamVR template. Developed 
 
 **Current engine supported: 4.15.x**
 
+**NEW** Custom Gravity Component (have your pawn or any actor "fall" in any direction (up, down, left, right, forward, back, relative to source of gravitational pull)
+
+**NEW** Climb component (currently in alpha, climbing mechanic for your VR Pawn)
+
+
 *Click image below to watch the setup/overview video in YouTube:*
 [![RunebergVR Plugin Overview](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/8-rd6pdJvCs)
 

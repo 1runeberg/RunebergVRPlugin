@@ -14,46 +14,47 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 #include "Components/SceneComponent.h"
-#include "RunebergVR_SimpleGrabber.generated.h"
+#include "RunebergVR_CustomGravity.h"
+#include "RunebergVR_Climb.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class RUNEBERGVRPLUGIN_API URunebergVR_SimpleGrabber : public USceneComponent
+class RUNEBERGVRPLUGIN_API URunebergVR_Climb : public USceneComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	URunebergVR_SimpleGrabber();
+	URunebergVR_Climb();
 
-	// Called when the game starts
-	virtual void BeginPlay() override;
-	
-	// Object Type that'll be "grabbable" (PhysicsBody)
+public:	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	// Tags that can be used to stop gravity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float GrabSphereRadius = 8.f;
+	TArray<FName> ClimbTags;
 
-	// Enable grab
+	// Gravity origin when gravity direction is set to RELATIVE
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	FVector InitialLocation = FVector::ZeroVector;
+
+	// Whether this actor is currently falling
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	bool IsClimbing = false;
+	
+	// Whether this actor is currently falling
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	URunebergVR_CustomGravity* CustomGravity = nullptr;
+
+	/** Enable climb mode */
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Grab(int _ObjectTypeID = 5);
+	void Climb();
 
-	// Release grabbed object
+	/** Deactivate climb mode */
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Release(bool EnablePhysics = true);
-
-	// Delegate function that'll be called during begin overlap 
-	UFUNCTION()
-	void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	// Delegate function that'll be called during end overlap 
-	UFUNCTION()
-	void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
+	void LetGo();
 
 private:
-	bool isGrabbing;			  				        // Wether or not grabbing is enabled
-	USphereComponent* SphereComponent;					// Sphere collision for simple grabs
-	AActor* GrabbedObject = nullptr;					// Grabbed Actor
-	UPrimitiveComponent* GrabbedComponent = nullptr;	// Grabbed Actor
-	int ObjectTypeID = 5;								// EChannelCollision ID of "Grabbable Objects" default is 5 for PhaysicsBody
+	void StartClimb(USceneComponent* ClimbingReference);
 };
