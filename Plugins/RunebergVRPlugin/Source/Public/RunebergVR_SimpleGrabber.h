@@ -17,7 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_SimpleGrabber.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_SimpleGrabber : public USceneComponent
 {
 	GENERATED_BODY()
@@ -26,9 +26,11 @@ public:
 	// Sets default values for this component's properties
 	URunebergVR_SimpleGrabber();
 
+protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	
+
+public: 
 	// Object Type that'll be "grabbable" (PhysicsBody)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	float GrabSphereRadius = 8.f;

@@ -28,7 +28,7 @@ enum class EGravityDirection : uint8
 	DIR_RELATIVE	UMETA(DisplayName = "Relative")
 };
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_CustomGravity : public UActorComponent
 {
 	GENERATED_BODY()

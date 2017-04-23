@@ -1,8 +1,8 @@
-// Copyright (C) 2017 Runeberg (github: 1runeberg, UE4 Forums: runeberg)
+// Copyright (C) 2016, 2017 Runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
 /*
 The MIT License (MIT)
-Copyright (c) 2017 runeberg (github: 1runeberg, UE4 Forums: runeberg)
+Copyright (c) 2016, 2017 runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -16,66 +16,119 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "Components/ActorComponent.h"
 #include "RunebergVR_Grabber.generated.h"
 
+UENUM(BlueprintType)		
+enum class EGrabTypeEnum : uint8
+{
+	PRECISION_GRAB 	UMETA(DisplayName = "Precision Grab"),
+	SNAP_GRAB 		UMETA(DisplayName = "Snap to Mesh Origin Grab"),
+	LOCK_GRAB		UMETA(DisplayName = "Locked Rotation Grab"),
+	DANGLING_GRAB	UMETA(DisplayName = "Precision Grab and Dangle"),
+	PRECISION_LOCK	UMETA(DisplayName = "Precision Grab with Locked Rotation")
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+};
+
+UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_Grabber : public USceneComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	URunebergVR_Grabber();
 
 	// Called every frame
-	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	// Motion Controller Location
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
-	FVector ControllerLocation = FVector::ZeroVector;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
-	FRotator ControllerRotation = FRotator::ZeroRotator;
-	
 	// Current Distance of grabbed items from their respective controllers
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
 	float DistanceFromController = 10.0f;
 
-	// Min & Max Distance for Controller for grabbed objects
+	/** Min Distance for Controller for grabbed objects  - Customize Push & Pull functions mid action */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float MinDistanceFromController = 10.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float MaxDistanceFromController = 250.0f;
+	float MinDistanceFromController = 1.0f;
 
+	/** Min & Max Distance for Controller for grabbed objects  - Customize Push & Pull functions mid action */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float MaxDistanceFromController = 20.0f;
+
+	/** The westmost point of this world for the day-night cycle mechanic -leave as default if using built-in skysphere */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	FVector SunReferencePoint = FVector(-25000.f, 0.f, -25000.f);
+
+	/** The horizon pitch - moving beyond this point we should turn off the sun brightness for the day-night cycle mechanic -leave as default if using built-in skysphere */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float HorizonPitch = 65.f;
+
+	/** The normal sun brightness - leave as default if using built-in skysphere */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float SunBrightness = 75.f;
 
 	// Grab something within line trace range of controller
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Grab(float Reach, bool LockGrab, bool ShowDebugLine, bool SetLocationManually, FVector _ControllerLocation, FRotator _ControllerRotation);
+	AActor* Grab(float Reach = 5.f, bool ScanOnlyWillManuallyAttach= false, EGrabTypeEnum GrabMode = EGrabTypeEnum::PRECISION_GRAB, FName TagName = FName(TEXT("")), FRotator Rotation_Offset = FRotator::ZeroRotator, bool RetainObjectRotation = true, bool RetainDistance = false, bool ShowDebugLine = false);
 
 	// Set distance from controller
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void SetDistanceFromController(float NewDistance);
+	void SetDistanceFromController(float NewDistance, float MinDistance, float MaxDistance);
 
 	// Release grabbed object
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Release();
+	AActor* Release();
 
 	// Pull grabbed object 
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void PullGrabbedObject(int Speed = 1);
+	void PullGrabbedObject(float PullSpeed = 1.f, float MinDistance = 1.f, float MaxDistance = 20.f);
 
-	// Pull grabbed object(s) 
+	// Push grabbed object(s) 
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void PushGrabbedObject(int Speed = 1);
+	void PushGrabbedObject(float PushSpeed = 1.f, float MinDistance = 1.f, float MaxDistance = 20.f);
+
+	// Stop Pull
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	AActor* StopPull();
+
+	// Stop Push
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	AActor* StopPush();
+
+	// Add Rotation Avoiding Gimbal Lock 
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	FTransform AddRotationAvoidGimbal(FTransform SourceTransform, FRotator InputRotation);
+
+	// Cycle World Day/Night
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	bool GrabSun(AActor* Sky_Sphere, float SunCycleRate = 2.f);
 
 private:
-	bool isLockGrab;																		// Wether this grabber is doing a locked (rotation) grab
-	bool isJustGrabbed;																		// True only during actual grab action/input
-	FTransform transformCache1, transformCache2;
+	// Motion Controller Transform
+	FVector ControllerLocation = FVector::ZeroVector;
+	FRotator ControllerRotation = FRotator::ZeroRotator;
 
-	FVector newGrabbedLocation;																// Target location for grabbed object
-	FVector diffGrabbedLocation;															// Difference between previous and old grabbed object locations
-	FQuat diffGrabbedRotation;																// Difference between controller rotation and grabbed object rotation
-	UPhysicsHandleComponent* GrabbedObject = nullptr;										// Grabbed Actor
-	AActor* GetHit(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Get Actor hit by line trace
-	void AttemptGrab(FVector& LineTraceStart, FVector& LineTraceEnd, bool bShowDebugLine);	// Attempt to Grab Object in line trace	
+	// Temp Variables
+	UPhysicsHandleComponent* GrabbedObject = nullptr;
+	EGrabTypeEnum GrabType = EGrabTypeEnum::PRECISION_GRAB;
+	FVector NewGrabbedLocation = FVector::ZeroVector;
+	FRotator StandardOffset = FRotator::ZeroRotator;
+	FRotator RotationOffset = FRotator::ZeroRotator;
 
+	// Get Actor hit by line trace
+	AActor* GetHit(FVector LineTraceStart, FVector LineTraceEnd, bool RetainDistance, bool bShowDebugLine);
+	bool bManualAttach = false;
+
+	// Pull-Push Mechanic
+	bool bIsPullingOrPushing = false;
+	float Speed = 1.f;
+	// Update Pulled-Pushed Object
+	void UpdatePullPush();
+
+	// Cycle Day Night Mechanic
+	bool bIsGrabbingSun = false;
+	bool bMoveEast = true;
+	float DistanceFromSun = 0.f;
+	float CycleRate = 2.f;
+	AActor* SkySphere = nullptr;
+	ADirectionalLight* SunDirectionalLightActor = nullptr;
+	ULightComponent* SunDirectionalLightComponent = nullptr;
+	FRotator RotationDuringGrab = FRotator::ZeroRotator;
+	void UpdateDayNight();
 };

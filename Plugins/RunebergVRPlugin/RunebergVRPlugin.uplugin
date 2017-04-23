@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"EngineVersion": "4.15.0",
-	"Version": 1,
+	"Version": 2,
 	"VersionName": "1.0",
 	"FriendlyName": "Runeberg's Virtual Reality Component Plugin",
 	"Description": "Contains common VR interface functions and compatible with the VIVE Motion Controllers/Room-Scale VR projects.",

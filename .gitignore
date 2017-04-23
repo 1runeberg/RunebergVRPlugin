@@ -1,9 +1,6 @@
 .vs/
 Intermediate/
 Saved/
-*.sln
 *.db
 *.opendb
-
 *.pdb
-Binaries/
