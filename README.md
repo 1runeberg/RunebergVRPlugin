@@ -1,43 +1,38 @@
 # Unreal Engine Virtual Reality Plugin v2.0
 
-UE4 Plugin - Common VR interface functions exposed in Blueprint as Pawn Components and compatible with the VIVE Motion Controllers/Room-Scale VR projects. Also includes a pre-configured VR Pawn.
+Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
-You can also use this project as a lightweight base SteamVR template. Developed in C++ for speed but all functions are available in Blueprint.
-
-**Current engine supported: 4.15.x**
-
-**NEW** Custom Gravity Component (have your pawn or any actor "fall" in any direction (up, down, left, right, forward, back, relative to source of gravitational pull)
-
-**NEW** Climb component (currently in alpha, climbing mechanic for your VR Pawn)
-
-
-*Click image below to watch the setup/overview video in YouTube:*
-[![RunebergVR Plugin v2 Overview/Highlights](https://img.youtube.com/vi/8-rd6pdJvCs/0.jpg)](https://youtu.be/0Z49S7Q5lpw)
-
-Currently published version includes the following functions:
-  - Preconfigured VR Pawn
-  - Movement Component 
+## What you get:
+  - Pre-configured VR Pawn
+  - Movement Component (free axis, locked axis, dash/timed motion, bounce from VR bounds & optional use of Nav Mesh bounds)
   - Teleport (Arc, Ray, Blink)
-  - Grabber (precision, lock, scan only, grab sky/sun + cycle day and night)
-  - Scalable meshes (Experimental)
+  - Grabber (precision, lock, scan only, grab sky/sun with cycle day and night)
+  - Scalable meshes 
+  - Climb 
 
-V2 - More intricate Level Demos
+## Preview:
+https://youtu.be/0Z49S7Q5lpw
 
+## Tutorials:
+https://www.youtube.com/playlist?list=PLngZ5l9HmlOQBtL8dzDD1lTAdXhsVEm4g
 
-  
+## Support Channels:
+a. UE4 Forums: 
+https://forums.unrealengine.com/showthread.php?109058-VR-Ready-C-Blueprintable-Pawn-with-common-VR-functions-Also-good-as-a-SteamVR-project-template
+
+b. GitHub:
+https://github.com/1runeberg/RunebergVRPlugin/issues
+
+c. Reddit:
+https://www.reddit.com/r/Vive/comments/4yx3q1/ue4_vr_components_plugin_easily_call_common_vr/
+
 
 Completely free for personal and commercial use under the [MIT] (https://opensource.org/licenses/MIT) License
 
-
-# Introduction
-
-1. Tutorial 1 (click image below for video)
-[![Creating a VR Project from Scratch](https://raw.githubusercontent.com/1runeberg/blobs/master/RunebergVRPlugin_VRProjectFromScratch.png)](https://youtu.be/DwOaxg-Czwc)
-
-
 *... detailed tutorials to follow!*
 
-CREDITS
+
+## CREDITS
 
 Most assets made by:
 Ty Hegner
