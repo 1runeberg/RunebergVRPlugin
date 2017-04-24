@@ -32,7 +32,7 @@ Completely free for personal and commercial use under the [MIT] (https://opensou
 *... detailed tutorials to follow!*
 
 
-## CREDITS
+## Credits (for assets in the demo project)
 
 Most assets made by:
 Ty Hegner
