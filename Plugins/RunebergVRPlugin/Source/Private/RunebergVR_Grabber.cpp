@@ -431,14 +431,6 @@ AActor* URunebergVR_Grabber::StopPush()
 	return nullptr;
 }
 
-// Add Rotation Avoiding Gimbal Lock 
-FTransform URunebergVR_Grabber::AddRotationAvoidGimbal(FTransform SourceTransform, FRotator InputRotation)
-{
-	SourceTransform.ConcatenateRotation(InputRotation.Quaternion());
-	SourceTransform.NormalizeRotation();
-	return SourceTransform;
-}
-
 // Cycle World Day/Night
 bool URunebergVR_Grabber::GrabSun(AActor* Sky_Sphere, float SunCycleRate)
 {

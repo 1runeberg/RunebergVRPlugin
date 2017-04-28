@@ -91,10 +91,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	AActor* StopPush();
 
-	// Add Rotation Avoiding Gimbal Lock 
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	FTransform AddRotationAvoidGimbal(FTransform SourceTransform, FRotator InputRotation);
-
 	// Cycle World Day/Night
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	bool GrabSun(AActor* Sky_Sphere, float SunCycleRate = 2.f);
