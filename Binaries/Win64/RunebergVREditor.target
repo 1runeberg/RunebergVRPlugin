@@ -2,7 +2,7 @@
 	"TargetName" : "RunebergVREditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "",
+	"BuildId" : "d07b439e-1d88-41ce-b880-33340bfe35c5",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -17,27 +17,27 @@
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin.dll",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin-452.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin.pdb",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin-452.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVRPlugin.lib",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVRPlugin-452.lib",
 			"Type" : "ImportLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR-81.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR-81.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVR.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVR-81.lib",
 			"Type" : "ImportLibrary"
 		},
 		{

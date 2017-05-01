@@ -1,9 +1,10 @@
-# Unreal Engine Virtual Reality Plugin v2.0
+# Unreal Engine Virtual Reality Plugin v2.1
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
 ## What you get:
   - Pre-configured VR Pawn
+  - Gestures Component (Record & Recognize custom VR Gestures)
   - Movement Component (free axis, locked axis, dash/timed motion, bounce from VR bounds & optional use of Nav Mesh bounds)
   - Teleport (Arc, Ray, Blink)
   - Grabber (precision, lock, scan only, grab sky/sun with cycle day and night)
@@ -14,7 +15,15 @@ Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics
 https://youtu.be/0Z49S7Q5lpw
 
 ## Tutorials:
+
+Playlist
 https://www.youtube.com/playlist?list=PLngZ5l9HmlOQBtL8dzDD1lTAdXhsVEm4g
+
+	1. Setting up a new VR project & enabling VR in existing projects
+	https://youtu.be/BOPFAYPeCAo
+
+	2. Gestures Component
+	https://youtu.be/7D6_o384nj4
 
 ## Support Channels:
 a. UE4 Forums: 
@@ -52,7 +61,7 @@ Other Third Party:
 
 1. SFX by Freesound.org
 2. UE4 Starter & Sample Content
-3. UE4 GDC KiteDemo
+3. UE4 Demoes:Kite, Elemental
 4. UE4 Particle Effects Project
 5. UE Landscape Project
 6. Sonniss.com GDC Bundle + Bulk SFX Samples for Fruity Loops
