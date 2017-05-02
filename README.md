@@ -8,22 +8,22 @@ Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics
   - Movement Component (free axis, locked axis, dash/timed motion, bounce from VR bounds & optional use of Nav Mesh bounds)
   - Teleport (Arc, Ray, Blink)
   - Grabber (precision, lock, scan only, grab sky/sun with cycle day and night)
-  - Scalable meshes 
-  - Climb 
+  - Scalable meshes
+  - Climb
 
 ## Preview:
 https://youtu.be/0Z49S7Q5lpw
 
 ## Tutorials:
 
-Playlist
+#### Playlist
 https://www.youtube.com/playlist?list=PLngZ5l9HmlOQBtL8dzDD1lTAdXhsVEm4g
 
-	1. Setting up a new VR project & enabling VR in existing projects
-	https://youtu.be/BOPFAYPeCAo
+#### 1. Setting up a new VR project & enabling VR in existing projects
+https://youtu.be/BOPFAYPeCAo
 
-	2. Gestures Component
-	https://youtu.be/7D6_o384nj4
+#### 2. Gestures Component
+https://youtu.be/7D6_o384nj4
 
 ## Support Channels:
 a. UE4 Forums: 
