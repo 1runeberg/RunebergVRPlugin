@@ -2,6 +2,8 @@
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
+Also available in the [Unreal Engine Marketplace] (https://www.unrealengine.com/marketplace/vr-pawn-components-plugin)
+
 ## What you get:
   - Pre-configured VR Pawn
   - Gestures Component (Record & Recognize custom VR Gestures)
