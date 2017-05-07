@@ -4,4 +4,5 @@ Saved/
 *.db
 *.opendb
 *.pdb
+*.sln
 Build/
