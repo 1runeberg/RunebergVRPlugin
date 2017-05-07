@@ -80,10 +80,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void TimedDashMove(float MovementDuration = 5.f, float MovementSpeed = 3.f, FRotator MovementDirection = FRotator::ZeroRotator, bool ObeyNavMesh = false);
 
-	// Dash move (max distance)  - dash into a predefined direction and set max distance
-	UFUNCTION(BlueprintCallable, Category = "VR")
-	void DistancedDashMove(FVector MaxMovement = FVector(10.f, 0.f, 0.f), float MovementSpeed = 3.f, FRotator MovementDirection = FRotator::ZeroRotator, bool PositiveMovement = true, bool ObeyNavMesh = false);
-
 	// Bounce back from VR bounds
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void BounceBackFromVRBounds(float MovementSpeed = 3.f, float MovementDuration = 0.5f, bool ResetMovementStateAfterBounce=false);

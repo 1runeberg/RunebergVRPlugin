@@ -209,33 +209,6 @@ void URunebergVR_Movement::TimedDashMove(float MovementDuration, float MovementS
 	GetWorld()->GetTimerManager().SetTimer(UnusedHandle, this, &URunebergVR_Movement::DisableVRMovement, MovementDuration, false);
 }
 
-// Dash move (max distance)  - dash into a predefined direction and set max distance
-void URunebergVR_Movement::DistancedDashMove(FVector MaxMovement, float MovementSpeed, FRotator MovementDirection, bool PositiveMovement, bool ObeyNavMesh)
-{
-	if (PositiveMovement)
-	{
-		FVector MaxTargetLocation = FVector(VRPawn->GetActorLocation().X + MaxMovement.X, VRPawn->GetActorLocation().Y + MaxMovement.Y, VRPawn->GetActorLocation().Z + MaxMovement.Z);
-		while ((VRPawn->GetActorLocation().X < MaxTargetLocation.X)
-			&& VRPawn->GetActorLocation().Y < MaxTargetLocation.Y
-			&& VRPawn->GetActorLocation().Z < MaxTargetLocation.Z)
-		{
-			EnableVRMovement(FMath::Abs(MovementSpeed), nullptr, ObeyNavMesh, false, false, false, MovementDirection);
-		}
-	}
-	else 
-	{
-		FVector MaxTargetLocation = FVector(VRPawn->GetActorLocation().X - MaxMovement.X, VRPawn->GetActorLocation().Y - MaxMovement.Y, VRPawn->GetActorLocation().Z - MaxMovement.Z);
-		while ((VRPawn->GetActorLocation().X > MaxTargetLocation.X)
-			&& VRPawn->GetActorLocation().Y > MaxTargetLocation.Y
-			&& VRPawn->GetActorLocation().Z > MaxTargetLocation.Z)
-		{
-			EnableVRMovement(FMath::Abs(MovementSpeed) * (-1.f), nullptr, ObeyNavMesh, false, false, false, MovementDirection);
-		}
-	}
-
-	DisableVRMovement();
-}
-
 // Bounce back from VR bounds
 void  URunebergVR_Movement::BounceBackFromVRBounds(float MovementSpeed, float MovementDuration, bool ResetMovementStateAfterBounce)
 {
