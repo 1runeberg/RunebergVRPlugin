@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Teleporter.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "IHeadMountedDisplay.h"
 
 // Sets default values for this component's properties
 URunebergVR_Teleporter::URunebergVR_Teleporter()
@@ -43,6 +44,19 @@ void URunebergVR_Teleporter::BeginPlay()
 	ArcSpline->RegisterComponentWithWorld(GetWorld());
 	ArcSpline->SetMobility(EComponentMobility::Movable);
 	ArcSpline->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
+
+	// Adjust pawn spawn target offset based on HMD
+	static const FName HMDName = GEngine->HMDDevice->GetDeviceName();
+
+	if (GEngine->HMDDevice.IsValid())
+	{
+		// Override height offset for Oculus Rift
+		if (HMDName == FName(TEXT("OculusRift")))
+		{
+			PawnHeightOffset.Z = 262.f;
+		}
+	}
+
 }
 
 // Called every frame
@@ -374,7 +388,7 @@ bool URunebergVR_Teleporter::TeleportNow()
 	if (IsTeleporting && bIsTargetLocationValid) {
 		
 		// Teleport
-		GetAttachParent()->GetOwner()->SetActorLocation(TargetLocation + TeleportTargetPawnSpawnOffset, false, nullptr, ETeleportType::None);
+		GetAttachParent()->GetOwner()->SetActorLocation(TargetLocation + PawnHeightOffset + TeleportTargetPawnSpawnOffset, false, nullptr, ETeleportType::None);
 
 		// Remove teleport artifacts
 		switch (TeleportMode)

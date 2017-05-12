@@ -22,6 +22,10 @@ class RUNEBERGVRPLUGIN_API ARunebergVR_Pawn : public APawn
 {
 	GENERATED_BODY()
 
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+
 public:
 	// Sets default values for this pawn's properties
 	ARunebergVR_Pawn(const class FObjectInitializer& PCIP);

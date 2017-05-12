@@ -75,8 +75,10 @@ public:
 	float ArcOverrideGravity = 0.f;
 
 	// The teleport target stuff
+
+	/** Additional offset of pawn (internal offsets are Steam: 112, Rift: 250) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
-	FVector TeleportTargetPawnSpawnOffset = FVector(0.f, 0.f, 112.f);
+	FVector TeleportTargetPawnSpawnOffset = FVector(0.f, 0.f, 0.f);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
 	float FloorIsAtZ = 0.f;
@@ -132,6 +134,9 @@ public:
 	bool TeleportNow();
 
 private:
+	// Teleport target height offset - defaults to SteamVR
+	FVector PawnHeightOffset = FVector(0.f, 0.f, 112.f);
+
 	// Teleport targetting mode
 	int TeleportMode = -1;
 

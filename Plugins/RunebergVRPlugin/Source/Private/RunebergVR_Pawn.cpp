@@ -14,12 +14,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVRPlugin.h"
 #include "RunebergVR_Pawn.h"
+#include "IHeadMountedDisplay.h"
 
 
 // Sets default values
 ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super(PCIP)
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set Base Eye Height
@@ -27,12 +28,12 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 
 	// Set root scene component - use static mesh to ensure collisions
 	RootComponent = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
-	
+
 	// Add Scene component (for headset positioning), set to -110 to ensure headset starts at floor
 	Scene = PCIP.CreateDefaultSubobject<USceneComponent>(this, TEXT("VRBaseScene"));
-	Scene->SetRelativeLocation(FVector(0.f, 0.f, -110.f)); 
+	Scene->SetRelativeLocation(FVector(0.f, 0.f, -110.f));
 	Scene->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-	
+
 	// Add camera
 	Camera = PCIP.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
 	Camera->AttachToComponent(Scene, FAttachmentTransformRules::KeepRelativeTransform);
@@ -41,7 +42,7 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	CapsuleCollision = PCIP.CreateDefaultSubobject<UCapsuleComponent>(this, TEXT("CapsuleCollision"));
 	CapsuleCollision->SetCapsuleHalfHeight(96.f);
 	CapsuleCollision->SetCapsuleRadius(22.f);
-	CapsuleCollision->SetRelativeLocation(FVector(0.f,0.f,-110.f));
+	CapsuleCollision->SetRelativeLocation(FVector(0.f, 0.f, -110.f));
 	CapsuleCollision->AttachToComponent(Camera, FAttachmentTransformRules::KeepRelativeTransform);
 
 	// Add Motion Controllers
@@ -55,6 +56,24 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	MotionController_Right->AttachToComponent(Scene, FAttachmentTransformRules::KeepRelativeTransform);
 	MotionController_Right->SetRelativeLocation(FVector(0.f, 0.f, 110.f));
 
+}
+
+// Called when the game starts
+void ARunebergVR_Pawn::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Adjust pawn spawn target offset based on HMD
+	static const FName HMDName = GEngine->HMDDevice->GetDeviceName();
+
+	if (GEngine->HMDDevice.IsValid())
+	{
+		// Override height offset for Oculus Rift
+		if (HMDName == FName(TEXT("OculusRift")))
+		{
+			this->SetActorLocation(FVector(0.f, 0.f, this->GetActorLocation().Z + 150.f));
+		}
+	}
 }
 
 // Override all default pawn values
