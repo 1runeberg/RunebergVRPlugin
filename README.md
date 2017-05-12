@@ -4,6 +4,8 @@ Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics
 
 Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/vr-pawn-components-plugin)
 
+** NOTE: RIFT SUPPORT IS CODE ONLY AND IN ALPHA **
+
 ## What you get:
   - Pre-configured VR Pawn
   - Gestures Component (Record & Recognize custom VR Gestures)
