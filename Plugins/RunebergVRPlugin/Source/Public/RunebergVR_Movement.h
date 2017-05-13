@@ -47,7 +47,7 @@ public:
 	USceneComponent* CurrentMovementDirectionReference = nullptr;
 
 	/** Navigation mesh tolerance (when used) - fine tune to fit your nav mesh bounds */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Beam Parameters")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FVector NavMeshTolerance = FVector(10.f, 10.f, 10.f);
 
 	/** Indicator if the pawn is moving */

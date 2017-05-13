@@ -39,7 +39,7 @@ void URunebergVR_Teleporter::BeginPlay()
 	// Set object types for the teleport arc to ignore
 	ArcObjectTypesToIgnore.Add(EObjectTypeQuery::ObjectTypeQuery1);	// World static objects
 
-	// Create teleport arc spline
+																	// Create teleport arc spline
 	ArcSpline = NewObject<USplineComponent>(GetAttachParent());
 	ArcSpline->RegisterComponentWithWorld(GetWorld());
 	ArcSpline->SetMobility(EComponentMobility::Movable);
@@ -82,11 +82,11 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 {
 	// Set Teleport Arc Parameters
 	FPredictProjectilePathParams Params = FPredictProjectilePathParams(
-		ArcRadius, 
+		ArcRadius,
 		FVector(GetAttachParent()->GetComponentLocation().X + BeamLocationOffset.X,
 			GetAttachParent()->GetComponentLocation().Y + BeamLocationOffset.Y,
 			GetAttachParent()->GetComponentLocation().Z + BeamLocationOffset.Z),
-		GetAttachParent()->GetForwardVector() * BeamMagnitude, 
+		GetAttachParent()->GetForwardVector() * BeamMagnitude,
 		MaxSimTime);
 	Params.bTraceWithCollision = true;
 	Params.bTraceComplex = false;
@@ -105,9 +105,9 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 	if (bHit)
 	{
 		TargetLocation = GetWorld()->GetNavigationSystem()->ProjectPointToNavigation(
-			this, 
+			this,
 			PredictResult.HitResult.Location,
-			(ANavigationData*) 0,0,
+			(ANavigationData*)0, 0,
 			BeamHitNavMeshTolerance);
 
 		// Check if arc hit location is within the nav mesh
@@ -121,14 +121,14 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 			SetTargetMarkerVisibility(true);
 			bIsTargetLocationValid = true;
 		}
-		else 
+		else
 		{
 			// Set Target Marker Visibility
 			SetTargetMarkerVisibility(false);
 			bIsTargetLocationValid = false;
 		}
 	}
-	else 
+	else
 	{
 		// Set Target Marker Visibility
 		SetTargetMarkerVisibility(false);
@@ -174,7 +174,7 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 				true);
 		}
 	}
-	
+
 }
 
 // Clear Teleport arc
@@ -281,13 +281,13 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 
 	// Do the ray trace
 	bool bHit = GetWorld()->LineTraceSingleByObjectType(
-		Ray_Hit,        
-		GetAttachParent()->GetComponentLocation(),    
+		Ray_Hit,
+		GetAttachParent()->GetComponentLocation(),
 		FVector(GetAttachParent()->GetComponentLocation().X + BeamLocationOffset.X,
 			GetAttachParent()->GetComponentLocation().Y + BeamLocationOffset.Y,
 			GetAttachParent()->GetComponentLocation().Z + BeamLocationOffset.Z) +
-			(GetAttachParent()->GetComponentRotation().Vector() * BeamMagnitude), 
-		ECC_WorldStatic, 
+			(GetAttachParent()->GetComponentRotation().Vector() * BeamMagnitude),
+		ECC_WorldStatic,
 		Ray_TraceParams
 	);
 
@@ -306,7 +306,7 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 			(ANavigationData*)0, 0,
 			BeamHitNavMeshTolerance);
 
-		if (!tempTargetLocation.Equals(TargetLocation, 0.0001f))
+		if (!tempTargetLocation.Equals(Ray_Hit.ImpactPoint, 0.0001f))
 		{
 			// Set Target Marker Visibility
 			TargetLocation = Ray_Hit.ImpactPoint;
@@ -339,8 +339,8 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 			// Calculate how long the beam should be using RayScaleRate as the base unit
 			RayMeshScale = FVector(FVector::Distance(GetComponentLocation(), TargetLocation) * RayScaleRate, 1.f, 1.f);
 			RayMesh->SetWorldScale3D(RayMeshScale);
-		} 
-		else 
+		}
+		else
 		{
 			// Scale beam mesh gradually until it reaches the target location
 			RayDistanceToTarget = FVector::Distance(GetComponentLocation(), TargetLocation);
@@ -355,7 +355,7 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 				RayMeshScale_Max = RayMeshScale;
 				RayNumOfTimesToScale_Actual += RayScaleRate;
 			}
-			else 
+			else
 			{
 				// Scale mesh to max possible size to hit target location
 				RayMesh->SetWorldScale3D(RayMeshScale_Max);
@@ -386,26 +386,26 @@ bool URunebergVR_Teleporter::TeleportNow()
 {
 	// Only teleport if targetting is enabled
 	if (IsTeleporting && bIsTargetLocationValid) {
-		
+
 		// Teleport
 		GetAttachParent()->GetOwner()->SetActorLocation(TargetLocation + PawnHeightOffset + TeleportTargetPawnSpawnOffset, false, nullptr, ETeleportType::None);
 
 		// Remove teleport artifacts
 		switch (TeleportMode)
 		{
-			case 0:
-				HideTeleportArc();
-				break;
+		case 0:
+			HideTeleportArc();
+			break;
 
-			case 1:
-				HideTeleportRay();
-				break;
+		case 1:
+			HideTeleportRay();
+			break;
 
-			case 2: 
-				HideMarker();
+		case 2:
+			HideMarker();
 
-			default:
-				break;
+		default:
+			break;
 		}
 
 		// Reset Teleport mode
@@ -441,7 +441,7 @@ bool URunebergVR_Teleporter::ShowMarker()
 			SetTargetMarkerVisibility(true);
 			bIsTargetLocationValid = true;
 		}
-		else 
+		else
 		{
 			return false;
 		}
@@ -459,7 +459,7 @@ bool URunebergVR_Teleporter::ShowMarker()
 
 		// Calculate Rotation of marker to face player and set the new transform
 		SetTargetMarkerLocationAndRotation(TargetLocation, TargetRotation);
-		
+
 		// Make target marker visible
 		SetTargetMarkerVisibility(true);
 

@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"EngineVersion": "4.15.0",
 	"Version": 2,
-	"VersionName": "2.11",
+	"VersionName": "2.2",
 	"FriendlyName": "Runeberg VR Pawn and Components Plugin",
 	"Description": "Blueprint & C++ VR pawn and VR mechanics component (Grab/Push/Pull, Move, Teleport, Gestures recognition)",
 	"Category": "Virtual Reality",

@@ -4,7 +4,7 @@ Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics
 
 Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/vr-pawn-components-plugin)
 
-** NOTE: RIFT SUPPORT IS CODE ONLY AND IN ALPHA **
+Supports both SteamVR/Vive & the Oculus Rift
 
 ## What you get:
   - Pre-configured VR Pawn
@@ -26,8 +26,14 @@ https://www.youtube.com/playlist?list=PLngZ5l9HmlOQBtL8dzDD1lTAdXhsVEm4g
 #### 1. Setting up a new VR project & enabling VR in existing projects
 https://youtu.be/BOPFAYPeCAo
 
-#### 2. Gestures Component
+#### 2. Gestures Component Overview
 https://youtu.be/7D6_o384nj4
+
+#### 3. Movement Component Deep Dive
+https://youtu.be/QulxyAc2E08
+
+#### 4. Teleport Component Deep Dive
+https://youtu.be/kNZZf6j6T2M
 
 ## Support Channels:
 a. UE4 Forums: 
