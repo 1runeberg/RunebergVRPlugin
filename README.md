@@ -35,6 +35,9 @@ https://youtu.be/QulxyAc2E08
 #### 4. Teleport Component Deep Dive
 https://youtu.be/kNZZf6j6T2M
 
+#### 5. Grabber Component Deep Dive
+https://youtu.be/cdUKwm9HesU
+
 ## Support Channels:
 a. UE4 Forums: 
 https://forums.unrealengine.com/showthread.php?109058-VR-Ready-C-Blueprintable-Pawn-with-common-VR-functions-Also-good-as-a-SteamVR-project-template
