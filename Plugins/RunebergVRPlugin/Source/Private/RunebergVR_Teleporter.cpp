@@ -104,14 +104,15 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 	// Show Target Marker (if a valid teleport location)
 	if (bHit)
 	{
-		TargetLocation = GetWorld()->GetNavigationSystem()->ProjectPointToNavigation(
+		bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
 			this,
 			PredictResult.HitResult.Location,
+			TargetLocation,
 			(ANavigationData*)0, 0,
 			BeamHitNavMeshTolerance);
 
 		// Check if arc hit location is within the nav mesh
-		if (!PredictResult.HitResult.Location.Equals(TargetLocation, 0.0001f))
+		if (bIsWithinNavBounds)
 		{
 			TargetLocation = PredictResult.HitResult.Location;
 			TargetRotation = UKismetMathLibrary::FindLookAtRotation(TargetLocation, GetOwner()->GetActorLocation());
@@ -300,13 +301,15 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 	if (bHit)
 	{
 		// Check if target location is within the nav mesh
-		FVector tempTargetLocation = GetWorld()->GetNavigationSystem()->ProjectPointToNavigation(
+		FVector tempTargetLocation;
+		bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
 			this,
 			Ray_Hit.ImpactPoint,
+			tempTargetLocation,
 			(ANavigationData*)0, 0,
 			BeamHitNavMeshTolerance);
 
-		if (!tempTargetLocation.Equals(Ray_Hit.ImpactPoint, 0.0001f))
+		if (bIsWithinNavBounds)
 		{
 			// Set Target Marker Visibility
 			TargetLocation = Ray_Hit.ImpactPoint;
@@ -427,13 +430,15 @@ bool URunebergVR_Teleporter::ShowMarker()
 		TargetLocation = GetAttachParent()->GetComponentLocation() + (GetAttachParent()->GetComponentRotation().Vector() * BeamMagnitude);
 
 		// Check if target location is within the nav mesh
-		FVector tempTargetLocation = GetWorld()->GetNavigationSystem()->ProjectPointToNavigation(
+		FVector tempTargetLocation;
+		bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
 			this,
 			TargetLocation,
+			tempTargetLocation,
 			(ANavigationData*)0, 0,
 			BeamHitNavMeshTolerance);
 
-		if (!tempTargetLocation.Equals(TargetLocation, 0.0001f))
+		if (bIsWithinNavBounds)
 		{
 			// Set Target Marker Visibility
 			TargetRotation = UKismetMathLibrary::FindLookAtRotation(TargetLocation, GetOwner()->GetActorLocation());

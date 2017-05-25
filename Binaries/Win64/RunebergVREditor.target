@@ -2,42 +2,42 @@
 	"TargetName" : "RunebergVREditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "022e9149-0b1e-43dd-a76f-61d94d863a73",
+	"BuildId" : "3b4a7172-9407-4d67-93ef-2f9e6ae50c92",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
-		"MinorVersion" : 15,
-		"PatchVersion" : 1,
-		"Changelist" : 3348071,
-		"CompatibleChangelist" : 3299760,
+		"MinorVersion" : 16,
+		"PatchVersion" : 0,
+		"Changelist" : 3452394,
+		"CompatibleChangelist" : 0,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
-		"BranchName" : "++UE4+Release-4.15"
+		"BranchName" : "++UE4+Release-4.16"
 	},
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin-5887.dll",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin-8493.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin-5887.pdb",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin-8493.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVRPlugin-5887.lib",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVRPlugin-8493.lib",
 			"Type" : "ImportLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR-5887.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR-2078.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR-5887.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-RunebergVR-2078.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVR-5887.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVR-2078.lib",
 			"Type" : "ImportLibrary"
 		},
 		{
@@ -88,11 +88,11 @@
 			"Type" : "UFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Plugins/Editor/AudioCapture/AudioCapture.uplugin",
+			"Path" : "$(EngineDir)/Plugins/Editor/AssetManagerEditor/AssetManagerEditor.uplugin",
 			"Type" : "UFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Plugins/Editor/EpicSurvey/EpicSurvey.uplugin",
+			"Path" : "$(EngineDir)/Plugins/Editor/AudioCapture/AudioCapture.uplugin",
 			"Type" : "UFS"
 		},
 		{
@@ -144,10 +144,6 @@
 			"Type" : "UFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Plugins/Media/MfMedia/MfMedia.uplugin",
-			"Type" : "UFS"
-		},
-		{
 			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/WmfMedia.uplugin",
 			"Type" : "UFS"
 		},
@@ -168,6 +164,10 @@
 			"Type" : "UFS"
 		},
 		{
+			"Path" : "$(EngineDir)/Plugins/Online/HTTPChunkInstaller/HTTPChunkInstaller.uplugin",
+			"Type" : "UFS"
+		},
+		{
 			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystem/OnlineSubsystem.uplugin",
 			"Type" : "UFS"
 		},
@@ -177,6 +177,10 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemUtils/OnlineSubsystemUtils.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/AndroidPermission/AndroidPermission.uplugin",
 			"Type" : "UFS"
 		},
 		{
@@ -197,6 +201,10 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Runtime/GearVR/GearVR.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ImmediatePhysics/ImmediatePhysics.uplugin",
 			"Type" : "UFS"
 		},
 		{

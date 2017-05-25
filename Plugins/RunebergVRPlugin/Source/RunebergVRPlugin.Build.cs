@@ -2,7 +2,7 @@ using UnrealBuildTool;
  
 public class RunebergVRPlugin : ModuleRules
 {
-    public RunebergVRPlugin(TargetInfo Target)
+    public RunebergVRPlugin(ReadOnlyTargetRules Target)  : base(Target)
     {
 		PublicIncludePaths.AddRange(new string[] { "RunebergVRPlugin/Public" });
 				

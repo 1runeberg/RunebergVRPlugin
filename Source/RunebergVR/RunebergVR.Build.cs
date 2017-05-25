@@ -4,8 +4,8 @@ using UnrealBuildTool;
 
 public class RunebergVR : ModuleRules
 {
-	public RunebergVR(TargetInfo Target)
-	{
+	public RunebergVR(ReadOnlyTargetRules Target) : base(Target)
+    {
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });

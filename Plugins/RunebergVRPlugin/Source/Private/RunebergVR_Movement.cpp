@@ -79,15 +79,16 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 		if (bObeyNavMesh)
 		{
 			// Check TargetLocation if it's in the nav mesh
-			FVector CheckLocation = GetWorld()->GetNavigationSystem()->ProjectPointToNavigation(
+			FVector CheckLocation;
+			bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
 				this,
 				TargetLocation,
+				CheckLocation,
 				(ANavigationData*)0, 0,
 				NavMeshTolerance);
 
-
 			// Check if target location is within the nav mesh
-			if (!CheckLocation.Equals(TargetLocation, 0.0001f))
+			if (bIsWithinNavBounds)
 			{
 				// Move Pawn to Target Lcoation
 				VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());

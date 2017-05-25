@@ -2,17 +2,17 @@
 	"TargetName" : "RunebergVR",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "bde00889-551c-4dff-be07-e74c623601f4",
+	"BuildId" : "991acdc6-7c64-4174-8a82-61dbd4cf6b14",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
-		"MinorVersion" : 15,
-		"PatchVersion" : 1,
-		"Changelist" : 3348071,
-		"CompatibleChangelist" : 3299760,
+		"MinorVersion" : 16,
+		"PatchVersion" : 0,
+		"Changelist" : 3452394,
+		"CompatibleChangelist" : 0,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
-		"BranchName" : "++UE4+Release-4.15"
+		"BranchName" : "++UE4+Release-4.16"
 	},
 	"BuildProducts" :
 	[
@@ -27,6 +27,681 @@
 		{
 			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4-RunebergVRPlugin.lib",
 			"Type" : "StaticLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4-Paper2D.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4-LightPropagationVolumeRuntime.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/FacialAnimation/Binaries/Win64/UE4-FacialAnimation.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/Binaries/Win64/UE4-CharacterAI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4-HTML5Networking.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/AndroidMedia/Binaries/Win64/UE4-AndroidMediaFactory.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/AvfMedia/Binaries/Win64/UE4-AvfMediaFactory.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Binaries/Win64/UE4-WmfMedia.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Binaries/Win64/UE4-WmfMediaFactory.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/TcpMessaging/Binaries/Win64/UE4-TcpMessaging.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/Binaries/Win64/UE4-UdpMessaging.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/HTTPChunkInstaller/Binaries/Win64/UE4-HTTPChunkInstaller.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystem/Binaries/Win64/UE4-OnlineSubsystem.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemNull/Binaries/Win64/UE4-OnlineSubsystemNull.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemUtils/Binaries/Win64/UE4-OnlineSubsystemUtils.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/AndroidPermission/Binaries/Win64/UE4-AndroidPermission.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/Binaries/Win64/UE4-ArchVisCharacter.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/Binaries/Win64/UE4-CableComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UE4-CustomMeshComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/Binaries/Win64/UE4-ExampleDeviceProfileSelector.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/GearVR/Binaries/Win64/UE4-GearVR.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/GearVR/Binaries/Win64/UE4-GearVRController.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ImmediatePhysics/Binaries/Win64/UE4-ImmediatePhysics.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/LocationServicesBPLibrary/Binaries/Win64/UE4-LocationServicesBPLibrary.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/MobilePatchingUtils/Binaries/Win64/UE4-MobilePatchingUtils.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusInput/Binaries/Win64/UE4-OculusInput.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusLibrary/Binaries/Win64/UE4-OculusLibrary.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/OculusRift/Binaries/Win64/UE4-OculusRift.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/PhysXVehicles/Binaries/Win64/UE4-PhysXVehicles.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4-ProceduralMeshComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4-SteamVR.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4-SteamVRController.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/Binaries/Win64/UE4-WindowsMoviePlayer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Launch.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ProfilerService.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AutomationController.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-TaskGraph.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateNullRenderer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateRHIRenderer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Messaging.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SessionServices.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Core.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-InputDevice.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Analytics.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-RHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-CoreUObject.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Projects.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Json.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-EngineMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SessionMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Engine.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Renderer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-PacketHandler.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NetworkReplayStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AudioMixer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ClothingSystemRuntimeInterface.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ImageWrapper.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HeadMountedDisplay.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Advertising.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MovieSceneCapture.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AutomationWorker.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateReflector.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Localization.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-PhysXFormats.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-InputCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Slate.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-RenderCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NullDrv.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-D3D11RHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AppFramework.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AssetRegistry.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Networking.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Sockets.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SandboxFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Landscape.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Foliage.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SourceControl.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-EditorStyle.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AnimGraphRuntime.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AnimationCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GeometryCache.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ShaderCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ActorSequence.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MovieScene.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-LevelSequence.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MovieSceneTracks.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-UMG.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HTTP.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SSL.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MaterialShaderQualitySettings.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-UtilityShaders.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AVIWriter.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-JsonUtilities.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-StreamingPauseRendering.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MoviePlayer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Niagara.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-VectorVM.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NullNetworkReplayStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HttpNetworkReplayStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameLiveStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-CinematicCamera.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AnalyticsET.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Navmesh.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-D3D12RHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-VulkanRHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-OpenGLDrv.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-EngineSettings.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SynthBenchmark.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameplayTags.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AIModule.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameplayTasks.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameplayDebugger.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-DatabaseSupport.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ReliabilityHandlerComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HardwareSurvey.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MediaAssets.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Media.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MediaUtils.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-PakFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Serialization.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NetworkFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-StreamingFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AutomationMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ClothingSystemRuntime.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-XAudio2.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AudioMixerXAudio2.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-RealtimeProfiler.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ProfilerMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-UnrealEdMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MessageLog.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ScreenShotComparisonTools.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ImageCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-BuildPatchServices.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Voice.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
 		}
 	],
 	"RuntimeDependencies" :
@@ -68,10 +743,6 @@
 			"Type" : "UFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Plugins/Media/MfMedia/MfMedia.uplugin",
-			"Type" : "UFS"
-		},
-		{
 			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/WmfMedia.uplugin",
 			"Type" : "UFS"
 		},
@@ -84,6 +755,10 @@
 			"Type" : "UFS"
 		},
 		{
+			"Path" : "$(EngineDir)/Plugins/Online/HTTPChunkInstaller/HTTPChunkInstaller.uplugin",
+			"Type" : "UFS"
+		},
+		{
 			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystem/OnlineSubsystem.uplugin",
 			"Type" : "UFS"
 		},
@@ -93,6 +768,10 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemUtils/OnlineSubsystemUtils.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/AndroidPermission/AndroidPermission.uplugin",
 			"Type" : "UFS"
 		},
 		{
@@ -113,6 +792,10 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Runtime/GearVR/GearVR.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ImmediatePhysics/ImmediatePhysics.uplugin",
 			"Type" : "UFS"
 		},
 		{
@@ -170,6 +853,14 @@
 		{
 			"Path" : "$(EngineDir)/Content/Stats/...",
 			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/NVIDIA/NVaftermath/Win64/GFSDK_Aftermath_Lib.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Windows/DirectX/x64/WinPixEventRuntime.dll",
+			"Type" : "NonUFS"
 		},
 		{
 			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxFoundationPROFILE_x64.dll",
@@ -252,6 +943,14 @@
 			"Type" : "DebugNonUFS"
 		},
 		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/NvClothPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/NvClothPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
 			"Path" : "$(EngineDir)/Binaries/ThirdParty/Ogg/Win64/VS2015/libogg_64.dll",
 			"Type" : "NonUFS"
 		},
@@ -264,7 +963,7 @@
 			"Type" : "NonUFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv1_0_2/Win64/openvr_api.dll",
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv1_0_6/Win64/openvr_api.dll",
 			"Type" : "NonUFS"
 		},
 		{

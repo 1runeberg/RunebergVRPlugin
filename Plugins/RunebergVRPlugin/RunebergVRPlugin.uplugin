@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
-	"EngineVersion": "4.15.0",
+	"EngineVersion": "4.16.0",
 	"Version": 2,
-	"VersionName": "2.2",
+	"VersionName": "2.3",
 	"FriendlyName": "Runeberg VR Pawn and Components Plugin",
 	"Description": "Blueprint & C++ VR pawn and VR mechanics component (Grab/Push/Pull, Move, Teleport, Gestures recognition)",
 	"Category": "Virtual Reality",
@@ -10,7 +10,7 @@
 	"CreatedByURL": "https://twitter.com/1runeberg",
 	"DocsURL": "",
 	"MarketplaceURL" : "com.epicgames.launcher://ue/marketplace/content/4dfd0c5b4c97427c860bd2cf7c207136",
-	"SupportURL": "https://github.com/1runeberg/VR_CPP/issues",
+	"SupportURL": "https://github.com/1runeberg/RunebergVRPlugin/issues",
 	"Modules": [
 		{
 			"Name": "RunebergVRPlugin",
