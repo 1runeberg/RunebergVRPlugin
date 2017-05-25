@@ -70,6 +70,7 @@ public:
 	float VectorThreshold = 35.f;
 
 	/** Maximum number of vertical or horizontal steps in a row for the DTW similarity test */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	int MaxSlope = 100;
 
 	/** Latest recorded VR Gesture */
