@@ -8,6 +8,8 @@ Supports both SteamVR/Vive & the Oculus Rift
 
 **NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
+**UPCOMING MAJOR RELEASE: EASIER MULTIPLAYER ABILITY**
+
 ## What you get:
   - Pre-configured VR Pawn
   - Gestures Component (Record & Recognize custom VR Gestures)
