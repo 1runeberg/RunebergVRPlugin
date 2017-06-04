@@ -90,6 +90,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
 	FVector TeleportTargetMeshSpawnOffset = FVector(0.f, 0.f, 5.f);
 
+	/** Custom marker rotation (applied per frame) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
+	FRotator CustomMarkerRotation = FRotator::ZeroRotator;
+
+	/** If player should face marker rotation (use with Custom Marker Rotation) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
+	bool bFaceMarkerRotation = false;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
 	class UParticleSystem* TeleportTargetParticle = nullptr;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")

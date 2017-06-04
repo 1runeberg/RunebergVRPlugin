@@ -38,9 +38,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	float CurrentMovementSpeed = 3.f;
 
-	// Target Rotation
+	/** Current Target Rotation (current direction movement component is facing) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FRotator TargetRotation = FRotator::ZeroRotator;
+
+	/** Offset Rotation (applied per frame) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	FRotator OffsetRotation = FRotator::ZeroRotator;
 
 	/** Movement Reference - Object that dictates the direction/rotation of the Pawn's movement */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")

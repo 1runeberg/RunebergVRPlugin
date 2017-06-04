@@ -40,6 +40,23 @@ struct FIntArray
 
 };
 
+USTRUCT()
+struct FDrawnGestures
+{
+
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere)
+	USplineComponent* SplineComponent;
+	
+	UPROPERTY(EditAnywhere)
+	TArray<USplineMeshComponent*> SplineMesh;
+
+	FDrawnGestures(USplineComponent* Spline_Component, TArray<USplineMeshComponent*> Spline_Mesh) : SplineComponent(Spline_Component), SplineMesh(Spline_Mesh) {}
+	FDrawnGestures() {}
+
+};
+
 UCLASS(ClassGroup = (VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_Gestures : public USceneComponent
 {
@@ -99,9 +116,9 @@ public:
 
 	// Draw stored gesture
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void DrawVRGesture(FVRGesture VR_Gesture, FColor LineColor, 
+	void DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* LineMesh, UMaterial* LineMaterial,
 		FVector OriginLocation = FVector::ZeroVector, FRotator OriginRotation = FRotator::ZeroRotator, 
-		float OffSetDistance = 100.f, float Lifetime = 3.f, float LineThickness = 3.f);
+		FVector OffsetDistance = FVector::ZeroVector, float Lifetime = 3.f);
 
 	// Find Gesture in the Known Gestures Database
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -122,4 +139,8 @@ private:
 
 	// Calculate the minimum Dynamic Time Warping (DTW) distance between Gesture2 and every possible ending of Gesture1
 	float CalculateDTW(TArray<FVector> Gesture1, TArray<FVector> Gesture2);
+
+	// Clear drawn gesture & variables
+	TArray<FDrawnGestures> DrawnGestures;
+	void ClearDrawnGesture();
 };

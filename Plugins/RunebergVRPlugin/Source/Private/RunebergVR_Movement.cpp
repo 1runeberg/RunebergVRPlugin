@@ -44,23 +44,43 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 		// Check if there's a movement reference actor
 		if(CurrentMovementDirectionReference) {
 
+			// Set rotation/orientation
 			TargetRotation = FRotator(CurrentMovementDirectionReference->ComponentToWorld.GetRotation());
 
-			// Set axis locks : Pitch (Y), Yaw (Z), Roll (X)
-			if (bLockPitchY)
+			// Apply rotation offset
+			if (OffsetRotation.Equals(FRotator::ZeroRotator))
 			{
-				TargetRotation = FRotator(0.f, TargetRotation.Yaw, TargetRotation.Roll);
+				TargetRotation = FRotator(CurrentMovementDirectionReference->ComponentToWorld.GetRotation());
+			}
+			else 
+			{
+				TargetRotation = FRotator(CurrentMovementDirectionReference->ComponentToWorld.GetRotation()).Add(OffsetRotation.Pitch, OffsetRotation.Yaw, OffsetRotation.Roll);
 			}
 
-			if (bLockYawZ)
+		}
+		else 
+		{
+			// Apply rotation offset (if any)
+			if (!OffsetRotation.Equals(FRotator::ZeroRotator))
 			{
-				TargetRotation = FRotator(TargetRotation.Pitch, 0.f, TargetRotation.Roll);
+				TargetRotation = TargetRotation.Add(OffsetRotation.Pitch, OffsetRotation.Yaw, OffsetRotation.Roll);
 			}
+		}
 
-			if (bLockRollX)
-			{
-				TargetRotation = FRotator(TargetRotation.Pitch, TargetRotation.Yaw, 0.f);
-			}
+		// Set axis locks : Pitch (Y), Yaw (Z), Roll (X)
+		if (bLockPitchY)
+		{
+			TargetRotation = FRotator(0.f, TargetRotation.Yaw, TargetRotation.Roll);
+		}
+
+		if (bLockYawZ)
+		{
+			TargetRotation = FRotator(TargetRotation.Pitch, 0.f, TargetRotation.Roll);
+		}
+
+		if (bLockRollX)
+		{
+			TargetRotation = FRotator(TargetRotation.Pitch, TargetRotation.Yaw, 0.f);
 		}
 
 		// Set Target Location
@@ -120,7 +140,9 @@ void URunebergVR_Movement::MoveVRPawn(float MovementSpeed, USceneComponent* Move
 		this->bLockPitchY = LockPitchAngle;
 		this->bLockRollX = LockRollAngle;
 		this->bLockYawZ = LockYawAngle;
-		
+
+		// Set Custom Direction as rotation offset
+		OffsetRotation = CustomDirection;
 	}
 	else {
 		CurrentMovementDirectionReference = nullptr;
@@ -154,10 +176,12 @@ void URunebergVR_Movement::DisableVRMovement()
 {
 	// Set the Pawn to static state
 	IsMoving = false;
+
+	// Reset Offset
+	OffsetRotation = FRotator::ZeroRotator;
 }
 
 // Apply acceleration multiplier to current movement speed - can be used for smooth acceleration / deceleration
-UFUNCTION(BlueprintCallable, Category = "VR")
 void URunebergVR_Movement::ApplySpeedMultiplier(float SpeedMultiplier, float BaseSpeed, bool UseCurrentSpeedAsBase)
 {
 	if (UseCurrentSpeedAsBase)

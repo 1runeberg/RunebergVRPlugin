@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "Algo/Reverse.h"
 #include "RunebergVRPlugin.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "RunebergVR_Gestures.h"
 
 
@@ -141,29 +142,89 @@ bool URunebergVR_Gestures::EmptyKnownGestures()
 }
 
 // Draw stored gesture
-void URunebergVR_Gestures::DrawVRGesture(FVRGesture VR_Gesture, FColor LineColor, FVector OriginLocation, FRotator OriginRotation, 
-	float OffSetDistance, float Lifetime, float LineThickness)
+void URunebergVR_Gestures::DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* LineMesh, UMaterial* LineMaterial, FVector OriginLocation, FRotator OriginRotation, 
+	FVector OffsetDistance, float Lifetime)
 {
 	// Set Offset location
-	FVector OffsetLocation = OriginLocation + (OriginRotation.Vector() * OffSetDistance);
+	FVector GestureLocation = OriginLocation + OffsetDistance;
+	TArray<USplineMeshComponent*> SplineMeshArray;
 
-	if (VR_Gesture.GesturePattern.Num() > 1)
+	if (VR_Gesture.GesturePattern.Num() > 1 && LineMesh && LineMaterial)
 	{
+		// Create Spline Component to draw on
+		USplineComponent* GestureSpline = NewObject<USplineComponent>(GetAttachParent());
+		GestureSpline->RegisterComponentWithWorld(GetWorld());
+		GestureSpline->SetMobility(EComponentMobility::Movable);
+		GestureSpline->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
+
+		// Set the point type for the curve
+		GestureSpline->SetSplinePointType(VR_Gesture.GesturePattern.Num() - 1, ESplinePointType::CurveClamped, true);
+		
+		// Add spline points to spline
 		for (int32 i = 0; i < VR_Gesture.GesturePattern.Num() - 1; i++)
 		{
-			DrawDebugLine(
-				GetOwner()->GetWorld(),
-				VR_Gesture.GesturePattern[i] + OffsetLocation,
-				VR_Gesture.GesturePattern[i + 1] + OffsetLocation,
-				LineColor,
-				false,
-				Lifetime,
-				0,
-				LineThickness
-			);
+			// Add spline point
+			GestureSpline->AddSplinePoint(VR_Gesture.GesturePattern[i], ESplineCoordinateSpace::Local, true);
 		}
+
+		// Draw gesture using the spline
+		for (int32 i = 0; i < VR_Gesture.GesturePattern.Num() - 2; i++)
+		{
+			// Add the line mesh
+			USplineMeshComponent* LineMeshComponent = NewObject<USplineMeshComponent>(GestureSpline);
+			LineMeshComponent->RegisterComponentWithWorld(GetWorld());
+			LineMeshComponent->SetMobility(EComponentMobility::Movable);
+			LineMeshComponent->SetStaticMesh(LineMesh);
+			LineMeshComponent->SetMaterial(0, LineMaterial);
+
+			// Bend mesh to conform to arc
+			LineMeshComponent->SetStartAndEnd(VR_Gesture.GesturePattern[i],
+				GestureSpline->GetTangentAtSplinePoint(i, ESplineCoordinateSpace::Local),
+				VR_Gesture.GesturePattern[i + 1],
+				GestureSpline->GetTangentAtSplinePoint(i + 1, ESplineCoordinateSpace::Local),
+				true);
+
+			// Set the location of the spline
+			LineMeshComponent->SetWorldLocation(GestureLocation);
+			SplineMeshArray.Add(LineMeshComponent);
+		}
+
+		// Add Gesture to array of drawn gestures
+		DrawnGestures.Add(FDrawnGestures(GestureSpline, SplineMeshArray));
+
+		// Remove spline via timer
+		FTimerHandle UnusedHandle;
+		GetWorld()->GetTimerManager().SetTimer(UnusedHandle, this, &URunebergVR_Gestures::ClearDrawnGesture, Lifetime, false);
+
 	}
 
+}
+
+// Clear drawn VR Gesture
+void URunebergVR_Gestures::ClearDrawnGesture()
+{
+
+	if (DrawnGestures.Num() > 0)
+	{
+		// Clear spline meshes
+		for (int32 i = 0; i < DrawnGestures[0].SplineMesh.Num(); i++)
+		{
+			if (DrawnGestures[0].SplineMesh[i])
+			{
+				DrawnGestures[0].SplineMesh[i]->DestroyComponent();
+			}
+		}
+
+		// Clear spline point
+		DrawnGestures[0].SplineComponent->ClearSplinePoints();
+
+		// Remove spline component
+		DrawnGestures[0].SplineComponent->DestroyComponent();
+
+		// Remove from array
+		DrawnGestures.RemoveAt(0);
+	}
+	
 }
 
 // Calculate the Manhattan Distance between two points

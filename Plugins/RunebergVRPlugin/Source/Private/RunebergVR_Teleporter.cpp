@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Teleporter.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
 
 // Sets default values for this component's properties
@@ -114,8 +115,20 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 		// Check if arc hit location is within the nav mesh
 		if (bIsWithinNavBounds)
 		{
+			// Set Marker location
 			TargetLocation = PredictResult.HitResult.Location;
-			TargetRotation = UKismetMathLibrary::FindLookAtRotation(TargetLocation, GetOwner()->GetActorLocation());
+			
+			// Check marker rotation
+			if (CustomMarkerRotation.Equals(FRotator::ZeroRotator))
+			{
+				TargetRotation = CustomMarkerRotation;
+			}
+			else
+			{
+				TargetRotation = UKismetMathLibrary::FindLookAtRotation(TargetLocation, GetOwner()->GetActorLocation());
+			}
+			
+			// Apply marker position and orientation
 			SetTargetMarkerLocationAndRotation(TargetLocation, TargetRotation);
 
 			// Set Target Marker Visibility
@@ -313,7 +326,17 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 		{
 			// Set Target Marker Visibility
 			TargetLocation = Ray_Hit.ImpactPoint;
-			TargetRotation = UKismetMathLibrary::FindLookAtRotation(TargetLocation, GetOwner()->GetActorLocation());
+			
+			// Check marker rotation
+			if (CustomMarkerRotation.Equals(FRotator::ZeroRotator))
+			{
+				TargetRotation = CustomMarkerRotation;
+			}
+			else
+			{
+				TargetRotation = UKismetMathLibrary::FindLookAtRotation(TargetLocation, GetOwner()->GetActorLocation());
+			}
+
 			SetTargetMarkerLocationAndRotation(TargetLocation, TargetRotation);
 			SetTargetMarkerVisibility(true);
 			bIsTargetLocationValid = true;
@@ -390,8 +413,20 @@ bool URunebergVR_Teleporter::TeleportNow()
 	// Only teleport if targetting is enabled
 	if (IsTeleporting && bIsTargetLocationValid) {
 
+		// Get HMD Position & Orientation
+		FRotator HMDRotation;
+		FVector HMDLocation;
+		UHeadMountedDisplayFunctionLibrary::GetOrientationAndPosition(HMDRotation, HMDLocation);
+
 		// Teleport
+		TargetLocation = FVector(TargetLocation - FVector(HMDLocation.X, HMDLocation.Y, 0.f));
 		GetAttachParent()->GetOwner()->SetActorLocation(TargetLocation + PawnHeightOffset + TeleportTargetPawnSpawnOffset, false, nullptr, ETeleportType::None);
+
+		// Set custom rotation if needed
+		if (bFaceMarkerRotation)
+		{
+			GetAttachParent()->GetOwner()->SetActorRotation(CustomMarkerRotation);
+		}
 
 		// Remove teleport artifacts
 		switch (TeleportMode)
@@ -406,6 +441,7 @@ bool URunebergVR_Teleporter::TeleportNow()
 
 		case 2:
 			HideMarker();
+			break;
 
 		default:
 			break;
@@ -595,6 +631,7 @@ void URunebergVR_Teleporter::RemoveTargetMarker()
 	}
 
 	bIsTargetLocationValid = false;
+	CustomMarkerRotation = FRotator::ZeroRotator;
 }
 
 // Show target location marker
