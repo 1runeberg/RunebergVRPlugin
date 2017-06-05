@@ -100,7 +100,9 @@ public:
 
 	// Start recording VR Gesture
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void StartRecordingGesture(FString GestureName, float RecordingInterval = 0.05f);
+	void StartRecordingGesture(float RecordingInterval, FString GestureName,
+		bool DrawLine, UStaticMesh* LineMesh, UMaterial* LineMaterial,
+		FVector LineOffset);
 
 	// Stop recording VR Gesture
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -118,7 +120,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* LineMesh, UMaterial* LineMaterial,
 		FVector OriginLocation = FVector::ZeroVector, FRotator OriginRotation = FRotator::ZeroRotator, 
-		FVector OffsetDistance = FVector::ZeroVector, float Lifetime = 3.f);
+		FVector OffsetLocation = FVector::ZeroVector, float OffsetDistance = 100.f, float Lifetime = 3.f);
 
 	// Find Gesture in the Known Gestures Database
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -139,6 +141,19 @@ private:
 
 	// Calculate the minimum Dynamic Time Warping (DTW) distance between Gesture2 and every possible ending of Gesture1
 	float CalculateDTW(TArray<FVector> Gesture1, TArray<FVector> Gesture2);
+
+	// Remove Gesture
+	void RemoveGesture(TArray<FDrawnGestures> Drawn_Gestures, int GestureIndex = 0);
+
+	// Real-time gesture drawing
+	//TODO: Refactor with clear drawn gestures
+	bool bDrawRTLine = false;
+	FVector RT_PriorVector = FVector::ZeroVector;
+	UStaticMesh* RT_LineMesh;
+	UMaterial* RT_LineMaterial;
+	FVector RT_LineOffset = FVector::ZeroVector;
+	USplineComponent* CurrentSpline = nullptr;
+	TArray<USplineMeshComponent*> RTSplineMeshArray;
 
 	// Clear drawn gesture & variables
 	TArray<FDrawnGestures> DrawnGestures;

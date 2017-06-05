@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v2.4
+# Unreal Engine VR Plugin v2.4.1
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
@@ -9,6 +9,10 @@ Supports both SteamVR/Vive & the Oculus Rift
 **NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
 ## Latest Release Notes (v2.4)
+2.4.1:
+ - Gestures: Allow real-time painting/line-draw during gesture
+
+2.4.0:
  - Gestures: DrawVRGesture now uses a spline with customizable mesh & material (required) instead of just drawing a debug line (also circumvents issues with Engine 4.16.1 with stereo debug lines)
  - Movement: Exposed Rotation/Direction Offset, can be used to add a per frame/tick offset to the direction during movement
  - Teleport: Fixed issue with headset origin offset

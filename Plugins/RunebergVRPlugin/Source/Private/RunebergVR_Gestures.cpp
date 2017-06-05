@@ -59,12 +59,58 @@ void URunebergVR_Gestures::TickComponent(float DeltaTime, ELevelTick TickType, F
 			// Reset timer
 			DeltaSeconds = 0.f;
 		}
+
+		// Draw Real-time line if needed
+		if (bDrawRTLine && CurrentSpline && CurrentSpline->IsValidLowLevel() && !CurrentSpline->IsBeingDestroyed() && RT_LineMesh && RT_LineMaterial)
+		{
+			// Add spline point
+			CurrentSpline->AddSplinePoint(GetAttachParent()->GetRelativeTransform().GetLocation(), ESplineCoordinateSpace::Local, true);
+
+			// Add the line mesh
+			USplineMeshComponent* LineMeshComponent = NewObject<USplineMeshComponent>(CurrentSpline);
+			LineMeshComponent->RegisterComponentWithWorld(GetWorld());
+			LineMeshComponent->SetMobility(EComponentMobility::Movable);
+			LineMeshComponent->SetStaticMesh(RT_LineMesh);
+			LineMeshComponent->SetMaterial(0, RT_LineMaterial);
+
+			// Add mesh to spline
+			if (CurrentSpline->GetNumberOfSplinePoints() > 1)
+			{
+				LineMeshComponent->SetStartAndEnd(RT_PriorVector,
+					CurrentSpline->GetTangentAtSplinePoint((CurrentSpline->GetNumberOfSplinePoints() - 1), ESplineCoordinateSpace::Local),
+					GetAttachParent()->GetRelativeTransform().GetLocation(),
+					CurrentSpline->GetTangentAtSplinePoint(CurrentSpline->GetNumberOfSplinePoints(), ESplineCoordinateSpace::Local),
+					true);
+			}
+
+
+			// Set the location of the spline
+			LineMeshComponent->SetWorldLocation(LineMeshComponent->GetRelativeTransform().GetLocation() + RT_LineOffset);
+			RTSplineMeshArray.Add(LineMeshComponent);
+
+			// Set prior vector to current point 
+			RT_PriorVector = GetAttachParent()->GetRelativeTransform().GetLocation();
+		}
+		else if (bDrawRTLine && RT_PriorVector.Equals(FVector::ZeroVector))
+		{
+			// Set new prior vector
+			RT_PriorVector = GetAttachParent()->GetRelativeTransform().GetLocation();
+			
+			// Create spline if there's not one already
+			CurrentSpline = NewObject<USplineComponent>(GetAttachParent());
+			CurrentSpline->RegisterComponentWithWorld(GetWorld());
+			CurrentSpline->SetMobility(EComponentMobility::Movable);
+			CurrentSpline->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
+
+		}
+
 	}
 }
 
 
 // Start recording VR Gesture
-void URunebergVR_Gestures::StartRecordingGesture(FString GestureName, float RecordingInterval)
+void URunebergVR_Gestures::StartRecordingGesture(float RecordingInterval, FString GestureName,
+	bool DrawLine, UStaticMesh* LineMesh, UMaterial* LineMaterial,	FVector LineOffset)
 {
 	// Name the gesture
 	if (GestureName.IsEmpty())
@@ -84,7 +130,25 @@ void URunebergVR_Gestures::StartRecordingGesture(FString GestureName, float Reco
 	DeltaSeconds = 0.f;
 
 	// Set the recording interval
-	Interval = RecordingInterval;
+	if (Interval <= 0.0000f)
+	{
+		// Set minimum interval if invalid interval was provided by user
+		Interval = 0.05f;
+	}
+	else 
+	{
+		Interval = RecordingInterval;
+	}
+	
+	// Set realtime recording variables if needed
+	if (DrawLine && LineMesh && LineMaterial)
+	{
+		RT_LineMesh = LineMesh;
+		RT_LineMaterial = LineMaterial;
+		RT_LineOffset = LineOffset;
+		CurrentSpline = nullptr;
+		bDrawRTLine = true;
+	}
 
 	// Start recording
 	IsRecording = true;
@@ -112,6 +176,16 @@ FVRGesture URunebergVR_Gestures::StopRecordingGesture(bool SaveToDB)
 	{
 		SaveGestureToDB();
 	}
+
+	// Remove realtime draw line
+	TArray<FDrawnGestures> RTGestures;
+	RTGestures.Add(FDrawnGestures(CurrentSpline, RTSplineMeshArray));
+	RemoveGesture(RTGestures, 0);
+
+	// Reset realtime line variables
+	bDrawRTLine = false;
+	RT_LineOffset = FVector::ZeroVector;
+	RT_PriorVector = FVector::ZeroVector;
 
 	// Return currently stored VR Gesture
 	return VRGesture;
@@ -141,12 +215,42 @@ bool URunebergVR_Gestures::EmptyKnownGestures()
 	return false;
 }
 
-// Draw stored gesture
-void URunebergVR_Gestures::DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* LineMesh, UMaterial* LineMaterial, FVector OriginLocation, FRotator OriginRotation, 
-	FVector OffsetDistance, float Lifetime)
+
+// Remove Gesture
+void URunebergVR_Gestures::RemoveGesture(TArray<FDrawnGestures> Drawn_Gestures, int GestureIndex)
 {
-	// Set Offset location
-	FVector GestureLocation = OriginLocation + OffsetDistance;
+	if (Drawn_Gestures.Num() > 0 && Drawn_Gestures.Num() > GestureIndex)
+	{
+		// Clear spline meshes
+		for (int32 i = 0; i < Drawn_Gestures[GestureIndex].SplineMesh.Num(); i++)
+		{
+			if (Drawn_Gestures[GestureIndex].SplineMesh[i])
+			{
+				// Remove mesh component
+				if (Drawn_Gestures[GestureIndex].SplineMesh[i]->IsValidLowLevel())
+				{
+					Drawn_Gestures[GestureIndex].SplineMesh[i]->DestroyComponent();
+				}
+			}
+		}
+
+		// Remove spline component
+		if (Drawn_Gestures[GestureIndex].SplineComponent->IsValidLowLevel())
+		{
+			// Clear spline point
+			Drawn_Gestures[GestureIndex].SplineComponent->ClearSplinePoints();
+
+			// Destroy spline
+			Drawn_Gestures[GestureIndex].SplineComponent->DestroyComponent();
+		}
+	}
+}
+
+// Draw stored gesture
+void URunebergVR_Gestures::DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* LineMesh, UMaterial* LineMaterial, 
+	FVector OriginLocation, FRotator OriginRotation, 
+	FVector OffsetLocation, float OffsetDistance, float Lifetime)
+{
 	TArray<USplineMeshComponent*> SplineMeshArray;
 
 	if (VR_Gesture.GesturePattern.Num() > 1 && LineMesh && LineMaterial)
@@ -184,8 +288,9 @@ void URunebergVR_Gestures::DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* Lin
 				GestureSpline->GetTangentAtSplinePoint(i + 1, ESplineCoordinateSpace::Local),
 				true);
 
-			// Set the location of the spline
-			LineMeshComponent->SetWorldLocation(GestureLocation);
+			// Set the location and orientation of the spline
+			FVector TargetLocation = OriginLocation + (OriginRotation.Vector() * OffsetDistance);
+			LineMeshComponent->SetWorldLocation(TargetLocation + OffsetLocation);
 			SplineMeshArray.Add(LineMeshComponent);
 		}
 
@@ -200,31 +305,16 @@ void URunebergVR_Gestures::DrawVRGesture(FVRGesture VR_Gesture, UStaticMesh* Lin
 
 }
 
+
 // Clear drawn VR Gesture
 void URunebergVR_Gestures::ClearDrawnGesture()
 {
-
-	if (DrawnGestures.Num() > 0)
+	for (int32 i = 0; i < DrawnGestures.Num(); i++)
 	{
-		// Clear spline meshes
-		for (int32 i = 0; i < DrawnGestures[0].SplineMesh.Num(); i++)
-		{
-			if (DrawnGestures[0].SplineMesh[i])
-			{
-				DrawnGestures[0].SplineMesh[i]->DestroyComponent();
-			}
-		}
-
-		// Clear spline point
-		DrawnGestures[0].SplineComponent->ClearSplinePoints();
-
-		// Remove spline component
-		DrawnGestures[0].SplineComponent->DestroyComponent();
-
-		// Remove from array
-		DrawnGestures.RemoveAt(0);
+		RemoveGesture(DrawnGestures, i);
 	}
-	
+
+	DrawnGestures.Empty();
 }
 
 // Calculate the Manhattan Distance between two points
