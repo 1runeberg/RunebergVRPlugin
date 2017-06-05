@@ -128,7 +128,7 @@ public:
 
 private:
 	// Internal variables
-	const FString UNKNOWN_GESTURE = FString(TEXT("UNKONWN_GESTURE"));
+	const FString UNKNOWN_GESTURE = FString(TEXT("UNKNOWN_GESTURE"));
 	float Interval = 0.5f;
 	float DeltaSeconds = 0.f;
 	int32 VectorScale = 3;
