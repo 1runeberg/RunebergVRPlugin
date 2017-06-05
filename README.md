@@ -8,7 +8,7 @@ Supports both SteamVR/Vive & the Oculus Rift
 
 **NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
-## Latest Release Notes (v2.4)
+## Latest Release Notes (v2.4.x) - compatible only for UE 4.16 upwards
 2.4.1:
  - Gestures: Allow real-time painting/line-draw during gesture
 
