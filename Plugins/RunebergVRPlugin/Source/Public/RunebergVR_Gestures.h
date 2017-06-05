@@ -102,7 +102,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void StartRecordingGesture(float RecordingInterval, FString GestureName,
 		bool DrawLine, UStaticMesh* LineMesh, UMaterial* LineMaterial,
-		FVector LineOffset);
+		FVector LineOffset, FRotator RotationOffset);
 
 	// Stop recording VR Gesture
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -152,6 +152,7 @@ private:
 	UStaticMesh* RT_LineMesh;
 	UMaterial* RT_LineMaterial;
 	FVector RT_LineOffset = FVector::ZeroVector;
+	FRotator RT_RotationOffset = FRotator::ZeroRotator;
 	USplineComponent* CurrentSpline = nullptr;
 	TArray<USplineMeshComponent*> RTSplineMeshArray;
 

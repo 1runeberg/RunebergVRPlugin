@@ -85,7 +85,8 @@ void URunebergVR_Gestures::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 
 			// Set the location of the spline
-			LineMeshComponent->SetWorldLocation(LineMeshComponent->GetRelativeTransform().GetLocation() + RT_LineOffset);
+			LineMeshComponent->SetWorldLocation(LineMeshComponent->GetComponentTransform().GetLocation() + RT_LineOffset);
+			LineMeshComponent->SetWorldRotation(FRotator(LineMeshComponent->GetComponentTransform().GetRotation()).Add(RT_RotationOffset.Pitch, RT_RotationOffset.Yaw, RT_RotationOffset.Roll));
 			RTSplineMeshArray.Add(LineMeshComponent);
 
 			// Set prior vector to current point 
@@ -102,6 +103,8 @@ void URunebergVR_Gestures::TickComponent(float DeltaTime, ELevelTick TickType, F
 			CurrentSpline->SetMobility(EComponentMobility::Movable);
 			CurrentSpline->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
 
+			// Add initial spline point
+			CurrentSpline->AddSplinePoint(GetAttachParent()->GetRelativeTransform().GetLocation(), ESplineCoordinateSpace::Local, true);
 		}
 
 	}
@@ -110,7 +113,7 @@ void URunebergVR_Gestures::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 // Start recording VR Gesture
 void URunebergVR_Gestures::StartRecordingGesture(float RecordingInterval, FString GestureName,
-	bool DrawLine, UStaticMesh* LineMesh, UMaterial* LineMaterial,	FVector LineOffset)
+	bool DrawLine, UStaticMesh* LineMesh, UMaterial* LineMaterial,	FVector LineOffset, FRotator RotationOffset)
 {
 	// Name the gesture
 	if (GestureName.IsEmpty())
@@ -146,6 +149,8 @@ void URunebergVR_Gestures::StartRecordingGesture(float RecordingInterval, FStrin
 		RT_LineMesh = LineMesh;
 		RT_LineMaterial = LineMaterial;
 		RT_LineOffset = LineOffset;
+		RT_RotationOffset = RotationOffset;
+		RT_PriorVector = FVector::ZeroVector;
 		CurrentSpline = nullptr;
 		bDrawRTLine = true;
 	}
@@ -185,6 +190,7 @@ FVRGesture URunebergVR_Gestures::StopRecordingGesture(bool SaveToDB)
 	// Reset realtime line variables
 	bDrawRTLine = false;
 	RT_LineOffset = FVector::ZeroVector;
+	RT_RotationOffset = FRotator::ZeroRotator;
 	RT_PriorVector = FVector::ZeroVector;
 
 	// Return currently stored VR Gesture
