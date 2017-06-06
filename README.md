@@ -43,19 +43,16 @@ https://www.youtube.com/playlist?list=PLngZ5l9HmlOQBtL8dzDD1lTAdXhsVEm4g
 #### 1. Setting up a new VR project & enabling VR in existing projects
 https://youtu.be/BOPFAYPeCAo
 
-#### 2. Gestures Component Overview
-https://youtu.be/7D6_o384nj4
-
-#### 3. Movement Component Deep Dive
+#### 2. Movement Component Deep Dive
 https://youtu.be/QulxyAc2E08
 
-#### 4. Teleport Component Deep Dive
+#### 3. Teleport Component Deep Dive
 https://youtu.be/kNZZf6j6T2M
 
-#### 5. Grabber Component Deep Dive
+#### 4. Grabber Component Deep Dive
 https://youtu.be/cdUKwm9HesU
 
-#### 6. Gestures Component Deep Dive
+#### 5. Gestures Component Deep Dive
 https://youtu.be/z78CMOwGWxM
 
 ## Support Channels:
