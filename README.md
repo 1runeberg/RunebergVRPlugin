@@ -43,7 +43,7 @@ https://www.youtube.com/playlist?list=PLngZ5l9HmlOQBtL8dzDD1lTAdXhsVEm4g
 #### 1. Setting up a new VR project & enabling VR in existing projects
 https://youtu.be/BOPFAYPeCAo
 
-#### 2. Movement / Locomotion Component Deep Dive
+#### 2. Movement / VR Locomotion Component Deep Dive
 https://youtu.be/QulxyAc2E08
 
 #### 3. Teleport Component Deep Dive
