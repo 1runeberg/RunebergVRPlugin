@@ -64,14 +64,18 @@ void ARunebergVR_Pawn::BeginPlay()
 	Super::BeginPlay();
 
 	// Adjust pawn spawn target offset based on HMD
-	static const FName HMDName = GEngine->HMDDevice->GetDeviceName();
-
 	if (GEngine->HMDDevice.IsValid())
 	{
+
 		// Override height offset for Oculus Rift
-		if (HMDName == FName(TEXT("OculusRift")))
+		// TODO: Set to floor instead
+		switch (GEngine->HMDDevice->GetHMDDeviceType())
 		{
+		case EHMDDeviceType::DT_OculusRift:
 			this->SetActorLocation(FVector(0.f, 0.f, this->GetActorLocation().Z + 150.f));
+			break;
+		default:
+			break;
 		}
 	}
 }
