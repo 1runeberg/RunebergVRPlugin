@@ -22,10 +22,10 @@ struct FVRGesture
 
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	FString GestureName;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	TArray<FVector> GesturePattern;
 
 };

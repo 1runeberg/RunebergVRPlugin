@@ -4,6 +4,6 @@
 	"BuildId" : "7370d9bf-5485-48ce-aacb-446748b048bc",
 	"Modules" : 
 	{
-		"RunebergVRPlugin" : "UE4Editor-RunebergVRPlugin-2525.dll"
+		"RunebergVRPlugin" : "UE4Editor-RunebergVRPlugin.dll"
 	}
 }

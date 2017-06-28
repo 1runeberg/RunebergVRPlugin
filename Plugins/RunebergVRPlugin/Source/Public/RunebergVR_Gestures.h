@@ -24,7 +24,7 @@ struct FFloatArray
 
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "VR")
 	TArray<float> FloatValue;
 
 };
@@ -35,7 +35,7 @@ struct FIntArray
 
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "VR")
 	TArray<int32> IntValue;
 
 };
@@ -46,10 +46,10 @@ struct FDrawnGestures
 
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "VR")
 	USplineComponent* SplineComponent;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "VR")
 	TArray<USplineMeshComponent*> SplineMesh;
 
 	FDrawnGestures(USplineComponent* Spline_Component, TArray<USplineMeshComponent*> Spline_Mesh) : SplineComponent(Spline_Component), SplineMesh(Spline_Mesh) {}
