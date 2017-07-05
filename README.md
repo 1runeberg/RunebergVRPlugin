@@ -8,7 +8,7 @@ Supports both SteamVR/Vive & the Oculus Rift
 
 **NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
-## Latest Release Notes (v2.4.x) - compatible only for UE 4.16 upwards
+## Latest Release Notes (UE 4.16 upwards)
 2.5:
   - Added Gaze interaction mechanic (new)
   - Added function to check if HMD is currently worn (in VRPawn)
