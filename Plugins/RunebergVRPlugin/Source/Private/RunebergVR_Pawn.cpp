@@ -16,7 +16,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_Pawn.h"
 #include "IHeadMountedDisplay.h"
 
-
 // Sets default values
 ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super(PCIP)
 {
@@ -37,6 +36,7 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	// Add camera
 	Camera = PCIP.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
 	Camera->AttachToComponent(Scene, FAttachmentTransformRules::KeepRelativeTransform);
+	Camera->SetFieldOfView(110.f);
 
 	// Add Capsule Collission, set default VR half height and radius values
 	CapsuleCollision = PCIP.CreateDefaultSubobject<UCapsuleComponent>(this, TEXT("CapsuleCollision"));
@@ -81,11 +81,14 @@ void ARunebergVR_Pawn::BeginPlay()
 }
 
 // Override all default pawn values
-void ARunebergVR_Pawn::OverridePawnValues(float PawnBaseEyeHeight, float CapsuleHalfHeight, float CapsuleRadius, 
+void ARunebergVR_Pawn::OverridePawnValues(float PawnBaseEyeHeight, float FOV, float CapsuleHalfHeight, float CapsuleRadius, 
 	FVector CapsuleRelativeLocation, FVector SceneLocation, FVector LeftControllerLocation, FVector RightControllerLocation) 
 {
 	// Set Pawn base eye hegiht
 	this->BaseEyeHeight = PawnBaseEyeHeight;
+
+	// Set Camera Field of Vies
+	Camera->SetFieldOfView(FOV);
 
 	// Set capsule collision settings
 	CapsuleCollision->SetCapsuleHalfHeight(CapsuleHalfHeight);
@@ -98,4 +101,18 @@ void ARunebergVR_Pawn::OverridePawnValues(float PawnBaseEyeHeight, float Capsule
 	// Set motion controller location
 	MotionController_Left->SetRelativeLocation(LeftControllerLocation);
 	MotionController_Right->SetRelativeLocation(RightControllerLocation);
+}
+
+// Check if the HMD is worn
+bool ARunebergVR_Pawn::IsHMDWorn()
+{
+	if (GEngine->HMDDevice.IsValid())
+	{
+		if (GEngine->HMDDevice->GetHMDWornState() == EHMDWornState::Worn)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

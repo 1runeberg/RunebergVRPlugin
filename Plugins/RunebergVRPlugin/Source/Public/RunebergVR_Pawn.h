@@ -53,9 +53,12 @@ public:
 
 	// Override default pawn vr values
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void OverridePawnValues(float PawnBaseEyeHeight = 0.f, float CapsuleHalfHeight = 96.f, float CapsuleRadius = 22.f, 
+	void OverridePawnValues(float PawnBaseEyeHeight = 0.f, float FOV = 110.f, float CapsuleHalfHeight = 96.f, float CapsuleRadius = 22.f, 
 		FVector CapsuleRelativeLocation = FVector(0.f, 0.f, -110.f),
 		FVector SceneLocation = FVector(0.f, 0.f, -110.f), FVector LeftControllerLocation = FVector(0.f, 0.f, 110.f), 
 		FVector RightControllerLocation = FVector(0.f, 0.f, 110.f));
 
+	// Override default pawn vr values
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	bool IsHMDWorn();
 };

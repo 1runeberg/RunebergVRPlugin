@@ -23,6 +23,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_ScalableMesh.h"
 #include "RunebergVR_Gestures_Database.h"
 #include "RunebergVR_Gestures.h"
+#include "RunebergVR_Gaze.h"
 #include "CoreUObject.h"
 
 // You should place include statements to your module's private header files here.  You only need to

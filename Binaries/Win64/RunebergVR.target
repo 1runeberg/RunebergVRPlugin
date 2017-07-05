@@ -2,13 +2,13 @@
 	"TargetName" : "RunebergVR",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "c90e3ab6-eeec-49ff-8164-2a81a94b210f",
+	"BuildId" : "d956deb9-c29b-4b93-8145-fddb145f144a",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 16,
-		"PatchVersion" : 1,
-		"Changelist" : 3466753,
+		"PatchVersion" : 2,
+		"Changelist" : 3514769,
 		"CompatibleChangelist" : 3452394,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
