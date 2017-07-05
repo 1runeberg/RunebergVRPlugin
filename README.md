@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v2.4.1
+# Unreal Engine VR Plugin v2.5
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
@@ -9,6 +9,11 @@ Supports both SteamVR/Vive & the Oculus Rift
 **NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
 ## Latest Release Notes (v2.4.x) - compatible only for UE 4.16 upwards
+2.5:
+  - Added Gaze interaction mechanic (new)
+  - Added function to check if HMD is currently worn (in VRPawn)
+  - Automatically set camera FOV to 110 to suit current released hardware, overridable (in VRPawn)
+
 2.4.1:
  - Gestures: Allow real-time painting/line-draw during gesture
 
@@ -29,6 +34,7 @@ Supports both SteamVR/Vive & the Oculus Rift
   - Movement Component (free axis, locked axis, dash/timed motion, bounce from VR bounds & optional use of Nav Mesh bounds)
   - Teleport (Arc, Ray, Blink)
   - Grabber (precision, lock, scan only, grab sky/sun with cycle day and night)
+  - Gaze interaction
   - Scalable meshes
   - Climb
 
