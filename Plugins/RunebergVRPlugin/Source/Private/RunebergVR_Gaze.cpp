@@ -14,7 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVRPlugin.h"
 #include "RunebergVR_Gaze.h"
-
+#include "IHeadMountedDisplay.h"
 
 // Sets default values for this component's properties
 URunebergVR_Gaze::URunebergVR_Gaze()
@@ -31,7 +31,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Check if we are gazing
-	if (IsGazing)
+	if (RuntimeReadOnly.IsGazing)
 	{
 		// Do line trace / ray-cast
 		FHitResult	Hit;
@@ -40,7 +40,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 		bool const bHit = World->LineTraceSingleByChannel(Hit, 
 			GetAttachParent()->GetComponentLocation(), 
 			GetAttachParent()->GetComponentRotation().Vector() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
-			TargetCollisionType,
+			FrontGazeVariables.TargetCollisionType,
 			TraceParameters);
 
 		//if (bHit && Hit.GetActor())
@@ -63,22 +63,43 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 
 		// Return any hits
-		if (bHit && Hit.GetActor() && Hit.GetActor()->ActorHasTag(TargetTag))
+		if (bHit && Hit.GetActor() && Hit.GetActor()->ActorHasTag(FrontGazeVariables.TargetTag))
 		{
 
 			// Add deltatime to current duration
-			GazeCurrentDuration += DeltaTime;
+			FrontGazeVariables.GazeCurrentDuration += DeltaTime;
 
 			// Report hit
-			GazeHasHit = true;
-			OnGazeHit.Broadcast(Hit, GazeCurrentDuration / GazeTargetDuration);
+			RuntimeReadOnly.GazeHasHit = true;
+			OnGazeHit.Broadcast(Hit, FrontGazeVariables.GazeCurrentDuration / GazeTargetDuration);
+
+			// Show targetting static mesh if there's one
+			if (TargetMeshComponent->IsValidLowLevel())
+			{
+				TargetMeshComponent->SetVisibility(true);
+			} else if (FrontGazeVariables.TargetStaticMesh->IsValidLowLevel())
+			{
+				// Spawn the beam mesh
+				TargetMeshComponent = NewObject<UStaticMeshComponent>(this);
+				TargetMeshComponent->RegisterComponentWithWorld(GetWorld());
+				TargetMeshComponent->SetMobility(EComponentMobility::Movable);
+				TargetMeshComponent->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
+				TargetMeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				TargetMeshComponent->SetStaticMesh(FrontGazeVariables.TargetStaticMesh);
+
+				// Set the material for the targetting mesh
+				if (FrontGazeVariables.TargetMaterial->IsValidLowLevel())
+				{
+					TargetMeshComponent->SetMaterial(0, FrontGazeVariables.TargetMaterial);
+				}
+			}
 
 			// Check if sufficient time has elapsed for gaze to be considered a hit
-			if (GazeCurrentDuration >= GazeTargetDuration)
+			if (FrontGazeVariables.GazeCurrentDuration >= GazeTargetDuration)
 			{
 				OnGazeActivate.Broadcast(Hit);
 
-				if (StopGazeAfterHit)
+				if (FrontGazeVariables.StopGazeAfterHit)
 				{
 					EndGaze();
 				}
@@ -94,9 +115,15 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 		else
 		{
 			// No hit
-			GazeHasHit = false;
-			GazeCurrentDuration = 0.f;
+			RuntimeReadOnly.GazeHasHit = false;
+			FrontGazeVariables.GazeCurrentDuration = 0.f;
 			OnGazeLost.Broadcast(Hit);
+
+			// Hide TargetMesh if it was spawned
+			if (TargetMeshComponent->IsValidLowLevel())
+			{
+				TargetMeshComponent->SetVisibility(false);
+			}
 		}
 	}
 }
@@ -104,11 +131,11 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 // Start gaze
 void URunebergVR_Gaze::StartGaze(float Gaze_Range, float Gaze_TargetDuration, bool DrawDebugLine)
 {
-	GazeHasHit = false;
-	GazeCurrentDuration = 0.f;
+	RuntimeReadOnly.GazeHasHit = false;
+	FrontGazeVariables.GazeCurrentDuration = 0.f;
 	GazeRange = Gaze_Range;
 	GazeTargetDuration = Gaze_TargetDuration;
-	IsGazing = true;
+	RuntimeReadOnly.IsGazing = true;
 
 	if (DrawDebugLine)
 	{
@@ -124,9 +151,15 @@ void URunebergVR_Gaze::StartGaze(float Gaze_Range, float Gaze_TargetDuration, bo
 // End Gaze
 void URunebergVR_Gaze::EndGaze()
 {
-	GazeHasHit = false;
-	GazeCurrentDuration = 0.f;
-	IsGazing = false;
+	RuntimeReadOnly.GazeHasHit = false;
+	FrontGazeVariables.GazeCurrentDuration = 0.f;
+	RuntimeReadOnly.IsGazing = false;
 	bDrawDebugLine = false;
+
+	// Destroy TargetMesh if it was spawned
+	if (TargetMeshComponent->IsValidLowLevel())
+	{
+		TargetMeshComponent->DestroyComponent();
+	}
 }
 

@@ -18,9 +18,51 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_Gaze.generated.h"
 
 
+// Delegates
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FComponentGazeHasHitSignature, FHitResult, GazeHit, float, PercentActive);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FComponentGazeActivateSignature, FHitResult, GazeHit);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FComponentGazeLostSignature, FHitResult, LastGazeHit);
+
+
+// Read only variables
+USTRUCT()
+struct FGazeReadOnly
+{
+	GENERATED_USTRUCT_BODY()
+
+	/** Whether or not gaze mode is on */
+	bool IsGazing = false;
+
+	/** Gaze has hit */
+	bool GazeHasHit = false;
+
+};
+
+// Front Gaze variables
+USTRUCT()
+struct FFrontGaze
+{
+	GENERATED_USTRUCT_BODY()
+
+	/** Whether or not gaze mode is on */
+	bool StopGazeAfterHit = true;
+
+	/** How long do you need to gaze */
+	float GazeCurrentDuration = 0.f;
+
+	/** Actor tag to check for in target(s) */
+	FName TargetTag;
+
+	/** Collision type to check for */
+	TEnumAsByte<ECollisionChannel> TargetCollisionType;
+
+	/** Target Static Mesh */
+	UStaticMesh* TargetStaticMesh = nullptr;
+
+	/** Target Material to apply to the static mesh */
+	UMaterialInterface* TargetMaterial = nullptr;
+};
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_Gaze : public USceneComponent
@@ -35,29 +77,13 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	/** Whether or not gaze mode is on */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR - Read Only")
-	bool IsGazing = false;
-
-	/** Gaze has hit */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR - Read Only")
-	bool GazeHasHit = false;
-
-	/** Whether or not gaze mode is on */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	bool StopGazeAfterHit = true;
-
-	/** How long do you need to gaze */
+	// Read only variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
-	float GazeCurrentDuration = 0.f;
+	FGazeReadOnly RuntimeReadOnly;
 
-	/** Actor tag to check for in target(s) */
+	// Front Gaze Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	FName TargetTag;
-
-	/** Collision type to check for */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	TEnumAsByte<ECollisionChannel> TargetCollisionType;
+	FFrontGaze FrontGazeVariables;
 
 	// Start gaze
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -86,5 +112,9 @@ private:
 	/** How long do you need to gaze */
 	float GazeTargetDuration = 3.f;
 
+	UStaticMeshComponent* TargetMeshComponent;
 	bool bDrawDebugLine = false;
+
+	// Whether we have hit something with the line trace for uneven terrain
+	bool bTerrainHit = false;
 };

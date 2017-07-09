@@ -28,9 +28,32 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 public:
 	// Sets default values for this pawn's properties
 	ARunebergVR_Pawn(const class FObjectInitializer& PCIP);
+
+	/** Enable gravity for this pawn */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	bool EnableGravity = false;
+
+	/** How fast this VR Pawn will fall with gravity */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR") 
+	float GravityStrength = 1.f;
+
+	/** How far should the check for a floor be */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float FloorTraceRange = 112.f;
+
+	/** Direction where this VR Pawn will "fall" */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	FVector GravityDirection = FVector(0.f, 0.f, -1.f);
+
+	/** Oculus HMD Location Offset */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	FVector OculusLocationOffset = FVector(0.f, 0.f, 150.f);
 
 	// Capsule Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
@@ -61,4 +84,8 @@ public:
 	// Override default pawn vr values
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	bool IsHMDWorn();
+
+private:
+	// Whether we have hit something with the line trace that can cause this pawn to stop falling if gravity is enabled
+	bool bHit = false;
 };

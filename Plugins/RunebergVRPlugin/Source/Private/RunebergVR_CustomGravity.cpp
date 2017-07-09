@@ -24,7 +24,7 @@ void URunebergVR_CustomGravity::TickComponent(float DeltaTime, ELevelTick TickTy
 
 		switch (GravityDirection)
 		{
-		case EGravityDirection::DIR_DOWN:
+		case EGravityDirection ::DIR_DOWN:
 			GetOwner()->GetRootComponent()->AddRelativeLocation(FVector(0.0f, 0.0f, -1.0f * GravityStrength ));
 			break;
 		case EGravityDirection::DIR_UP:

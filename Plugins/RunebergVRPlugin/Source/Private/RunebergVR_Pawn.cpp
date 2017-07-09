@@ -68,15 +68,49 @@ void ARunebergVR_Pawn::BeginPlay()
 	{
 
 		// Override height offset for Oculus Rift
-		// TODO: Set to floor instead
 		switch (GEngine->HMDDevice->GetHMDDeviceType())
 		{
 		case EHMDDeviceType::DT_OculusRift:
-			this->SetActorLocation(FVector(0.f, 0.f, this->GetActorLocation().Z + 150.f));
+			this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
+			GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
 			break;
 		default:
 			break;
 		}
+
+		// Set tracking origin (Oculus & Vive)
+		GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
+	}
+}
+
+// Called every frame
+void ARunebergVR_Pawn::Tick(float DeltaTime)
+{ 
+
+	Super::Tick(DeltaTime);
+
+	// Apply gravity if enabled 
+	if (EnableGravity)
+	{
+		// Set line trace for gravity variables
+		FHitResult RayHit(EForceInit::ForceInit);
+		FCollisionQueryParams RayTraceParams(FName(TEXT("GravityRayTrace")), true, this->GetOwner());
+
+		// Initialize Gravity Trace Hit Result var
+		RayTraceParams.bTraceComplex = true;
+		RayTraceParams.bTraceAsyncScene = true;
+		RayTraceParams.bReturnPhysicalMaterial = false;
+		
+		// Do a line trace and check for a component that can be stepped on
+		bHit = GetWorld()->LineTraceSingleByChannel(RayHit, GetActorLocation(), GetActorLocation() + FVector(0.f, 0.f, FMath::Abs(FloorTraceRange) * -1.f),
+			ECollisionChannel::ECC_Visibility, RayTraceParams);
+
+		if (!bHit || RayHit.GetComponent()->CanCharacterStepUpOn != ECanBeCharacterBase::ECB_Yes)
+		{
+			
+			this->TeleportTo(this->GetActorLocation() + (GravityDirection * GravityStrength), this->GetActorRotation());
+		}
+
 	}
 }
 
@@ -87,7 +121,7 @@ void ARunebergVR_Pawn::OverridePawnValues(float PawnBaseEyeHeight, float FOV, fl
 	// Set Pawn base eye hegiht
 	this->BaseEyeHeight = PawnBaseEyeHeight;
 
-	// Set Camera Field of Vies
+	// Set Camera Field of View
 	Camera->SetFieldOfView(FOV);
 
 	// Set capsule collision settings
