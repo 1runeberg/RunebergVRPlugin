@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v2.5
+# Unreal Engine VR Plugin v2.6
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
@@ -6,9 +6,17 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 
 Supports both SteamVR/Vive & the Oculus Rift
 
-**NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
+## Latest Release Notes (UE 4.17)
+2.65:
+  - Migrated to UE4.17
 
-## Latest Release Notes (UE 4.16 upwards)
+2.6:
+  - Automatically set HMD Tracking Origin (VRPawn)
+  - Added gravity (VRPawn)
+  - Customizable target mesh (Beta, Gaze Component)
+  - Full 360 Yaw Movement Freedom for use with thumbstick input (Beta, Movement Component)
+  - Fix for Oculus height offset issue (VRPawn)
+
 2.5:
   - Added Gaze interaction mechanic (new)
   - Added function to check if HMD is currently worn (in VRPawn)
@@ -16,14 +24,6 @@ Supports both SteamVR/Vive & the Oculus Rift
 
 2.4.1:
  - Gestures: Allow real-time painting/line-draw during gesture
-
-2.4.0:
- - Gestures: DrawVRGesture now uses a spline with customizable mesh & material (required) instead of just drawing a debug line (also circumvents issues with Engine 4.16.1 with stereo debug lines)
- - Movement: Exposed Rotation/Direction Offset, can be used to add a per frame/tick offset to the direction during movement
- - Teleport: Fixed issue with headset origin offset
- - Teleport: Allow custom rotation of target mesh and allow pawn to face target mesh's direction
- - WIP Vive/Steam Trackers: Initial experiments with the vive/steam trackers
- - Project: Performance tweaks
 
 
 **UPCOMING MAJOR RELEASE (Mid-June): EASIER MULTIPLAYER ABILITY**

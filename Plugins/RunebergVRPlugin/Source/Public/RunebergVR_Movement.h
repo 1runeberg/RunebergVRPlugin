@@ -18,7 +18,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 // Uneven Terrain Check
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FUnevenTerrain
 {
 	GENERATED_USTRUCT_BODY()
@@ -26,7 +26,7 @@ struct FUnevenTerrain
 	FVector OriginOffset = FVector(0.f, 0.f, -55.f);
 
 	/** Reference to Camerathat will be hieght adjusted for uneven terrain, if none is set, first camera found in actor would be used instead **/
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
+	UPROPERTY(EditAnywhere, Category = "VR")
 	UCameraComponent* Camera;
 
 };

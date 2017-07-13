@@ -1,9 +1,8 @@
 {
-	"Changelist" : 3514769,
-	"CompatibleChangelist" : 3452394,
-	"BuildId" : "9d235d2e-0699-4a67-a724-267cd6977962",
+	"Changelist" : 3528061,
+	"BuildId" : "4024e88a-9577-4223-b3dc-cd60d902506a",
 	"Modules" : 
 	{
-		"RunebergVR" : "UE4Editor-RunebergVR-7984.dll"
+		"RunebergVR" : "UE4Editor-RunebergVR.dll"
 	}
 }
