@@ -6,9 +6,10 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 
 Supports both SteamVR/Vive & the Oculus Rift
 
+### Notes:
 **For a version compatible with UE 4.17 Preview, click [here](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
 
-**NOTE: SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
+**SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
 ## Latest Release Notes (UE 4.16 upwards)
 2.7:
