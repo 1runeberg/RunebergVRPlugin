@@ -35,6 +35,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 	{
 		// Do line trace / ray-cast
 		FHitResult	Hit;
+
 		FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
 		UWorld* World = GEngine->GetWorldFromContextObject(GetOwner());
 		bool const bHit = World->LineTraceSingleByChannel(Hit, 
@@ -63,8 +64,17 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 
 		// Return any hits
-		if (bHit && Hit.GetActor() && Hit.GetActor()->ActorHasTag(FrontGazeVariables.TargetTag))
+		if (bHit && Hit.GetActor())
 		{
+
+			// Check for tag
+			if (!FrontGazeVariables.TargetTag.IsNone() && !Hit.GetActor()->ActorHasTag(FrontGazeVariables.TargetTag))
+			{
+				return;
+			}
+
+			// Save Hit
+			PreviousHit = Hit;
 
 			// Add deltatime to current duration
 			FrontGazeVariables.GazeCurrentDuration += DeltaTime;
@@ -77,7 +87,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 			if (TargetMeshComponent->IsValidLowLevel())
 			{
 				TargetMeshComponent->SetVisibility(true);
-			} else if (FrontGazeVariables.TargetStaticMesh->IsValidLowLevel())
+			} else if (!TargetMeshComponent->IsValidLowLevel() && FrontGazeVariables.TargetStaticMesh->IsValidLowLevel())
 			{
 				// Spawn the beam mesh
 				TargetMeshComponent = NewObject<UStaticMeshComponent>(this);
@@ -92,6 +102,12 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 				{
 					TargetMeshComponent->SetMaterial(0, FrontGazeVariables.TargetMaterial);
 				}
+			}
+
+			// Set Target Mesh Transform
+			if (TargetMeshComponent->IsValidLowLevelFast())
+			{
+				TargetMeshComponent->SetWorldTransform(FTransform(FrontGazeVariables.TargetRotation, Hit.Location,  FrontGazeVariables.TargetScale3D));
 			}
 
 			// Check if sufficient time has elapsed for gaze to be considered a hit
@@ -117,7 +133,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 			// No hit
 			RuntimeReadOnly.GazeHasHit = false;
 			FrontGazeVariables.GazeCurrentDuration = 0.f;
-			OnGazeLost.Broadcast(Hit);
+			OnGazeLost.Broadcast(PreviousHit);
 
 			// Hide TargetMesh if it was spawned
 			if (TargetMeshComponent->IsValidLowLevel())

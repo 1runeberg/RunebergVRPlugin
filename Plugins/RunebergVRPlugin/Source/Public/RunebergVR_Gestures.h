@@ -18,7 +18,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_Gestures.generated.h"
 
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FFloatArray
 {
 
@@ -29,7 +29,7 @@ struct FFloatArray
 
 };
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FIntArray
 {
 
@@ -40,7 +40,7 @@ struct FIntArray
 
 };
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FDrawnGestures
 {
 

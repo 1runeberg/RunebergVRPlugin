@@ -17,20 +17,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_Movement.generated.h"
 
 
-// Uneven Terrain Check
-USTRUCT()
-struct FUnevenTerrain
-{
-	GENERATED_USTRUCT_BODY()
-
-	FVector OriginOffset = FVector(0.f, 0.f, -55.f);
-
-	/** Reference to Camerathat will be hieght adjusted for uneven terrain, if none is set, first camera found in actor would be used instead **/
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
-	UCameraComponent* Camera;
-
-};
-
 UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_Movement : public UActorComponent
 {
@@ -80,14 +66,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	bool EnableTerrainCheck = false;
 
-	// Uneven Terrain Check Variables
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	FUnevenTerrain UnevenTerrainVariables;
-
 	// Enable VR Movement
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	void EnableVRMovement(float MovementSpeed = 3.f, USceneComponent* MovementDirectionReference = nullptr, bool ObeyNavMesh = false,
-		bool LockPitch = false, bool LockYaw = false, bool LockRoll = false, float Full360Movement_XAxis = 0.f, float Full360Movement_YAxis = 0.f, FRotator CustomDirection = FRotator::ZeroRotator);
+		bool LockPitch = false, bool LockYaw = false, bool LockRoll = false, FRotator CustomDirection = FRotator::ZeroRotator);
+
+	// Full 360 Movement
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	void Enable360Movement(USceneComponent* MovementDirectionReference = nullptr, bool LockPitch = false, bool LockYaw = false, bool LockRoll = false, float MovementSpeed = 3.f, float XAxisInput = 0.f, float YAxisInput = 0.f);
 
 	// Disable VR Movement
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -113,15 +99,12 @@ public:
 private:
 	AActor* VRPawn = nullptr;	// The VR Pawn that this component is attached to
 	float BounceBackSpeed = 0.f;
-	float Full360MovementXAxis = 0.f; 
-	float Full360MovementYAxis = 0.f;
 	bool bObeyNavMesh = false;
 	bool bLockPitchY = false;
 	bool bLockYawZ = false;
 	bool bLockRollX = false;
 	bool bResetMovementStateAfterBounce = false;
 	bool bIsMovingCache = false;
-	bool bIsDoingFull360 = false;
 
 	// Move VR Pawn
 	void MoveVRPawn(float MovementSpeed, USceneComponent* MovementDirectionReference, bool LockXAxis, bool LockYAxis, bool LockZAxis, FRotator CustomDirection);

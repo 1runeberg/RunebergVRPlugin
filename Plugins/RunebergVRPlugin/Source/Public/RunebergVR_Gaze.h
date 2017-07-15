@@ -25,43 +25,60 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FComponentGazeLostSignature, FHitRes
 
 
 // Read only variables
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FGazeReadOnly
 {
 	GENERATED_USTRUCT_BODY()
 
 	/** Whether or not gaze mode is on */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	bool IsGazing = false;
 
 	/** Gaze has hit */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	bool GazeHasHit = false;
 
 };
 
 // Front Gaze variables
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FFrontGaze
 {
 	GENERATED_USTRUCT_BODY()
 
 	/** Whether or not gaze mode is on */
-	bool StopGazeAfterHit = true;
+	UPROPERTY(EditAnywhere, Category = "VR")
+	bool StopGazeAfterHit = false;
 
 	/** How long do you need to gaze */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	float GazeCurrentDuration = 0.f;
 
 	/** Actor tag to check for in target(s) */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	FName TargetTag;
 
 	/** Collision type to check for */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	TEnumAsByte<ECollisionChannel> TargetCollisionType;
 
 	/** Target Static Mesh */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	UStaticMesh* TargetStaticMesh = nullptr;
 
 	/** Target Material to apply to the static mesh */
+	UPROPERTY(EditAnywhere, Category = "VR")
 	UMaterialInterface* TargetMaterial = nullptr;
+
+	/** Rotation of Target mesh */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	FRotator TargetRotation = FRotator::ZeroRotator;
+
+	/** Scale of Target mesh */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	FVector TargetScale3D = FVector(1.f, 1.f, 1.f);
 };
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -117,4 +134,7 @@ private:
 
 	// Whether we have hit something with the line trace for uneven terrain
 	bool bTerrainHit = false;
+
+	// Hit Cache
+	FHitResult PreviousHit;
 };
