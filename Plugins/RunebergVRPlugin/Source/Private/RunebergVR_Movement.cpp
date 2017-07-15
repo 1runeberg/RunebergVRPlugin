@@ -13,6 +13,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Movement.h"
+#include "IHeadMountedDisplay.h"
 
 
 // Sets default values for this component's properties
@@ -31,27 +32,6 @@ void URunebergVR_Movement::BeginPlay()
 
 	// Get reference to the Pawn
 	VRPawn = GetOwner();
-
-	// TODO: Get reference to Pawn's camera if none was provided
-	//if (!UnevenTerrainVariables.Camera->IsValidLowLevel())
-	//{
-
-	//	TArray <USceneComponent*> PawnChildren;
-	//	VRPawn->GetRootComponent()->GetChildrenComponents(true, PawnChildren);
-
-	//	// Get all children component of pawn
-	//	for (int32 i = 0; i < PawnChildren.Num(); i++)
-	//	{
-	//		UCameraComponent* TestForCamera = Cast<UCameraComponent>(PawnChildren[i]);
-
-	//		if (TestForCamera->IsValidLowLevel())
-	//		{
-	//			UnevenTerrainVariables.Camera = TestForCamera;
-	//			break;
-	//		}
-	//	}
-	//}
-
 }
 
 // Called every frame
@@ -86,20 +66,6 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 				TargetRotation = TargetRotation.Add(OffsetRotation.Pitch, OffsetRotation.Yaw, OffsetRotation.Roll);
 			}
 		}
-
-		// TODO: Apply Full 360 rotation offset (if any)
-		//if (Full360MovementXAxis > 0.01f || Full360MovementYAxis > 0.01f)
-		//{
-		//	bIsDoingFull360 = true;
-		//	TargetRotation = TargetRotation.Add(0.f, FMath::Atan2(Full360MovementXAxis, Full360MovementYAxis), 0.f);
-		//}
-		//else if (bIsDoingFull360 && Full360MovementXAxis < 0.01f && Full360MovementYAxis < 0.01f)
-		//{
-		//	// Stop movement if doing full 360 and no x,y axis input is registered (e.g. thumbstick)
-		//	DisableVRMovement();
-		//	bIsDoingFull360 = false;
-		//	return;
-		//}
 
 		// Set axis locks : Pitch (Y), Yaw (Z), Roll (X)
 		if (bLockPitchY)
@@ -143,30 +109,6 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 			// Check if target location is within the nav mesh
 			if (bIsWithinNavBounds)
 			{
-				// TODO: Check if we need to adjustZ for uneven terrain
-				//if (EnableTerrainCheck && UnevenTerrainVariables.Camera->IsValidLowLevel())
-				//{
-				//	// Do a line trace from prior location to current location to check the Z offset
-				//	FHitResult	Hit;
-				//	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
-				//	UWorld* World = GEngine->GetWorldFromContextObject(GetOwner());
-				//	bHit = World->LineTraceSingleByChannel(Hit,
-				//		VRPawn->GetActorLocation() + UnevenTerrainVariables.OriginOffset,
-				//		TargetLocation,
-				//		ECollisionChannel::ECC_Visibility,
-				//		TraceParameters);
-
-				//	// Check if we're allowed to step on the component
-				//	if (bHit && Hit.GetComponent()->CanCharacterStepUpOn == ECanBeCharacterBase::ECB_Yes)
-				//	{
-
-				//		if (bHit)
-				//		{
-				//			UE_LOG(LogTemp, Warning, TEXT("Actor was hit"));
-				//		}
-				//		TargetLocation = Hit.Location;
-				//	}
-				//}
 
 				// Move Pawn to Target Lcoation
 				VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());
@@ -183,9 +125,6 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 			// Move Pawn to Target Lcoation
 			VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());
 		}
-
-
-
 	}
 }
 
@@ -221,12 +160,8 @@ void URunebergVR_Movement::MoveVRPawn(float MovementSpeed, USceneComponent* Move
 
 // Enable VR Movement
 void URunebergVR_Movement::EnableVRMovement(float MovementSpeed, USceneComponent* MovementDirectionReference,
-	bool ObeyNavMesh, bool LockPitch, bool LockYaw, bool LockRoll, 
-	float Full360Movement_XAxis, float Full360Movement_YAxis, FRotator CustomDirection)
+	bool ObeyNavMesh, bool LockPitch, bool LockYaw, bool LockRoll, FRotator CustomDirection)
 {
-	Full360MovementXAxis = Full360Movement_XAxis;
-	Full360MovementYAxis = Full360Movement_YAxis;
-
 	// Check if we need to respect Nav Mesh Bounds
 	bObeyNavMesh = ObeyNavMesh;
 
@@ -244,11 +179,10 @@ void URunebergVR_Movement::DisableVRMovement()
 
 	// Reset Offset
 	OffsetRotation = FRotator::ZeroRotator;
-	Full360MovementXAxis = 0.f;
-	Full360MovementYAxis = 0.f;
+
 }
 
-// Apply acceleration multiplier to current movement speed - can be used for smooth acceleration / deceleration
+// Apply acceleration multiplier to current movement speed - can be used for smooth acceleration/deceleration
 void URunebergVR_Movement::ApplySpeedMultiplier(float SpeedMultiplier, float BaseSpeed, bool UseCurrentSpeedAsBase)
 {
 	if (UseCurrentSpeedAsBase)
@@ -283,7 +217,7 @@ void URunebergVR_Movement::TimedMovement(float MovementDuration, float MovementS
 	bool LockPitchY, bool LockYawZ, bool LockRollX, FRotator CustomDirection, bool ObeyNavMesh)
 {
 	// Start movement
-	EnableVRMovement(MovementSpeed, MovementDirectionReference, ObeyNavMesh, LockPitchY, LockYawZ, LockRollX, 0.f, 0.f, CustomDirection);
+	EnableVRMovement(MovementSpeed, MovementDirectionReference, ObeyNavMesh, LockPitchY, LockYawZ, LockRollX, CustomDirection);
 
 	// End movement via timer
 	FTimerHandle UnusedHandle;
@@ -294,7 +228,7 @@ void URunebergVR_Movement::TimedMovement(float MovementDuration, float MovementS
 void URunebergVR_Movement::TimedDashMove(float MovementDuration, float MovementSpeed, FRotator MovementDirection, bool ObeyNavMesh)
 {
 	// Start movement
-	EnableVRMovement(MovementSpeed, nullptr, ObeyNavMesh, false, false, false, 0.f, 0.f, MovementDirection);
+	EnableVRMovement(MovementSpeed, nullptr, ObeyNavMesh, false, false, false, MovementDirection);
 
 	// End movement via timer
 	FTimerHandle UnusedHandle;
@@ -322,4 +256,60 @@ void  URunebergVR_Movement::BounceBackFromVRBounds(float MovementSpeed, float Mo
 	// End movement via timer
 	FTimerHandle UnusedHandle;
 	GetWorld()->GetTimerManager().SetTimer(UnusedHandle, this, &URunebergVR_Movement::DisableVRBounceBack, MovementDuration, false);
+}
+
+// Full 360 Movement
+void URunebergVR_Movement::Enable360Movement(USceneComponent* MovementDirectionReference, bool LockPitch, bool LockYaw, bool LockRoll, float MovementSpeed, float XAxisInput, float YAxisInput)
+{
+	if (XAxisInput != 0.f || YAxisInput != 0.f)
+	{
+		CurrentMovementDirectionReference = MovementDirectionReference;
+		CurrentMovementSpeed = MovementSpeed;
+
+		// Inverse sign of Y Axis t
+		YAxisInput *= -1.f;
+
+		// Get target Rotation
+		if (MovementDirectionReference)
+		{
+			TargetRotation = FRotator(MovementDirectionReference->ComponentToWorld.GetRotation());
+		}
+		else
+		{
+			TargetRotation = VRPawn->GetActorRotation();
+		}
+
+		// Calculate direction
+		TargetRotation = TargetRotation.Add(0.f, (180.f) / PI * FMath::Atan2(XAxisInput, YAxisInput), 0.f);
+
+		// Set axis locks : Pitch (Y), Yaw (Z), Roll (X)
+		if (LockPitch)
+		{
+			TargetRotation = FRotator(0.f, TargetRotation.Yaw, TargetRotation.Roll);
+		}
+
+		if (LockYaw)
+		{
+			TargetRotation = FRotator(TargetRotation.Pitch, 0.f, TargetRotation.Roll);
+		}
+
+		if (LockRoll)
+		{
+			TargetRotation = FRotator(TargetRotation.Pitch, TargetRotation.Yaw, 0.f);
+		}
+
+
+		// Move Pawn
+		FVector TargetLocation = VRPawn->GetActorLocation() + (TargetRotation.Vector() * CurrentMovementSpeed);
+		VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());
+	}
+	else
+	{
+		if (!IsMoving && !IsBouncingBackFromVRBounds)
+		{
+			// Stop movement if doing full 360 and no x,y axis input is registered (e.g. thumbstick)
+			DisableVRMovement();
+		}
+	}
+
 }

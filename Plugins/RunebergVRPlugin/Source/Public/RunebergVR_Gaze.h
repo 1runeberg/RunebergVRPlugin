@@ -48,7 +48,7 @@ struct FFrontGaze
 
 	/** Whether or not gaze mode is on */
 	UPROPERTY(EditAnywhere, Category = "VR")
-	bool StopGazeAfterHit = true;
+	bool StopGazeAfterHit = false;
 
 	/** How long do you need to gaze */
 	UPROPERTY(EditAnywhere, Category = "VR")
@@ -69,7 +69,16 @@ struct FFrontGaze
 	/** Target Material to apply to the static mesh */
 	UPROPERTY(EditAnywhere, Category = "VR")
 	UMaterialInterface* TargetMaterial = nullptr;
+
+	/** Rotation of Target mesh */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	FRotator TargetRotation = FRotator::ZeroRotator;
+
+	/** Scale of Target mesh */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	FVector TargetScale3D = FVector(1.f, 1.f, 1.f);
 };
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -125,4 +134,7 @@ private:
 
 	// Whether we have hit something with the line trace for uneven terrain
 	bool bTerrainHit = false;
+
+	// Hit Cache
+	FHitResult PreviousHit;
 };

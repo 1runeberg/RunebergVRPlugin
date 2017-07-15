@@ -89,8 +89,11 @@ void ARunebergVR_Pawn::Tick(float DeltaTime)
 
 	Super::Tick(DeltaTime);
 
-	// Apply gravity if enabled 
-	if (EnableGravity)
+	// Get the current position of the Camera
+	FVector CameraPosition = Camera->GetComponentTransform().GetLocation();
+
+	// Apply gravity if enabled and camera is positioned at the head of the player
+	if (EnableGravity && Camera->IsValidLowLevel() && CameraPosition.Z > this->GetActorLocation().Z)
 	{
 		// Set line trace for gravity variables
 		FHitResult RayHit(EForceInit::ForceInit);
@@ -102,13 +105,22 @@ void ARunebergVR_Pawn::Tick(float DeltaTime)
 		RayTraceParams.bReturnPhysicalMaterial = false;
 		
 		// Do a line trace and check for a component that can be stepped on
-		bHit = GetWorld()->LineTraceSingleByChannel(RayHit, GetActorLocation(), GetActorLocation() + FVector(0.f, 0.f, FMath::Abs(FloorTraceRange) * -1.f),
+		bHit = GetWorld()->LineTraceSingleByChannel(RayHit, CameraPosition, CameraPosition + FVector(0.f, 0.f, FMath::Abs(GravityVariables.FloorTraceRange) * -1.f),
 			ECollisionChannel::ECC_Visibility, RayTraceParams);
 
+		// Check if we need to float the Pawn over uneven terrain
+		if (GravityVariables.RespondToUnevenTerrain
+			&& bHit && RayHit.GetComponent()->CanCharacterStepUpOn == ECanBeCharacterBase::ECB_Yes
+			&& (RayHit.Distance + GravityVariables.FloorTraceTolerance) < GravityVariables.FloorTraceRange)
+		{
+			this->TeleportTo(this->GetActorLocation() + FVector(0.f, 0.f, GravityVariables.FloorTraceRange - RayHit.Distance), this->GetActorRotation());
+
+		}
+
+		// Apply gravity
 		if (!bHit || RayHit.GetComponent()->CanCharacterStepUpOn != ECanBeCharacterBase::ECB_Yes)
 		{
-			
-			this->TeleportTo(this->GetActorLocation() + (GravityDirection * GravityStrength), this->GetActorRotation());
+			this->TeleportTo(this->GetActorLocation() + (GravityVariables.GravityDirection * GravityVariables.GravityStrength), this->GetActorRotation());
 		}
 
 	}
@@ -149,4 +161,36 @@ bool ARunebergVR_Pawn::IsHMDWorn()
 	}
 
 	return false;
+}
+
+
+// Pawn Rotation - usefull for static mouse rotations during development
+void ARunebergVR_Pawn::RotatePawn(float RotationRate, float XAxisInput, float YAxisInput)
+{
+	if (XAxisInput != 0.f)
+	{
+		this->AddActorLocalRotation(FRotator(0.f, XAxisInput * RotationRate, 0.f));
+	}
+
+	if (YAxisInput != 0.f)
+	{
+		this->AddActorLocalRotation(FRotator(0.f, YAxisInput * RotationRate, 0.f));
+	}
+}
+
+// Print debug message
+void ARunebergVR_Pawn::PrintDebugMessage(FString Message, bool OverwriteExisting, float Duration, FColor Color)
+{
+	int32 Key;
+
+	if (OverwriteExisting)
+	{
+		Key = 0;
+	}
+	else
+	{
+		Key = -1;
+	}
+
+	GEngine->AddOnScreenDebugMessage(Key, Duration, Color, Message);
 }

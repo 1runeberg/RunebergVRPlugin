@@ -19,6 +19,35 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "MotionControllerComponent.h"
 #include "RunebergVR_Pawn.generated.h"
 
+// Gravity settings
+USTRUCT(BlueprintType)
+struct FGravityVariables
+{
+	GENERATED_USTRUCT_BODY()
+
+	/** Respond to uneven terrain - Gravity MUST also be enabled */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	bool RespondToUnevenTerrain = false;
+
+	/** How fast this VR Pawn will fall with gravity */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	float GravityStrength = 3.f;
+
+	/** How far should the check for a floor be */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	float FloorTraceRange = 150.f;
+
+	/* Minimum Z offset before terrain is considered uneven */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	float FloorTraceTolerance = 3.f;
+
+	/** Direction where this VR Pawn will "fall" */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	FVector GravityDirection = FVector(0.f, 0.f, -1.f);
+
+};
+
+
 UCLASS()
 class RUNEBERGVRPLUGIN_API ARunebergVR_Pawn : public APawn
 {
@@ -39,17 +68,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	bool EnableGravity = false;
 
-	/** How fast this VR Pawn will fall with gravity */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR") 
-	float GravityStrength = 1.f;
-
-	/** How far should the check for a floor be */
+	/** Gravity variables */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float FloorTraceRange = 112.f;
-
-	/** Direction where this VR Pawn will "fall" */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	FVector GravityDirection = FVector(0.f, 0.f, -1.f);
+	FGravityVariables GravityVariables;
 
 	/** Oculus HMD Location Offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
@@ -81,9 +102,17 @@ public:
 		FVector SceneLocation = FVector(0.f, 0.f, -110.f), FVector LeftControllerLocation = FVector(0.f, 0.f, 110.f), 
 		FVector RightControllerLocation = FVector(0.f, 0.f, 110.f));
 
-	// Override default pawn vr values
+	// Pawn Rotation - usefull for static mouse rotation during development
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	void RotatePawn(float RotationRate = 1.f, float XAxisInput = 0.f, float YAxisInput = 0.f);
+
+	// Check if HMD is worn
 	UFUNCTION(BlueprintCallable, Category = "VR")
 	bool IsHMDWorn();
+
+	// Print debug message
+	UFUNCTION(BlueprintCallable, Category = "VR")
+	void PrintDebugMessage(FString Message, bool OverwriteExisting = false, float Duration = 5.f, FColor Color = FColor::Red);
 
 private:
 	// Whether we have hit something with the line trace that can cause this pawn to stop falling if gravity is enabled
