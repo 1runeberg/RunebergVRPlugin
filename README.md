@@ -64,6 +64,12 @@ https://youtu.be/cdUKwm9HesU
 #### 5. VR Gestures Component Deep Dive
 https://youtu.be/z78CMOwGWxM
 
+#### 6. RunebergVR Plugin v2 - Gaze Component Deep Dive
+https://youtu.be/tkYi9lnHbVw
+
+#### 7. RunebergVR Plugin v2 - Pawn Gravity, Uneven Terrain, Thumbstick 360 Movement 
+https://youtu.be/73Y1tcBl_Lw
+
 ## Support Channels:
 a. UE4 Forums: 
 https://forums.unrealengine.com/showthread.php?109058-VR-Ready-C-Blueprintable-Pawn-with-common-VR-functions-Also-good-as-a-SteamVR-project-template
