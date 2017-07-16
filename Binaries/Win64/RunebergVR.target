@@ -972,11 +972,11 @@
 			"Type" : "NonUFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv1_0_6/Win64/openvr_api.dll",
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Oculus/OculusMobile/SDK_1_0_3/Win64/VrApiShim.dll",
 			"Type" : "NonUFS"
 		},
 		{
-			"Path" : "$(EngineDir)/Binaries/ThirdParty/Oculus/OculusMobile/SDK_1_0_3/Win64/VrApiShim.dll",
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv1_0_6/Win64/openvr_api.dll",
 			"Type" : "NonUFS"
 		}
 	]
