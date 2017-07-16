@@ -1,15 +1,17 @@
-# Unreal Engine VR Plugin v2.71
+# Unreal Engine VR Plugin v2.7
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
 Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/vr-pawn-components-plugin)
 
-**Supports HTC VIVE and the OCULUS RIFT**
+Supports both SteamVR/Vive & the Oculus Rift
+
+### Notes:
+**For a version compatible with UE 4.17 PREVIEW, [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
+
+**SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
 ## Latest Release Notes (UE 4.16 upwards)
-2.71:
-  - Removed remnants of SteamVR specific references in code base
-
 2.7:
   - Enable VR Pawn to react/move properly through uneven terrain (VRPawn)
   - Dedicated node for 360 movement with thumbstick/thumbpad of Motion controllers (Movement component)
@@ -60,6 +62,13 @@ https://youtu.be/cdUKwm9HesU
 
 #### 5. VR Gestures Component Deep Dive
 https://youtu.be/z78CMOwGWxM
+
+#### 6. RunebergVR Plugin v2 - Gaze Component Deep Dive
+https://youtu.be/tkYi9lnHbVw
+
+#### 7. RunebergVR Plugin v2 - Pawn Gravity, Uneven Terrain, Thumbstick 360 Movement 
+https://youtu.be/73Y1tcBl_Lw
+
 
 ## Support Channels:
 a. UE4 Forums: 
