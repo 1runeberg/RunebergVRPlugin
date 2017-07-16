@@ -4,12 +4,10 @@ Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics
 
 Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/marketplace/vr-pawn-components-plugin)
 
-Supports both SteamVR/Vive & the Oculus Rift
+**Supports both SteamVR/Vive & the Oculus Rift**
 
 ### Notes:
 **For a version compatible with UE 4.17 PREVIEW, [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
-
-**SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
 ## Latest Release Notes (UE 4.16 upwards)
 2.71:
