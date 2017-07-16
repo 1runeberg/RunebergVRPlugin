@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v2.7
+# Unreal Engine VR Plugin v2.71
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
@@ -12,6 +12,9 @@ Supports both SteamVR/Vive & the Oculus Rift
 **SimpleHMD Engine Plugin is required to be enabled in you Project Plugins**
 
 ## Latest Release Notes (UE 4.16 upwards)
+2.71:
+  - Removed remnants of SteamVR specific references in code base
+  
 2.7:
   - Enable VR Pawn to react/move properly through uneven terrain (VRPawn)
   - Dedicated node for 360 movement with thumbstick/thumbpad of Motion controllers (Movement component)
