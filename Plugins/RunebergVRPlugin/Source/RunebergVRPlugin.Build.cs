@@ -8,7 +8,7 @@ public class RunebergVRPlugin : ModuleRules
 				
 		PrivateIncludePaths.AddRange(new string[] {"RunebergVRPlugin/Private", });
 		
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "SteamVR", "SteamVRController", "HeadMountedDisplay"});
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay"});
  
         PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore"});
  

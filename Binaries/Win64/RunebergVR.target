@@ -1,0 +1,1869 @@
+{
+	"TargetName" : "RunebergVR",
+	"Platform" : "Win64",
+	"Configuration" : "Development",
+	"BuildId" : "a1d3738a-1ed8-41e2-aab6-61ecadeab7bd",
+	"Version" : 
+	{
+		"MajorVersion" : 4,
+		"MinorVersion" : 17,
+		"PatchVersion" : 0,
+		"Changelist" : 3528061,
+		"CompatibleChangelist" : 0,
+		"IsLicenseeVersion" : 0,
+		"IsPromotedBuild" : 1,
+		"BranchName" : "++UE4+Release-4.17"
+	},
+	"BuildProducts" :
+	[
+		{
+			"Path" : "$(ProjectDir)/Binaries/Win64/RunebergVR.exe",
+			"Type" : "Executable"
+		},
+		{
+			"Path" : "$(ProjectDir)/Binaries/Win64/RunebergVR.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4-RunebergVRPlugin.lib",
+			"Type" : "StaticLibrary"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4-Paper2D.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/Binaries/Win64/UE4-LightPropagationVolumeRuntime.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/FacialAnimation/Binaries/Win64/UE4-FacialAnimation.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/Binaries/Win64/UE4-CharacterAI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4-HTML5Networking.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/AndroidMedia/Binaries/Win64/UE4-AndroidMediaFactory.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/AvfMedia/Binaries/Win64/UE4-AvfMediaFactory.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Binaries/Win64/UE4-WmfMedia.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/Binaries/Win64/UE4-WmfMediaFactory.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/TcpMessaging/Binaries/Win64/UE4-TcpMessaging.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/Binaries/Win64/UE4-UdpMessaging.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystem/Binaries/Win64/UE4-OnlineSubsystem.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemNull/Binaries/Win64/UE4-OnlineSubsystemNull.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemUtils/Binaries/Win64/UE4-OnlineSubsystemUtils.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/AndroidPermission/Binaries/Win64/UE4-AndroidPermission.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/Binaries/Win64/UE4-ArchVisCharacter.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/Binaries/Win64/UE4-CableComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UE4-CustomMeshComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/Binaries/Win64/UE4-ExampleDeviceProfileSelector.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ImmediatePhysics/Binaries/Win64/UE4-ImmediatePhysics.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/LocationServicesBPLibrary/Binaries/Win64/UE4-LocationServicesBPLibrary.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/MobilePatchingUtils/Binaries/Win64/UE4-MobilePatchingUtils.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4-OculusHMD.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4-OculusInput.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/PhysXVehicles/Binaries/Win64/UE4-PhysXVehicles.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/Binaries/Win64/UE4-ProceduralMeshComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/RuntimePhysXCooking/Binaries/Win64/UE4-RuntimePhysXCooking.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4-SteamVR.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/Binaries/Win64/UE4-SteamVRController.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/Binaries/Win64/UE4-WindowsMoviePlayer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Launch.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ProfilerService.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AutomationController.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-TaskGraph.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateNullRenderer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateRHIRenderer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Messaging.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SessionServices.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Core.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-InputDevice.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Analytics.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-RHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-CoreUObject.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Projects.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Json.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-EngineMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SessionMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Engine.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Renderer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-PacketHandler.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NetworkReplayStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AudioMixer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ClothingSystemRuntimeInterface.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ImageWrapper.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HeadMountedDisplay.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MRMesh.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Advertising.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MovieSceneCapture.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AutomationWorker.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateReflector.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Localization.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SlateCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-InputCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Slate.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-RenderCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NullDrv.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-D3D11RHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AppFramework.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AssetRegistry.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Networking.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Sockets.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SandboxFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Landscape.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Foliage.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SourceControl.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-EditorStyle.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AnimGraphRuntime.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AnimationCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GeometryCache.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ShaderCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ActorSequence.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MovieScene.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-LevelSequence.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MovieSceneTracks.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-UMG.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HTTP.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SSL.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MaterialShaderQualitySettings.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-UtilityShaders.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AVIWriter.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-JsonUtilities.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-StreamingPauseRendering.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MoviePlayer.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Niagara.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-VectorVM.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NullNetworkReplayStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HttpNetworkReplayStreaming.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-PhysXCooking.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-CinematicCamera.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AnalyticsET.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Navmesh.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-D3D12RHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-VulkanRHI.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-OpenGLDrv.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-EngineSettings.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-SynthBenchmark.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameplayTags.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AIModule.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameplayTasks.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-GameplayDebugger.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-DatabaseSupport.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ReliabilityHandlerComponent.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-HardwareSurvey.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MediaAssets.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Media.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MediaUtils.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-PakFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Serialization.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Overlay.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-NetworkFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-StreamingFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-CookedIterativeFile.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AutomationMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ClothingSystemRuntime.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-XAudio2.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-AudioMixerXAudio2.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-RealtimeProfiler.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ProfilerMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-UnrealEdMessages.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-MessageLog.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ScreenShotComparisonTools.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-ImageCore.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-Voice.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/Win64/UE4-BuildPatchServices.lib",
+			"Type" : "StaticLibrary",
+			"IsPrecompiled" : true
+		}
+	],
+	"RuntimeDependencies" :
+	[
+		{
+			"Path" : "$(ProjectDir)/RunebergVR.uproject",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/RunebergVRPlugin.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/2D/Paper2D/Paper2D.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Blendables/LightPropagationVolume/LightPropagationVolume.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Editor/FacialAnimation/FacialAnimation.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/CharacterAI/CharacterAI.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/HTML5Networking.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/AndroidMedia/AndroidMedia.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/AvfMedia/AvfMedia.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Media/WmfMedia/WmfMedia.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/TcpMessaging/TcpMessaging.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Messaging/UdpMessaging/UdpMessaging.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystem/OnlineSubsystem.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemNull/OnlineSubsystemNull.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Online/OnlineSubsystemUtils/OnlineSubsystemUtils.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/AndroidPermission/AndroidPermission.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ArchVisCharacter/ArchVisCharacter.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CableComponent/CableComponent.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/CustomMeshComponent.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ExampleDeviceProfileSelector/ExampleDeviceProfileSelector.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ImmediatePhysics/ImmediatePhysics.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/LocationServicesBPLibrary/LocationServicesBPLibrary.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/MobilePatchingUtils/MobilePatchingUtils.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/OculusVR.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/PhysXVehicles/PhysXVehicles.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/ProceduralMeshComponent/ProceduralMeshComponent.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/RuntimePhysXCooking/RuntimePhysXCooking.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Steam/SteamVR/SteamVR.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/WindowsMoviePlayer/WindowsMoviePlayer.uplugin",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Checkerboard.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/BoxShadow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Button.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Button_Disabled.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Button_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Button_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Check.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CheckBox.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CheckBox_Checked.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CheckBox_Checked_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CheckBox_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CheckBox_Undetermined.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CheckBox_Undetermined_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Checker.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Circle.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColorGradingWheel.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColorPicker_Mode_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColorPicker_Separator.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColorPicker_SliderHandle.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColorSpectrum.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColorWheel.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColumnHeader.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColumnHeaderMenuButton_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColumnHeaderMenuButton_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColumnHeader_Arrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ColumnHeader_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ComboArrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/CursorPing.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/DebugBorder.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Delimiter.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/DownArrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/DropZoneIndicator_Above.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/DropZoneIndicator_Below.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/DropZoneIndicator_Onto.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/EditableTextSelectionBackground.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/EventMessage_Default.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ExpansionButton_CloseOverlay.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/GroupBorder.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/HeaderSplitterGrip.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/LastColumnHeader_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/NoiseBackground.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ProgressBar_Background.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ProgressBar_Fill.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ProgressBar_Marquee.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/RadioButton_SelectedBack_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/RadioButton_Selected_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/RadioButton_Unselected_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/RoundedSelection_16x.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Scrollbar_Background_Horizontal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Scrollbar_Background_Vertical.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Scrollbar_Thumb.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ScrollBorderShadowBottom.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ScrollBorderShadowTop.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ScrollBoxShadowBottom.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ScrollBoxShadowLeft.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ScrollBoxShadowRight.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/ScrollBoxShadowTop.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SearchGlass.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Selection.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Selector.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Separator.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheck.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheckBox.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheckBox_Checked.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheckBox_Checked_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheckBox_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheckBox_Undetermined.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SmallCheckBox_Undetermined_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SortDownArrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SortDownArrows.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SortUpArrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SortUpArrows.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SpinArrows.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Spinbox.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Spinbox_Fill.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Spinbox_Fill_Dark.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Spinbox_Fill_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Spinbox_Fill_Hovered_Dark.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Spinbox_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SplitterHandleHighlight.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/SubmenuArrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TableViewHeader.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TableViewMajorColumn.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBlockHighlightShape.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBlockHighlightShape_Empty.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBoxLabelBorder.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox_Dark.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox_Hovered_Dark.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox_ReadOnly.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox_Special.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TextBox_Special_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Throbber_Piece.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TreeArrow_Collapsed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TreeArrow_Collapsed_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TreeArrow_Expanded.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/TreeArrow_Expanded_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/UpArrow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/VerticalBoxDragIndicator.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/VolumeControl_High.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/VolumeControl_Low.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/VolumeControl_Mid.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/VolumeControl_Muted.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/VolumeControl_Off.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/WhiteGroupBorder.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/X.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowBackground.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowBorder.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Close_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Close_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Close_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Maximize_Disabled.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Maximize_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Maximize_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Maximize_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Minimize_Disabled.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Minimize_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Minimize_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Minimize_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Restore_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Restore_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowButton_Restore_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowOutline.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowTitle.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowTitle_Flashing.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Common/Window/WindowTitle_Inactive.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/CrashTracker/MouseCursor.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/CrashTracker/Record.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTabContentArea.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTabWellSeparator.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTab_Active.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTab_ColorOverlay.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTab_ColorOverlayIcon.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTab_Foreground.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTab_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/AppTab_Inactive.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/CloseApp_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/CloseApp_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/CloseApp_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/DockingIndicator_Center.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/OuterDockingIndicator.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/ShowTabwellButton_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/ShowTabwellButton_Normal.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/ShowTabwellButton_Pressed.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/TabContentArea.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/TabWellSeparator.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/Tab_Active.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/Tab_ColorOverlay.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/Tab_ColorOverlayIcon.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/Tab_Foreground.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/Tab_Hovered.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Docking/Tab_Inactive.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/DroidSans.tps",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/DroidSansFallback.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/DroidSansMono.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/NanumGothic.tps",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/NanumGothic.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/Noto.tps",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/NotoNaskhArabicUI-Regular.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/Roboto-Bold.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/Roboto-Light.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/Roboto-Regular.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Fonts/Roboto.tps",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/BackIcon.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Cross_12x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/cursor_cardinal_cross.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/cursor_grab.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/DefaultAppIcon.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/denied_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/ellipsis_12x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Empty_14x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/eyedropper_16px.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_Downloads_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_error_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_generic_toolbar.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_help_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_info_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_redo_16px.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_tab_toolbar_16px.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_tab_WidgetReflector_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_tab_WidgetReflector_40x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_undo_16px.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/icon_warning_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/NextIcon.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/notificationlist_fail.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/notificationlist_success.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/PlusSymbol_12x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/toolbar_expand_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/TrashCan.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/TrashCan_Small.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Edit/icon_Edit_Copy_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Edit/icon_Edit_Cut_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Edit/icon_Edit_Delete_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Edit/icon_Edit_Duplicate_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Icons/Edit/icon_Edit_Paste_16x.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/MessageLog/Log_Error.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/MessageLog/Log_Note.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/MessageLog/Log_Warning.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/Border.PNG",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/Button.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/DashedBorder.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/HyperlinkDotted.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/HyperlinkUnderline.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/Menu_Background.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/Menu_Background_Inverted_Border_Bold.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/Notification_Border_Flash.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/ToolBar_Background.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/ToolTip_Background.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/ToolTip_BrightBackground.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Old/White.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/BrushWireframe.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/DefaultPawn_16px.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/FlatColorSquare.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/GammaReference.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Hyperlink.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Lit.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/NewLevelBlank.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/TestRotation.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/UE4Icon.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Unlit.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Wireframe.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Fonts/Roboto-BlackItalic.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Fonts/Roboto-BoldItalic.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Fonts/Roboto-Italic.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Testing/Fonts/Roboto.tps",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Tutorials/TutorialBorder.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/Slate/Tutorials/TutorialShadow.png",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/SlateDebug/Fonts/LastResort.tps",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Content/SlateDebug/Fonts/LastResort.ttf",
+			"Type" : "UFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Oculus/OVRPlugin/OVRPlugin/Win64/OVRPlugin.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Oculus/OVRPlugin/OVRPlugin/Win64/OVRPlugin.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/NVIDIA/NVaftermath/Win64/GFSDK_Aftermath_Lib.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Windows/DirectX/x64/WinPixEventRuntime.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxFoundationPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxFoundationPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxPvdSDKPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxPvdSDKPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3PROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3PROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3CookingPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3CookingPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3CommonPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3CommonPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxFoundationPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PxPvdSDKPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/APEX_ClothingPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/APEX_ClothingPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/APEX_DestructiblePROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/APEX_DestructiblePROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/APEX_LegacyPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/APEX_LegacyPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/ApexFrameworkPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/ApexFrameworkPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/NvClothPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/NvClothPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Ogg/Win64/VS2015/libogg_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbis_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbisfile_64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3CookingPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/PhysX3CookingPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv1_0_7/Win64/openvr_api.dll",
+			"Type" : "NonUFS"
+		}
+	]
+}

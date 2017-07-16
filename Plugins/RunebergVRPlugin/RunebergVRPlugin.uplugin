@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
-	"EngineVersion": "4.17.0",
+	"EngineVersion": "4.17",
 	"Version": 2,
-	"VersionName": "2.65",
+	"VersionName": "2.71",
 	"FriendlyName": "Runeberg VR Pawn and Components Plugin",
 	"Description": "Blueprint & C++ VR pawn and VR mechanics component (Grab/Push/Pull, Move, Teleport, Gestures recognition, Gaze)",
 	"Category": "Virtual Reality",
@@ -21,11 +21,5 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
-	],	
-    "Plugins": [
-        {
-            "Name": "SteamVR",
-            "Enabled": true
-        }
-    ]
+	]
 }
