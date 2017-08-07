@@ -7,7 +7,7 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **Supports both SteamVR/Vive & the Oculus Rift**
 
 ### Notes:
-**For a version compatible with UE 4.17 PREVIEW, [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
+**For a version compatible with UE 4.16 [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
 
 ## Latest Release Notes (UE 4.16 upwards)
 2.71:
@@ -26,10 +26,32 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
   - Full 360 Yaw Movement Freedom for use with thumbstick input (Beta, Movement Component)
   - Fix for Oculus height offset issue (VRPawn)
 
+   
+## Latest Release Notes (UE 4.17)
+2.71:
+  - Removed remnants of SteamVR specific references in code base
+  
+2.7:
+  - Enable VR Pawn to react/move properly through uneven terrain (VRPawn)
+  - Dedicated node for 360 movement with thumbstick/thumbpad of Motion controllers (Movement component)
+  - Various fixes and polish for Gaze, Movement and VR Pawn
+
+2.65:
+  - Migrated to UE4.17
+
+2.6:
+  - Automatically set HMD Tracking Origin (VRPawn)
+  - Added gravity (VRPawn)
+  - Customizable target mesh (Beta, Gaze Component)
+  - Full 360 Yaw Movement Freedom for use with thumbstick input (Beta, Movement Component)
+  - Fix for Oculus height offset issue (VRPawn)
+
+
 2.5:
   - Added Gaze interaction mechanic (new)
   - Added function to check if HMD is currently worn (in VRPawn)
   - Automatically set camera FOV to 110 to suit current released hardware, overridable (in VRPawn)
+
 
 ## What you get:
   - Pre-configured VR Pawn
