@@ -2,13 +2,13 @@
 	"TargetName" : "RunebergVREditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "4024e88a-9577-4223-b3dc-cd60d902506a",
+	"BuildId" : "a87d5014-aacc-4b22-afd5-865cf459e7fc",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 17,
 		"PatchVersion" : 0,
-		"Changelist" : 3528061,
+		"Changelist" : 3573198,
 		"CompatibleChangelist" : 0,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
@@ -825,6 +825,21 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OculusInput.lib",
+			"Type" : "ImportLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusEditor.dll",
+			"Type" : "DynamicLibrary",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/Binaries/Win64/UE4Editor-OculusEditor.pdb",
+			"Type" : "SymbolFile",
+			"IsPrecompiled" : true
+		},
+		{
+			"Path" : "$(EngineDir)/Plugins/Runtime/Oculus/OculusVR/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-OculusEditor.lib",
 			"Type" : "ImportLibrary",
 			"IsPrecompiled" : true
 		},
@@ -7871,6 +7886,14 @@
 		{
 			"Path" : "$(EngineDir)/Binaries/ThirdParty/Oculus/OVRPlugin/OVRPlugin/Win64/OVRPlugin.dll",
 			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/NvClothPROFILE_x64.dll",
+			"Type" : "NonUFS"
+		},
+		{
+			"Path" : "$(EngineDir)/Binaries/ThirdParty/PhysX/Win64/VS2015/NvClothPROFILE_x64.pdb",
+			"Type" : "DebugNonUFS"
 		},
 		{
 			"Path" : "$(EngineDir)/Binaries/ThirdParty/ImgTec/PVRTexToolCLI.exe",
