@@ -2,13 +2,13 @@
 	"TargetName" : "RunebergVREditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "9d235d2e-0699-4a67-a724-267cd6977962",
+	"BuildId" : "e4375421-a13d-487b-9d62-7914ec38c04a",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 16,
-		"PatchVersion" : 2,
-		"Changelist" : 3514769,
+		"PatchVersion" : 3,
+		"Changelist" : 3561208,
 		"CompatibleChangelist" : 3452394,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,

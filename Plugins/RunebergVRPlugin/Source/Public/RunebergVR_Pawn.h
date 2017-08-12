@@ -31,7 +31,11 @@ struct FGravityVariables
 
 	/** How fast this VR Pawn will fall with gravity */
 	UPROPERTY(EditAnywhere, Category = "VR")
-	float GravityStrength = 3.f;
+	float GravityStrength = 1.f;
+
+	/** How fast this VR Pawn will fall with gravity */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	float Acceleration = 1.01f;
 
 	/** How far should the check for a floor be */
 	UPROPERTY(EditAnywhere, Category = "VR")
@@ -72,9 +76,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FGravityVariables GravityVariables;
 
+	/** Uneven Terrain Step Up rate */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float StepUpRate = .001f;
+
 	/** Oculus HMD Location Offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	FVector OculusLocationOffset = FVector(0.f, 0.f, 150.f);
+
+	/** HMD Location Offset */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	FVector HMDLocationOffset = FVector(0.f, 0.f, 112.f);
 
 	// Capsule Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
@@ -117,4 +129,6 @@ public:
 private:
 	// Whether we have hit something with the line trace that can cause this pawn to stop falling if gravity is enabled
 	bool bHit = false;
+	
+	float CurrentGravityStrength = 0.f;
 };

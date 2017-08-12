@@ -2,13 +2,13 @@
 	"TargetName" : "RunebergVR",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "d956deb9-c29b-4b93-8145-fddb145f144a",
+	"BuildId" : "96135dd7-ed50-4e3a-96e6-d53637c372e8",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 16,
-		"PatchVersion" : 2,
-		"Changelist" : 3514769,
+		"PatchVersion" : 3,
+		"Changelist" : 3561208,
 		"CompatibleChangelist" : 3452394,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
@@ -50,11 +50,6 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/Binaries/Win64/UE4-HTML5Networking.lib",
-			"Type" : "StaticLibrary",
-			"IsPrecompiled" : true
-		},
-		{
-			"Path" : "$(EngineDir)/Plugins/Experimental/SimpleHMD/Binaries/Win64/UE4-SimpleHMD.lib",
 			"Type" : "StaticLibrary",
 			"IsPrecompiled" : true
 		},
@@ -737,10 +732,6 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/HTML5Networking.uplugin",
-			"Type" : "UFS"
-		},
-		{
-			"Path" : "$(EngineDir)/Plugins/Experimental/SimpleHMD/SimpleHMD.uplugin",
 			"Type" : "UFS"
 		},
 		{

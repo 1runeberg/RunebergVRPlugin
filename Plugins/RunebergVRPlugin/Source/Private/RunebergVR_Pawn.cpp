@@ -71,6 +71,7 @@ void ARunebergVR_Pawn::BeginPlay()
 		switch (GEngine->HMDDevice->GetHMDDeviceType())
 		{
 		case EHMDDeviceType::DT_OculusRift:
+			HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
 			this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
 			GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
 			break;
@@ -81,6 +82,9 @@ void ARunebergVR_Pawn::BeginPlay()
 		// Set tracking origin (Oculus & Vive)
 		GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
 	}
+
+	// Set Current Gravity Strength
+	CurrentGravityStrength = GravityVariables.GravityStrength;
 }
 
 // Called every frame
@@ -113,14 +117,24 @@ void ARunebergVR_Pawn::Tick(float DeltaTime)
 			&& bHit && RayHit.GetComponent()->CanCharacterStepUpOn == ECanBeCharacterBase::ECB_Yes
 			&& (RayHit.Distance + GravityVariables.FloorTraceTolerance) < GravityVariables.FloorTraceRange)
 		{
-			this->TeleportTo(this->GetActorLocation() + FVector(0.f, 0.f, GravityVariables.FloorTraceRange - RayHit.Distance), this->GetActorRotation());
-
-		}
-
+			int Steps = FMath::Round(GravityVariables.FloorTraceTolerance / StepUpRate);
+			for (int32 i = Steps; i > 1; i--)
+			{
+				this->TeleportTo(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, RayHit.Location.Z - (StepUpRate * i) + HMDLocationOffset.Z), this->GetActorRotation());
+			}
+		} 
+		
 		// Apply gravity
 		if (!bHit || RayHit.GetComponent()->CanCharacterStepUpOn != ECanBeCharacterBase::ECB_Yes)
 		{
-			this->TeleportTo(this->GetActorLocation() + (GravityVariables.GravityDirection * GravityVariables.GravityStrength), this->GetActorRotation());
+			// Calculate gravity with acceleration and apply to the pawn
+			CurrentGravityStrength = CurrentGravityStrength * GravityVariables.Acceleration;
+			this->TeleportTo(this->GetActorLocation() + (GravityVariables.GravityDirection * CurrentGravityStrength), this->GetActorRotation());
+		}
+		else 
+		{
+			// Reset current gravity
+			CurrentGravityStrength = GravityVariables.GravityStrength;
 		}
 
 	}
