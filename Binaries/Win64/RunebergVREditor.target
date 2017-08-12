@@ -424,21 +424,6 @@
 			"IsPrecompiled" : true
 		},
 		{
-			"Path" : "$(EngineDir)/Plugins/Experimental/SimpleHMD/Binaries/Win64/UE4Editor-SimpleHMD.dll",
-			"Type" : "DynamicLibrary",
-			"IsPrecompiled" : true
-		},
-		{
-			"Path" : "$(EngineDir)/Plugins/Experimental/SimpleHMD/Binaries/Win64/UE4Editor-SimpleHMD.pdb",
-			"Type" : "SymbolFile",
-			"IsPrecompiled" : true
-		},
-		{
-			"Path" : "$(EngineDir)/Plugins/Experimental/SimpleHMD/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-SimpleHMD.lib",
-			"Type" : "ImportLibrary",
-			"IsPrecompiled" : true
-		},
-		{
 			"Path" : "$(EngineDir)/Plugins/Media/AndroidMedia/Binaries/Win64/UE4Editor-AndroidMediaEditor.dll",
 			"Type" : "DynamicLibrary",
 			"IsPrecompiled" : true
@@ -5654,10 +5639,6 @@
 		},
 		{
 			"Path" : "$(EngineDir)/Plugins/Experimental/HTML5Networking/HTML5Networking.uplugin",
-			"Type" : "UFS"
-		},
-		{
-			"Path" : "$(EngineDir)/Plugins/Experimental/SimpleHMD/SimpleHMD.uplugin",
 			"Type" : "UFS"
 		},
 		{

@@ -105,6 +105,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Target Parameters")
 	FVector TeleportTargetParticleSpawnOffset = FVector(0.f, 0.f, 0.f);
 
+	/** SteamVR HMD Location Offset */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float SteamVRHeightOffset = 112.f;
+
+	/** Oculus HMD Location Offset */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	float OculusHeightOffset = 262.f;
+
 	/** Check to see if an active teleport mode is turned on */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "VR - Read Only")
 	bool IsTeleporting = false;
