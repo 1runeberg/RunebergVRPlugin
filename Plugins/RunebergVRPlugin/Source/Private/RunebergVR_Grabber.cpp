@@ -115,8 +115,8 @@ AActor* URunebergVR_Grabber::Grab(float Reach, bool ScanOnlyWillManuallyAttach, 
 		// Draw Debug Line Trace
 		DrawDebugLine(
 			GetWorld(),
-			ControllerLocation,
-			ControllerLocation + (ControllerRotation.Vector() * Reach),
+			this->GetComponentLocation(),
+			this->GetComponentLocation() + (this->GetComponentRotation().Vector() * Reach),
 			FColor(255, 0, 0),
 			false, -1, 0,
 			12.0f
@@ -124,7 +124,7 @@ AActor* URunebergVR_Grabber::Grab(float Reach, bool ScanOnlyWillManuallyAttach, 
 	}
 
 	// Line trace
-	AActor* ActorHit = GetHit(ControllerLocation, ControllerLocation + (ControllerRotation.Vector() * Reach), RetainDistance, ShowDebugLine);
+	AActor* ActorHit = GetHit(this->GetComponentLocation(), this->GetComponentLocation() + (this->GetComponentRotation().Vector() * Reach), RetainDistance, ShowDebugLine);
 
 	// Check if there's a valid object to grab
 	if (ActorHit)

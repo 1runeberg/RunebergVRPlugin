@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v2.71
+# Unreal Engine VR Plugin v2.72
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
@@ -10,6 +10,11 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **For a version compatible with UE 4.16 [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
   
 ## Latest Release Notes (UE 4.17)
+2.72:
+    - Allow Grabber origin to respect Relative Rotation and Location defined in the Components Tab (Grabber)
+	- Added Acceleration to Gravity's influence (VRPawn)
+	- Added StepUp Rate in Uneven Terrain Pawn Z/Height adjustments (VRPawn)
+
 2.71:
   - Removed remnants of SteamVR specific references in code base
   
