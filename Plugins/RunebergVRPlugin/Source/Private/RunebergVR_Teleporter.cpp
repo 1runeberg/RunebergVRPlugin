@@ -47,14 +47,17 @@ void URunebergVR_Teleporter::BeginPlay()
 	ArcSpline->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
 
 	// Adjust pawn spawn target offset based on HMD
-	static const FName HMDName = GEngine->HMDDevice->GetDeviceName();
-
 	if (GEngine->HMDDevice.IsValid())
 	{
-		// Override height offset for Oculus Rift
-		if (HMDName == FName(TEXT("OculusRift")))
+		// Override height offset for the Oculus Rift
+		switch (GEngine->HMDDevice->GetHMDDeviceType())
 		{
-			PawnHeightOffset.Z = 262.f;
+		case EHMDDeviceType::DT_OculusRift:
+			PawnHeightOffset.Z = OculusHeightOffset;
+			break;
+		default:
+			PawnHeightOffset.Z = SteamVRHeightOffset;
+			break;
 		}
 	}
 
