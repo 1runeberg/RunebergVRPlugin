@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v2.73
+# Unreal Engine VR Plugin v3.0
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
 
@@ -10,6 +10,17 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **For a version compatible with UE 4.16 [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
   
 ## Latest Release Notes (UE 4.17)
+3.0:
+	- New Teleport Fade In & Out Options (Teleport)
+	- New Configurable beam/arc boundary object types (Teleport)
+	- New Option to have target mesh indicator to face player camera (Gaze)
+	- New Configurable grabbable object types - not auto attached (Grabber)
+	- New Radial trace grab, allows main Grabber component to act like  the SimpleGrabber component (Grabber)
+	- New Base content - hand, beam, whiteboxing shaders (Plugin)
+	- Fixed HMD location offset issue (Teleport)
+	- Fixed issue with Front Gaze Variable struct members not properly accessible in Blueprint (Gaze)
+	- Fixed compiler warnings (Plugin)
+	
 2.73:
     - Bugfix Teleport HMD Type check causes crashes when no HMD device is available
 

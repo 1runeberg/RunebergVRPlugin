@@ -2,14 +2,14 @@
 	"TargetName" : "RunebergVR",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "e1e53964-04fd-47dd-b1e3-c56894223e8e",
+	"BuildId" : "25f4025a-4134-4578-b67d-45fcd5c4f4c5",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 17,
-		"PatchVersion" : 0,
-		"Changelist" : 3573198,
-		"CompatibleChangelist" : 0,
+		"PatchVersion" : 1,
+		"Changelist" : 3586342,
+		"CompatibleChangelist" : 3573198,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
 		"BranchName" : "++UE4+Release-4.17"

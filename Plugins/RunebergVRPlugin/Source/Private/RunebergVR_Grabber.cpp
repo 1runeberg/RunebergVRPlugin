@@ -87,7 +87,7 @@ void URunebergVR_Grabber::TickComponent( float DeltaTime, ELevelTick TickType, F
 }
 
 // Ray-Cast and grab an Actor
-AActor* URunebergVR_Grabber::Grab(float Reach, bool ScanOnlyWillManuallyAttach, EGrabTypeEnum GrabMode, FName TagName, FRotator Rotation_Offset, bool RetainObjectRotation, bool RetainDistance, bool ShowDebugLine)
+AActor* URunebergVR_Grabber::Grab(float Reach, bool DoRadialTrace, bool ScanOnlyWillManuallyAttach, EGrabTypeEnum GrabMode, FName TagName, FRotator Rotation_Offset, bool RetainObjectRotation, bool RetainDistance, bool ShowDebug)
 {
 	// Set component vars
 	GrabType = GrabMode;
@@ -109,22 +109,42 @@ AActor* URunebergVR_Grabber::Grab(float Reach, bool ScanOnlyWillManuallyAttach, 
 		StandardOffset = FRotator(0.f, 0.f, ControllerRotation.Roll * -1.f);
 	}
 	
-
 	// Show Debug line (helpful for a visual indicator during testing)
-	if (ShowDebugLine) {
-		// Draw Debug Line Trace
-		DrawDebugLine(
-			GetWorld(),
-			this->GetComponentLocation(),
-			this->GetComponentLocation() + (this->GetComponentRotation().Vector() * Reach),
-			FColor(255, 0, 0),
-			false, -1, 0,
-			12.0f
-		);
+	if (ShowDebug) {
+
+		if (DoRadialTrace)
+		{
+			// Draw Debug Sphere
+			DrawDebugSphere(
+				GetWorld(),
+				this->GetComponentLocation(),
+				Reach/2, 8,
+				FColor(255, 0, 0),
+				-1,
+				3.0f
+			);
+		}
+		else
+		{
+			// Draw Debug Line Trace
+			DrawDebugLine(
+				GetWorld(),
+				this->GetComponentLocation(),
+				this->GetComponentLocation() + (this->GetComponentRotation().Vector() * Reach),
+				FColor(255, 0, 0),
+				false, -1, 0,
+				12.0f
+			);
+		}
+
+
 	}
 
+	// Calculate Reach
+	Reach = DoRadialTrace ? Reach / 2 : Reach;
+
 	// Line trace
-	AActor* ActorHit = GetHit(this->GetComponentLocation(), this->GetComponentLocation() + (this->GetComponentRotation().Vector() * Reach), RetainDistance, ShowDebugLine);
+	AActor* ActorHit = GetHit(DoRadialTrace, Reach, this->GetComponentLocation(), this->GetComponentLocation() + (this->GetComponentRotation().Vector() * Reach), RetainDistance, ShowDebug);
 
 	// Check if there's a valid object to grab
 	if (ActorHit)
@@ -229,18 +249,54 @@ AActor* URunebergVR_Grabber::Grab(float Reach, bool ScanOnlyWillManuallyAttach, 
 }
 
 // Raycast and get any object hit by the line trace
-AActor* URunebergVR_Grabber::GetHit(FVector LineTraceStart, FVector LineTraceEnd, bool RetainDistance, bool bShowDebugLine)
+AActor* URunebergVR_Grabber::GetHit(bool DoRadialTrace, float Reach, FVector LineTraceStart, FVector LineTraceEnd, bool RetainDistance, bool bShowDebugLine)
 {
-	// Do line trace / ray-cast
+
+	// Set a default grabbable object type if none was specified
+	if (Grabbable_ObjectTypes.Num() < 1)
+	{
+		Grabbable_ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_PhysicsBody));
+	}
+
+	// Check if we need to do a radial trace or a simple line trace
 	FHitResult	Hit;
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
-	GetWorld()->LineTraceSingleByObjectType(
-		Hit,
-		LineTraceStart,
-		LineTraceEnd,
-		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
-		TraceParameters
-	);
+	if (DoRadialTrace)
+	{
+		// Do a radial trace
+		TArray <struct FHitResult> HitResults;
+		FCollisionShape CollisionShape;
+		CollisionShape.ShapeType = ECollisionShape::Sphere;
+		CollisionShape.SetSphere(Reach);
+		GetWorld()->SweepMultiByObjectType
+		(
+			HitResults,
+			LineTraceStart,
+			LineTraceStart,
+			FQuat(0.f,0.f,0.f,0.f),
+			FCollisionObjectQueryParams(Grabbable_ObjectTypes),
+			CollisionShape,
+			TraceParameters
+		);
+
+		// Return the first hit result
+		if (HitResults.Num() > 0)
+		{
+			Hit = HitResults[0];
+		}
+	}
+	else
+	{
+		// Do line trace / ray-cast
+		GetWorld()->LineTraceSingleByObjectType(
+			Hit,
+			LineTraceStart,
+			LineTraceEnd,
+			FCollisionObjectQueryParams(Grabbable_ObjectTypes),
+			TraceParameters
+		);
+	}
+
 
 	// See what we hit
 	auto ActorHit = Hit.GetActor();

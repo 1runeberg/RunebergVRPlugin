@@ -39,6 +39,10 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	/** These are the objects that can be grabbed, needs a physics handle component if you want object to auto attach */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	TArray<TEnumAsByte<EObjectTypeQuery>> Grabbable_ObjectTypes;
+
 	// Current Distance of grabbed items from their respective controllers
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
 	float DistanceFromController = 10.0f;
@@ -65,7 +69,7 @@ public:
 
 	// Grab something within line trace range of controller
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	AActor* Grab(float Reach = 5.f, bool ScanOnlyWillManuallyAttach= false, EGrabTypeEnum GrabMode = EGrabTypeEnum::PRECISION_GRAB, FName TagName = FName(TEXT("")), FRotator Rotation_Offset = FRotator::ZeroRotator, bool RetainObjectRotation = true, bool RetainDistance = false, bool ShowDebugLine = false);
+	AActor* Grab(float Reach = 5.f, bool DoRadialTrace = false, bool ScanOnlyWillManuallyAttach= false, EGrabTypeEnum GrabMode = EGrabTypeEnum::PRECISION_GRAB, FName TagName = FName(TEXT("")), FRotator Rotation_Offset = FRotator::ZeroRotator, bool RetainObjectRotation = true, bool RetainDistance = false, bool ShowDebug = false);
 
 	// Set distance from controller
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -108,7 +112,7 @@ private:
 	FRotator RotationOffset = FRotator::ZeroRotator;
 
 	// Get Actor hit by line trace
-	AActor* GetHit(FVector LineTraceStart, FVector LineTraceEnd, bool RetainDistance, bool bShowDebugLine);
+	AActor* GetHit(bool DoRadialTrace, float Reach, FVector LineTraceStart, FVector LineTraceEnd, bool RetainDistance, bool bShowDebugLine);
 	bool bManualAttach = false;
 
 	// Pull-Push Mechanic

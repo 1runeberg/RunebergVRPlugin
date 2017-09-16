@@ -117,7 +117,7 @@ void ARunebergVR_Pawn::Tick(float DeltaTime)
 			&& bHit && RayHit.GetComponent()->CanCharacterStepUpOn == ECanBeCharacterBase::ECB_Yes
 			&& (RayHit.Distance + GravityVariables.FloorTraceTolerance) < GravityVariables.FloorTraceRange)
 		{
-			int Steps = FMath::Round(GravityVariables.FloorTraceTolerance / StepUpRate);
+			int Steps = FPlatformMath::RoundToInt(GravityVariables.FloorTraceTolerance / StepUpRate);
 			for (int32 i = Steps; i > 1; i--)
 			{
 				this->TeleportTo(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, RayHit.Location.Z - (StepUpRate * i) + HMDLocationOffset.Z), this->GetActorRotation());

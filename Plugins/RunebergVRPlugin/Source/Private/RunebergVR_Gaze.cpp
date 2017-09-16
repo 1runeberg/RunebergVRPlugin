@@ -13,6 +13,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVRPlugin.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "RunebergVR_Gaze.h"
 #include "IHeadMountedDisplay.h"
 
@@ -37,7 +38,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 		FHitResult	Hit;
 
 		FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
-		UWorld* World = GEngine->GetWorldFromContextObject(GetOwner());
+		UWorld* World = GEngine->GetWorldFromContextObject(GetOwner(), EGetWorldErrorMode::Assert);
 		bool const bHit = World->LineTraceSingleByChannel(Hit, 
 			GetAttachParent()->GetComponentLocation(), 
 			GetAttachParent()->GetComponentRotation().Vector() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
@@ -107,7 +108,14 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 			// Set Target Mesh Transform
 			if (TargetMeshComponent->IsValidLowLevelFast())
 			{
+				// Spawn target mesh
 				TargetMeshComponent->SetWorldTransform(FTransform(FrontGazeVariables.TargetRotation, Hit.Location,  FrontGazeVariables.TargetScale3D));
+				
+				// Face the target mesh to the pawn
+				if (FrontGazeVariables.bRotateToFacePawn)
+				{
+					TargetMeshComponent->SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(Hit.Location, GetAttachParent()->GetComponentLocation()));
+				}
 			}
 
 			// Check if sufficient time has elapsed for gaze to be considered a hit

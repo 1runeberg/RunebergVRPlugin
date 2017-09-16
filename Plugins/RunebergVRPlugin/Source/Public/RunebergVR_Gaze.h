@@ -47,38 +47,41 @@ struct FFrontGaze
 	GENERATED_USTRUCT_BODY()
 
 	/** Whether or not gaze mode is on */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	bool StopGazeAfterHit = false;
 
 	/** How long do you need to gaze */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	float GazeCurrentDuration = 0.f;
 
 	/** Actor tag to check for in target(s) */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	FName TargetTag;
 
 	/** Collision type to check for */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	TEnumAsByte<ECollisionChannel> TargetCollisionType;
 
 	/** Target Static Mesh */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	UStaticMesh* TargetStaticMesh = nullptr;
 
 	/** Target Material to apply to the static mesh */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	UMaterialInterface* TargetMaterial = nullptr;
 
 	/** Rotation of Target mesh */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	FRotator TargetRotation = FRotator::ZeroRotator;
 
+	/** Rotate Target Mesh to Face Pawn, this is in addition to the target rotation */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	bool bRotateToFacePawn = false;
+
 	/** Scale of Target mesh */
-	UPROPERTY(EditAnywhere, Category = "VR")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
 	FVector TargetScale3D = FVector(1.f, 1.f, 1.f);
 };
-
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
