@@ -15,7 +15,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVR_Movement.h"
 #include "IHeadMountedDisplay.h"
 
-
 // Sets default values for this component's properties
 URunebergVR_Movement::URunebergVR_Movement()
 {
@@ -45,16 +44,16 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 		if(CurrentMovementDirectionReference) {
 
 			// Set rotation/orientation
-			TargetRotation = FRotator(CurrentMovementDirectionReference->ComponentToWorld.GetRotation());
+			TargetRotation = FRotator(CurrentMovementDirectionReference->GetComponentTransform().GetRotation());
 
 			// Apply rotation offset
 			if (OffsetRotation.Equals(FRotator::ZeroRotator))
 			{
-				TargetRotation = FRotator(CurrentMovementDirectionReference->ComponentToWorld.GetRotation());
+				TargetRotation = FRotator(CurrentMovementDirectionReference->GetComponentTransform().GetRotation());
 			}
 			else 
 			{
-				TargetRotation = FRotator(CurrentMovementDirectionReference->ComponentToWorld.GetRotation()).Add(OffsetRotation.Pitch, OffsetRotation.Yaw, OffsetRotation.Roll);
+				TargetRotation = FRotator(CurrentMovementDirectionReference->GetComponentTransform().GetRotation()).Add(OffsetRotation.Pitch, OffsetRotation.Yaw, OffsetRotation.Roll);
 			}
 
 		}
@@ -272,7 +271,7 @@ void URunebergVR_Movement::Enable360Movement(USceneComponent* MovementDirectionR
 		// Get target Rotation
 		if (MovementDirectionReference)
 		{
-			TargetRotation = FRotator(MovementDirectionReference->ComponentToWorld.GetRotation());
+			TargetRotation = FRotator(MovementDirectionReference->GetComponentTransform().GetRotation());
 		}
 		else
 		{

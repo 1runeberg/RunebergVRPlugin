@@ -14,7 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Teleporter.h"
 #include "Kismet/KismetMathLibrary.h"
-#include "Kismet/HeadMountedDisplayFunctionLibrary.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
 
 // Sets default values for this component's properties
@@ -37,14 +37,18 @@ void URunebergVR_Teleporter::BeginPlay()
 	// Ensure target marker is not visible at start
 	SetVisibility(false, true);
 
-	// Set object types for the teleport arc to ignore
-	ArcObjectTypesToIgnore.Add(EObjectTypeQuery::ObjectTypeQuery1);	// World static objects
+	// Set default object type for the teleport arc to recognize as a boundary if none was provided
+	if (TeleportBoundary_ObjectTypes.Num() < 1)
+	{
+		TeleportBoundary_ObjectTypes.Add(EObjectTypeQuery::ObjectTypeQuery1);	// World static objects
+		//ArcTeleportBoundary_ObjectTypes.Add(EObjectTypeQuery::ObjectTypeQuery2);	// Dynamic objects 
+	}
 
-																	// Create teleport arc spline
-	ArcSpline = NewObject<USplineComponent>(GetAttachParent());
+	// Create teleport arc spline
+	ArcSpline = NewObject<USplineComponent>(this);
 	ArcSpline->RegisterComponentWithWorld(GetWorld());
 	ArcSpline->SetMobility(EComponentMobility::Movable);
-	ArcSpline->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
+	ArcSpline->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
 
 	// Adjust pawn spawn target offset based on HMD
 	if (GEngine->HMDDevice.IsValid())
@@ -87,17 +91,17 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 	// Set Teleport Arc Parameters
 	FPredictProjectilePathParams Params = FPredictProjectilePathParams(
 		ArcRadius,
-		FVector(GetAttachParent()->GetComponentLocation().X + BeamLocationOffset.X,
-			GetAttachParent()->GetComponentLocation().Y + BeamLocationOffset.Y,
-			GetAttachParent()->GetComponentLocation().Z + BeamLocationOffset.Z),
-		GetAttachParent()->GetForwardVector() * BeamMagnitude,
+		FVector(this->GetComponentLocation().X + BeamLocationOffset.X,
+			this->GetComponentLocation().Y + BeamLocationOffset.Y,
+			this->GetComponentLocation().Z + BeamLocationOffset.Z),
+		this->GetForwardVector() * BeamMagnitude,
 		MaxSimTime);
 	Params.bTraceWithCollision = true;
 	Params.bTraceComplex = false;
 	Params.DrawDebugType = EDrawDebugTrace::None;
 	Params.DrawDebugTime = 0.f;
 	Params.SimFrequency = SimFrequency;
-	Params.ObjectTypes = ArcObjectTypesToIgnore;
+	Params.ObjectTypes = TeleportBoundary_ObjectTypes;
 	Params.OverrideGravityZ = ArcOverrideGravity;
 	Params.bTraceWithChannel = false;
 
@@ -232,6 +236,10 @@ bool URunebergVR_Teleporter::HideTeleportArc()
 {
 	if (IsTeleporting)
 	{
+		// Get last teleport location status
+		bool bValidTeleportLoc = bIsTargetLocationValid;
+
+		// Clear teleport vars
 		TeleportMode = -1;
 		IsTeleporting = false;
 		bIsBeamTypeTeleport = false;
@@ -240,7 +248,7 @@ bool URunebergVR_Teleporter::HideTeleportArc()
 		// Clear Target Marker
 		RemoveTargetMarker();
 
-		return true;
+		return bValidTeleportLoc;
 	}
 
 	return false;
@@ -291,20 +299,20 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 	FHitResult Ray_Hit(ForceInit);
 
 	// Get Target Location
-	TargetLocation = FVector(GetAttachParent()->GetComponentLocation().X + BeamLocationOffset.X,
-		GetAttachParent()->GetComponentLocation().Y + BeamLocationOffset.Y,
-		GetAttachParent()->GetComponentLocation().Z + BeamLocationOffset.Z) +
-		(GetAttachParent()->GetComponentRotation().Vector() * BeamMagnitude);
+	TargetLocation = FVector(this->GetComponentLocation().X + BeamLocationOffset.X,
+		this->GetComponentLocation().Y + BeamLocationOffset.Y,
+		this->GetComponentLocation().Z + BeamLocationOffset.Z) +
+		(this->GetComponentRotation().Vector() * BeamMagnitude);
 
 	// Do the ray trace
 	bool bHit = GetWorld()->LineTraceSingleByObjectType(
 		Ray_Hit,
-		GetAttachParent()->GetComponentLocation(),
-		FVector(GetAttachParent()->GetComponentLocation().X + BeamLocationOffset.X,
-			GetAttachParent()->GetComponentLocation().Y + BeamLocationOffset.Y,
-			GetAttachParent()->GetComponentLocation().Z + BeamLocationOffset.Z) +
-			(GetAttachParent()->GetComponentRotation().Vector() * BeamMagnitude),
-		ECC_WorldStatic,
+		this->GetComponentLocation(),
+		FVector(this->GetComponentLocation().X + BeamLocationOffset.X,
+			this->GetComponentLocation().Y + BeamLocationOffset.Y,
+			this->GetComponentLocation().Z + BeamLocationOffset.Z) +
+			(this->GetComponentRotation().Vector() * BeamMagnitude),
+		TeleportBoundary_ObjectTypes,
 		Ray_TraceParams
 	);
 
@@ -351,16 +359,16 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 	if (TeleportBeamMesh)
 	{
 		// Spawn the beam mesh
-		RayMesh = NewObject<UStaticMeshComponent>(GetAttachParent());
+		RayMesh = NewObject<UStaticMeshComponent>(this);
 		RayMesh->RegisterComponentWithWorld(GetWorld());
 		RayMesh->SetMobility(EComponentMobility::Movable);
-		RayMesh->AttachToComponent(GetAttachParent(), FAttachmentTransformRules::KeepRelativeTransform);
+		RayMesh->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
 		RayMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		RayMesh->SetStaticMesh(TeleportBeamMesh);
 		RayMesh->AddLocalOffset(BeamLocationOffset);
-		RayMesh->SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(FVector(GetAttachParent()->GetComponentLocation().X + BeamLocationOffset.X,
-			GetAttachParent()->GetComponentLocation().Y + BeamLocationOffset.Y,
-			GetAttachParent()->GetComponentLocation().Z + BeamLocationOffset.Z), TargetLocation));
+		RayMesh->SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(FVector(this->GetComponentLocation().X + BeamLocationOffset.X,
+			this->GetComponentLocation().Y + BeamLocationOffset.Y,
+			this->GetComponentLocation().Z + BeamLocationOffset.Z), TargetLocation));
 
 		// Scale the beam mesh
 		if (RayInstantScale)
@@ -411,24 +419,104 @@ bool URunebergVR_Teleporter::ShowTeleportRay()
 }
 
 // Teleport object
-bool URunebergVR_Teleporter::TeleportNow()
+bool URunebergVR_Teleporter::TeleportNow(FWorldFadeSettings FadeOutOptions, FWorldFadeSettings FadeInOptions, bool ForceTeleport, bool TeleportPhysics)
 {
 	// Only teleport if targetting is enabled
-	if (IsTeleporting && bIsTargetLocationValid) {
+	if (ForceTeleport || (IsTeleporting && bIsTargetLocationValid)) {
 
 		// Get HMD Position & Orientation
 		FRotator HMDRotation;
 		FVector HMDLocation;
 		UHeadMountedDisplayFunctionLibrary::GetOrientationAndPosition(HMDRotation, HMDLocation);
 
-		// Teleport
-		TargetLocation = FVector(TargetLocation - FVector(HMDLocation.X, HMDLocation.Y, 0.f));
-		GetAttachParent()->GetOwner()->SetActorLocation(TargetLocation + PawnHeightOffset + TeleportTargetPawnSpawnOffset, false, nullptr, ETeleportType::None);
+		// Calculate target location
+		if (TargetParticleSystemComponent)
+		{
+			TeleportTargetLoc = TargetParticleSystemComponent->GetComponentTransform().GetLocation();
+		}
 
-		// Set custom rotation if needed
+		if (TeleportTargetMesh)
+		{
+			TeleportTargetLoc = TargetStaticMeshComponent->GetComponentTransform().GetLocation();
+		}
+
+		// Setup camera offsets
+		FVector TeleportCameraOffset = HMDLocation;
+		APawn* RootPawn = Cast<APawn>(GetOwner());
+		UCameraComponent* PawnCamera = nullptr;
+
+		// Use camera vs pawn location as an accurate offset over the HMD location
+		if (RootPawn && RootPawn->IsValidLowLevel())
+		{
+			PawnCamera = RootPawn->FindComponentByClass<UCameraComponent>();
+
+			if (PawnCamera)
+			{
+				TeleportCameraOffset = PawnCamera->GetComponentLocation() - GetOwner()->GetActorLocation();
+			}
+		}
+		
+		// Location Troubleshooting
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current Pawn Location (pre-teleport): %s"), *GetOwner()->GetActorLocation().ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current HMD Location: %s"), *HMDLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current Camera World Location: %s"), *PawnCamera->GetComponentLocation().ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current Camera Relative Location: %s"), *PawnCamera->GetRelativeTransform().GetLocation().ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Unadjusted Target Location is: %s"), *TeleportTargetLoc.ToString());
+
+		// Set target location adjustments
+		TeleportTargetLoc = FVector(TeleportTargetLoc.X - TeleportCameraOffset.X, TeleportTargetLoc.Y - TeleportCameraOffset.Y, TeleportTargetLoc.Z);
+		TeleportTargetLoc = FVector(TeleportTargetLoc.X + PawnHeightOffset.X + TeleportTargetPawnSpawnOffset.X,
+			TeleportTargetLoc.Y + PawnHeightOffset.Y + TeleportTargetPawnSpawnOffset.Y,
+			TeleportTargetLoc.Z + PawnHeightOffset.Z + TeleportTargetPawnSpawnOffset.Z);
+
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Adjusted Target Location is: %s"), *TeleportTargetLoc.ToString());
+
+		// Apply Custom Rotation if needed
 		if (bFaceMarkerRotation)
 		{
-			GetAttachParent()->GetOwner()->SetActorRotation(CustomMarkerRotation);
+			TeleportTargetLoc = CustomMarkerRotation.RotateVector(TeleportTargetLoc);
+		}
+		
+		// Set Target Physics
+		TeleportTargetPhys = TeleportPhysics;
+
+		// Check if we need to fade out
+		if (FadeOutOptions.bDoWorldFade && FadeOutOptions.FadeDuration > 0.001f)
+		{
+			// Teleport pawn
+			if (FadeOutTeleportOffset > 0.f && FadeOutOptions.FadeDuration > FadeOutTeleportOffset)
+			{
+				// Apply teleport offset time
+				GetWorld()->GetTimerManager().SetTimer(FadeTimerHandle, this, &URunebergVR_Teleporter::OnTeleport, FadeOutOptions.FadeDuration - FadeOutTeleportOffset, false);
+			}
+			else if (FadeOutTeleportOffset < 0.f)
+			{
+				// Immediately teleport
+				this->GetOwner()->SetActorLocation(TeleportTargetLoc, false, nullptr, TeleportPhysics ? ETeleportType::TeleportPhysics : ETeleportType::None);
+
+			}
+			else
+			{
+				// Wait for fade out before teleporting
+				GetWorld()->GetTimerManager().SetTimer(FadeTimerHandle, this, &URunebergVR_Teleporter::OnTeleport, FadeOutOptions.FadeDuration, false);
+			}
+
+			// Start Fade out - hold fade if there's an active fade in effect
+			UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->StartCameraFade(FadeOutOptions.FromOpacity, FadeOutOptions.ToOpacity, FadeOutOptions.FadeDuration,
+				FadeOutOptions.FadeColor, FadeOutOptions.bShouldFadeAudio, FadeInOptions.bDoWorldFade);
+		}
+		else 
+		{
+			// No effective fade out, instantly teleport pawn
+			this->GetOwner()->SetActorLocation(TeleportTargetLoc, false, nullptr, TeleportPhysics ? ETeleportType::TeleportPhysics : ETeleportType::None);
+		}
+
+		// Check if we need to fade in
+		if (FadeInOptions.bDoWorldFade)
+		{
+			// Start fade in
+			UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->StartCameraFade(FadeInOptions.FromOpacity, FadeInOptions.ToOpacity, FadeInOptions.FadeDuration,
+				FadeInOptions.FadeColor, FadeInOptions.bShouldFadeAudio, false);
 		}
 
 		// Remove teleport artifacts
@@ -453,11 +541,22 @@ bool URunebergVR_Teleporter::TeleportNow()
 		// Reset Teleport mode
 		TeleportMode = -1;
 
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current Pawn Location (post-teleport): %s"), *GetOwner()->GetActorLocation().ToString());
+
 		return true;
 
 	}
 
 	return false;
+}
+
+void URunebergVR_Teleporter::OnTeleport() 
+{
+	// Teleport Pawn
+	this->GetOwner()->SetActorLocation(TeleportTargetLoc, false, nullptr, TeleportTargetPhys ? ETeleportType::TeleportPhysics : ETeleportType::None);
+	
+	// Clear Fade Timer Handle
+	GetWorld()->GetTimerManager().ClearTimer(FadeTimerHandle);
 }
 
 // Show the teleport target marker
@@ -466,7 +565,7 @@ bool URunebergVR_Teleporter::ShowMarker()
 	if (!IsTeleporting)
 	{
 		// Calculate Target Location
-		TargetLocation = GetAttachParent()->GetComponentLocation() + (GetAttachParent()->GetComponentRotation().Vector() * BeamMagnitude);
+		TargetLocation = this->GetComponentLocation() + (this->GetComponentRotation().Vector() * BeamMagnitude);
 
 		// Check if target location is within the nav mesh
 		FVector tempTargetLocation;
@@ -599,6 +698,8 @@ void URunebergVR_Teleporter::SpawnTargetMarker(FVector MarkerLocation, FRotator 
 		TargetParticleSystemComponent->SetWorldScale3D(TeleportTargetParticleScale);
 		TargetParticleSystemComponent->SetVisibility(false);
 		TargetParticleSystemComponent->SetMobility(EComponentMobility::Movable);
+
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current Particle Marker Transform is: %s"), *TargetParticleSystemComponent->GetComponentTransform().ToString());
 	}
 
 	// Show Static Mesh if available
@@ -615,6 +716,8 @@ void URunebergVR_Teleporter::SpawnTargetMarker(FVector MarkerLocation, FRotator 
 		TargetStaticMeshComponent->SetVisibility(false);
 		TargetStaticMeshComponent->SetWorldScale3D(TeleportTargetMeshScale);
 		TargetStaticMeshComponent->SetStaticMesh(TeleportTargetMesh);
+
+		//UE_LOG(LogTemp, Warning, TEXT("[TELEPORT] Current Static Mesh Marker Transform is: %s"), *TargetStaticMeshComponent->GetComponentTransform().ToString());
 	}
 }
 
