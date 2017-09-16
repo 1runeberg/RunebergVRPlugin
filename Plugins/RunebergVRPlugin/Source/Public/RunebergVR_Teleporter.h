@@ -13,12 +13,43 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
-#include "Components/ActorComponent.h"
+#include "Components/SceneComponent.h"
 #include "Components/SplineComponent.h"
 #include "Components/SplineMeshComponent.h"
 #include "RunebergVR_Teleporter.generated.h"
 
+// World fade settings
+USTRUCT(BlueprintType)
+struct FWorldFadeSettings
+{
+	GENERATED_USTRUCT_BODY()
 
+	/** Whether or not we want a world fade effect */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	bool bDoWorldFade = false;
+
+	/** Starting opacity of the world for the fade effect */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	float FromOpacity = 0.f;
+
+	/** The world's end opacity for the fade effect */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	float ToOpacity = 0.f;
+
+	/** How long will the fade effect will run */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	float FadeDuration = 0.f;
+
+	/** Color to use for the fade effect */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	FLinearColor FadeColor = FLinearColor::Black;
+
+	/** Whether or not to fade the audio */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "VR")
+	bool bShouldFadeAudio = false;
+};
+
+// Teleport Marker Movement Direction
 UENUM(BlueprintType)
 enum class EMoveDirectionEnum : uint8
 {
@@ -45,6 +76,14 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
+	/** How much earlier than fade out duration should the pawn teleport */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - World Fade")
+	float FadeOutTeleportOffset = -1.f;
+
+	/** These are the objects that the teleport beam will recognize as boundaries */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Beam Parameters")
+	TArray<TEnumAsByte<EObjectTypeQuery> > TeleportBoundary_ObjectTypes;
 
 	// The teleport beam's mesh
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR - Teleport Beam Parameters")
@@ -114,8 +153,11 @@ public:
 	float OculusHeightOffset = 262.f;
 
 	/** Check to see if an active teleport mode is turned on */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "VR - Read Only")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR - Read Only")
 	bool IsTeleporting = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR - Read Only")
+	bool bIsTargetLocationValid = false;
 
 	// Show the teleportation arc trace
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -147,7 +189,7 @@ public:
 
 	// Teleport
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	bool TeleportNow();
+	bool TeleportNow(FWorldFadeSettings FadeOutOptions, FWorldFadeSettings FadeInOptions, bool ForceTeleport = false, bool TeleportPhysics = false);
 
 private:
 	// Teleport target height offset - defaults to SteamVR
@@ -165,7 +207,6 @@ private:
 	USplineComponent* ArcSpline = nullptr;
 	TArray<FVector> ArcPoints;
 	TArray<USplineMeshComponent*> ArcSplineMeshes;
-	TArray<TEnumAsByte<EObjectTypeQuery> > ArcObjectTypesToIgnore;
 	FVector RayMeshScale = FVector(1.0f, 1.0f, 1.0f);
 	FVector RayMeshScale_Max = FVector(1.0f, 1.0f, 1.0f);
 	bool bIsBeamTypeTeleport = false;
@@ -173,18 +214,21 @@ private:
 	float RayNumOfTimesToScale_Actual = 0.f;
 	float RayDistanceToTarget = 0.f;
 	
-
 	// TeleportRay mesh
 	UStaticMeshComponent* RayMesh = nullptr;
 
 	// Teleport target location
 	FVector TargetLocation = FVector::ZeroVector;
 	FRotator TargetRotation = FRotator::ZeroRotator;
-	bool bIsTargetLocationValid = false;
 
 	// Spawned visible components for targetting marker
 	UParticleSystemComponent* TargetParticleSystemComponent = nullptr;
 	UStaticMeshComponent* TargetStaticMeshComponent = nullptr;
+
+	// Teleport World Target Vars
+	FTimerHandle FadeTimerHandle;
+	FVector TeleportTargetLoc = FVector::ZeroVector;
+	bool TeleportTargetPhys = false;
 
 	// Draw teleport arc
 	void DrawTeleportArc();
@@ -209,4 +253,7 @@ private:
 
 	// Remove target location marker
 	void RemoveTargetMarker();
+
+	// Teleport Pawn Event
+	void OnTeleport();
 };

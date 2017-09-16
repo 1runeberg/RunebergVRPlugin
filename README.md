@@ -10,19 +10,33 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **For a version compatible with UE 4.17, [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
 
 ## Latest Release Notes (UE 4.16 upwards)
+3.0:
+- New Teleport Fade In & Out Options (Teleport)
+- New Configurable beam/arc boundary object types (Teleport)
+- New Option to have target mesh indicator to face player camera (Gaze)
+- New Configurable grabbable object types - not auto attached (Grabber)
+- New Radial trace grab, allows main Grabber component to act like  the SimpleGrabber component (Grabber)
+- New Base content - hand, beam, whiteboxing shaders (Plugin)
+- Fixed HMD location offset issue (Teleport)
+- Fixed issue with Front Gaze Variable struct members not properly accessible in Blueprint (Gaze)
+- Fixed compiler warnings (Plugin)
+	
 2.73:
-    - Bugfix Teleport HMD Type check causes crashes when no HMD device is available
-	
+- Bugfix Teleport HMD Type check causes crashes when no HMD device is available
+
 2.72:
-    - Allow Grabber origin to respect Relative Rotation and Location defined in the Components Tab (Grabber)
-	- Added Acceleration to Gravity's influence (VRPawn)
-	- Added StepUp Rate in Uneven Terrain Pawn Z/Height adjustments (VRPawn)
-	
+- Allow Grabber origin to respect Relative Rotation and Location defined in the Components Tab (Grabber)
+- Added Acceleration to Gravity's influence (VRPawn)
+- Added StepUp Rate in Uneven Terrain Pawn Z/Height adjustments (VRPawn)
+
+2.71:
+  - Removed remnants of SteamVR specific references in code base
+  
 2.7:
   - Enable VR Pawn to react/move properly through uneven terrain (VRPawn)
   - Dedicated node for 360 movement with thumbstick/thumbpad of Motion controllers (Movement component)
   - Various fixes and polish for Gaze, Movement and VR Pawn
-  
+
 2.6:
 
   - Automatically set HMD Tracking Origin (VRPawn)
