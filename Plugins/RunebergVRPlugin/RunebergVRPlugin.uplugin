@@ -1,0 +1,25 @@
+{
+	"FileVersion": 3,
+	"EngineVersion": "4.16.0",
+	"Version": 2,
+	"VersionName": "3.0",
+	"FriendlyName": "Runeberg VR Pawn and Components Plugin",
+	"Description": "Blueprint & C++ VR pawn and VR mechanics component (Grab/Push/Pull, Move, Teleport, Gestures recognition, Gaze)",
+	"Category": "Virtual Reality",
+	"CreatedBy": "runeberg",
+	"CreatedByURL": "https://twitter.com/1runeberg",
+	"DocsURL": "",
+	"MarketplaceURL" : "com.epicgames.launcher://ue/marketplace/content/4dfd0c5b4c97427c860bd2cf7c207136",
+	"SupportURL": "https://forums.unrealengine.com/showthread.php?109058-VR-Ready-C-Blueprintable-Pawn-with-common-VR-functions-Also-good-as-a-SteamVR-project-template",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "RunebergVRPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

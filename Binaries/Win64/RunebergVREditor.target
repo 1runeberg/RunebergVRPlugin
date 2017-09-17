@@ -37,15 +37,15 @@
 			"IsPrecompiled" : true
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVR_Plugin/Binaries/Win64/UE4Editor-RunebergVRPlugin.dll",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVR_Plugin/Binaries/Win64/UE4Editor-RunebergVRPlugin.pdb",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor-RunebergVRPlugin.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVR_Plugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVRPlugin.lib",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-RunebergVRPlugin.lib",
 			"Type" : "ImportLibrary"
 		},
 		{
@@ -5551,7 +5551,7 @@
 			"IsPrecompiled" : true
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVR_Plugin/Binaries/Win64/UE4Editor.modules",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/Binaries/Win64/UE4Editor.modules",
 			"Type" : "RequiredResource"
 		},
 		{
@@ -5566,7 +5566,7 @@
 			"Type" : "UFS"
 		},
 		{
-			"Path" : "$(ProjectDir)/Plugins/RunebergVR_Plugin/RunebergVRPlugin.uplugin",
+			"Path" : "$(ProjectDir)/Plugins/RunebergVRPlugin/RunebergVRPlugin.uplugin",
 			"Type" : "UFS"
 		},
 		{
