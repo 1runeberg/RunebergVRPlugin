@@ -7,9 +7,9 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **Supports both SteamVR/Vive & the Oculus Rift**
 
 ## IMPORTANT:
-**For UE 4.16 [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
-
 **For a plugin only repo (without demo project) [CLICK HERE](https://github.com/1runeberg/RunebergVR_Plugin)**
+
+**For a UE 4.16 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
 
 
 ## Latest Release Notes (UE 4.17)
