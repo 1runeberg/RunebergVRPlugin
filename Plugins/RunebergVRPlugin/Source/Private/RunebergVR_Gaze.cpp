@@ -41,7 +41,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 		UWorld* World = GEngine->GetWorldFromContextObject(GetOwner());
 		bool const bHit = World->LineTraceSingleByChannel(Hit, 
 			GetAttachParent()->GetComponentLocation(), 
-			GetAttachParent()->GetComponentRotation().Vector() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
+			GetAttachParent()->GetComponentLocation() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
 			FrontGazeVariables.TargetCollisionType,
 			TraceParameters);
 
@@ -56,7 +56,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 			DrawDebugLine(
 				GetWorld(),
 				FVector(GetAttachParent()->GetComponentLocation().X, GetAttachParent()->GetComponentLocation().Y, GetAttachParent()->GetComponentLocation().Z + 25),
-				GetAttachParent()->GetComponentRotation().Vector() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
+				GetAttachParent()->GetComponentLocation() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
 				FColor(255, 0, 0),
 				false, -1, 0,
 				12.333
@@ -161,14 +161,7 @@ void URunebergVR_Gaze::StartGaze(float Gaze_Range, float Gaze_TargetDuration, bo
 	GazeTargetDuration = Gaze_TargetDuration;
 	RuntimeReadOnly.IsGazing = true;
 
-	if (DrawDebugLine)
-	{
-		bDrawDebugLine = true;
-	}
-	else
-	{
-		bDrawDebugLine = false;
-	}
+	bDrawDebugLine = DrawDebugLine;
 
 }
 
