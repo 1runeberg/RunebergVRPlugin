@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v3.0
+# Unreal Engine VR Plugin v3.0.1
 **Demo Project + Plugin Repository**
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
