@@ -33,7 +33,7 @@ URunebergVR_Teleporter::URunebergVR_Teleporter()
 void URunebergVR_Teleporter::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	// Ensure target marker is not visible at start
 	SetVisibility(false, true);
 
@@ -50,19 +50,13 @@ void URunebergVR_Teleporter::BeginPlay()
 	ArcSpline->SetMobility(EComponentMobility::Movable);
 	ArcSpline->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
 
-	// Adjust pawn spawn target offset based on HMD
-	if (GEngine->HMDDevice.IsValid())
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusRift"), ENameCase::IgnoreCase, true))
 	{
-		// Override height offset for the Oculus Rift
-		switch (GEngine->HMDDevice->GetHMDDeviceType())
-		{
-		case EHMDDeviceType::DT_OculusRift:
-			PawnHeightOffset.Z = OculusHeightOffset;
-			break;
-		default:
-			PawnHeightOffset.Z = SteamVRHeightOffset;
-			break;
-		}
+		PawnHeightOffset.Z = OculusHeightOffset;
+	}
+	else
+	{
+		PawnHeightOffset.Z = SteamVRHeightOffset;
 	}
 
 }

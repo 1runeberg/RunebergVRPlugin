@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVRPlugin.h"
 #include "RunebergVR_Pawn.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
 
 // Sets default values
@@ -64,24 +65,16 @@ void ARunebergVR_Pawn::BeginPlay()
 	Super::BeginPlay();
 
 	// Adjust pawn spawn target offset based on HMD
-	if (GEngine->HMDDevice.IsValid())
+
+	// Override height offset for Oculus Rift
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusRift"), ENameCase::IgnoreCase, true))
 	{
-
-		// Override height offset for Oculus Rift
-		switch (GEngine->HMDDevice->GetHMDDeviceType())
-		{
-		case EHMDDeviceType::DT_OculusRift:
-			HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
-			this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
-			GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
-			break;
-		default:
-			break;
-		}
-
-		// Set tracking origin (Oculus & Vive)
-		GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
+		HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
+		this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
 	}
+
+	// Set tracking origin (Oculus & Vive)
+	UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin(EHMDTrackingOrigin::Floor);
 
 	// Set Current Gravity Strength
 	CurrentGravityStrength = GravityVariables.GravityStrength;
@@ -167,12 +160,9 @@ void ARunebergVR_Pawn::OverridePawnValues(float PawnBaseEyeHeight, float FOV, fl
 // Check if the HMD is worn
 bool ARunebergVR_Pawn::IsHMDWorn()
 {
-	if (GEngine->HMDDevice.IsValid())
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDWornState() == EHMDWornState::Worn)
 	{
-		if (GEngine->HMDDevice->GetHMDWornState() == EHMDWornState::Worn)
-		{
-			return true;
-		}
+		return true;
 	}
 
 	return false;

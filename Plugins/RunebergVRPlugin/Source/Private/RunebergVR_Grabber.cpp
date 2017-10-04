@@ -120,7 +120,7 @@ AActor* URunebergVR_Grabber::Grab(float Reach, bool DoRadialTrace, bool ScanOnly
 				this->GetComponentLocation(),
 				Reach/2, 8,
 				FColor(255, 0, 0),
-				-1,
+				false,-1,
 				3.0f
 			);
 		}

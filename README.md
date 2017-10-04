@@ -8,12 +8,12 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **Supports both SteamVR/Vive & the Oculus Rift**
 
 ## IMPORTANT:
-**For a plugin only repo (without demo project) [CLICK HERE](https://github.com/1runeberg/RunebergVR_Plugin)**
+**For a plugin only repo (without demo project) [CLICK HERE](https://github.com/1runeberg/RunebergVR_Plugin/tree/4.18)**
 
-**For a UE 4.16 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
+**For a UE 4.17 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
 
 
-## Latest Release Notes (UE 4.17)
+## Latest Release Notes (UE 4.18)
 3.0.1.1:
 - Minor bug fixes & refactor (Gaze component)
 - Max Step Rate for Uneven Terrain by MrBigToe (VR Pawn)

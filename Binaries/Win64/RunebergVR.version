@@ -1,0 +1,11 @@
+{
+	"MajorVersion": 4,
+	"MinorVersion": 18,
+	"PatchVersion": 0,
+	"Changelist": 3660543,
+	"CompatibleChangelist": 0,
+	"IsLicenseeVersion": 0,
+	"IsPromotedBuild": 1,
+	"BranchName": "++UE4+Release-4.18",
+	"BuildId": "3660543"
+}
