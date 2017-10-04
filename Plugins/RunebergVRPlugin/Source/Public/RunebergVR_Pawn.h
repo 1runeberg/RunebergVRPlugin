@@ -45,6 +45,10 @@ struct FGravityVariables
 	UPROPERTY(EditAnywhere, Category = "VR")
 	float FloorTraceTolerance = 3.f;
 
+	/* Maximum Z offset this VR Pawn will be able to step up */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	float MaxStepHeight = 30.f;
+
 	/** Direction where this VR Pawn will "fall" */
 	UPROPERTY(EditAnywhere, Category = "VR")
 	FVector GravityDirection = FVector(0.f, 0.f, -1.f);

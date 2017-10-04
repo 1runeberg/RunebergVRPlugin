@@ -115,7 +115,8 @@ void ARunebergVR_Pawn::Tick(float DeltaTime)
 		// Check if we need to float the Pawn over uneven terrain
 		if (GravityVariables.RespondToUnevenTerrain
 			&& bHit && RayHit.GetComponent()->CanCharacterStepUpOn == ECanBeCharacterBase::ECB_Yes
-			&& (RayHit.Distance + GravityVariables.FloorTraceTolerance) < GravityVariables.FloorTraceRange)
+			&& (RayHit.Distance + GravityVariables.FloorTraceTolerance) < GravityVariables.FloorTraceRange
+			&& (GravityVariables.FloorTraceRange - (RayHit.Distance + GravityVariables.FloorTraceTolerance)) < GravityVariables.MaxStepHeight) // Check for MaxStepHeight 
 		{
 			int Steps = FPlatformMath::RoundToInt(GravityVariables.FloorTraceTolerance / StepUpRate);
 			for (int32 i = Steps; i > 1; i--)
