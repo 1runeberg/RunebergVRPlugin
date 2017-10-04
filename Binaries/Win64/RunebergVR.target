@@ -2,13 +2,13 @@
 	"TargetName" : "RunebergVR",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "25f4025a-4134-4578-b67d-45fcd5c4f4c5",
+	"BuildId" : "c4bbfc16-80f3-47fe-ad6d-ec158ae3ebf1",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 17,
-		"PatchVersion" : 1,
-		"Changelist" : 3586342,
+		"PatchVersion" : 2,
+		"Changelist" : 3658906,
 		"CompatibleChangelist" : 3573198,
 		"IsLicenseeVersion" : 0,
 		"IsPromotedBuild" : 1,
@@ -1864,6 +1864,13 @@
 		{
 			"Path" : "$(EngineDir)/Binaries/ThirdParty/OpenVR/OpenVRv1_0_7/Win64/openvr_api.dll",
 			"Type" : "NonUFS"
+		}
+	],
+	"AdditionalProperties" :
+	[
+		{
+			"Name" : "SDK",
+			"Value" : "Not Applicable"
 		}
 	]
 }
