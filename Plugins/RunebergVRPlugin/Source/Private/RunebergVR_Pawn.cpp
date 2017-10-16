@@ -71,9 +71,8 @@ void ARunebergVR_Pawn::BeginPlay()
 		switch (GEngine->HMDDevice->GetHMDDeviceType())
 		{
 		case EHMDDeviceType::DT_OculusRift:
-			HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
+			HMDLocationOffset = OculusLocationOffset;   // This ensures we use the Oculus location offset for uneven terrain calculations
 			this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
-			GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
 			break;
 		default:
 			break;
