@@ -86,7 +86,7 @@ public:
 
 	/** Oculus HMD Location Offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	FVector OculusLocationOffset = FVector(0.f, 0.f, 150.f);
+	FVector OculusLocationOffset = FVector(0.f, 0.f, 0.f);
 
 	/** HMD Location Offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")

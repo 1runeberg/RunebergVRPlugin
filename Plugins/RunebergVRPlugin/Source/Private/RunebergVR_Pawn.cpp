@@ -67,7 +67,7 @@ void ARunebergVR_Pawn::BeginPlay()
 	// Adjust pawn spawn target offset based on HMD
 
 	// Override height offset for Oculus Rift
-	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusRift"), ENameCase::IgnoreCase, true))
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusHMD"), ENameCase::IgnoreCase, true))
 	{
 		HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
 		this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);

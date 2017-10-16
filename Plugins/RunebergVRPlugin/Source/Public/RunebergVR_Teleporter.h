@@ -150,7 +150,7 @@ public:
 
 	/** Oculus HMD Location Offset */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
-	float OculusHeightOffset = 262.f;
+	float OculusHeightOffset = 112.f;
 
 	/** Check to see if an active teleport mode is turned on */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR - Read Only")

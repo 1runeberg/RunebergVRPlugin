@@ -84,7 +84,7 @@ struct FFrontGaze
 };
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_Gaze : public USceneComponent
 {
 	GENERATED_BODY()
