@@ -7,7 +7,7 @@
 		"MajorVersion": 4,
 		"MinorVersion": 18,
 		"PatchVersion": 0,
-		"Changelist": 3676890,
+		"Changelist": 3709383,
 		"CompatibleChangelist": 0,
 		"IsLicenseeVersion": 0,
 		"IsPromotedBuild": 1,
@@ -124,6 +124,11 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidPermission/Binaries/Win64/UE4-AndroidPermission.lib",
+			"Type": "StaticLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4-AppleARKit.lib",
 			"Type": "StaticLibrary",
 			"IsPrecompiled": true
 		},
@@ -713,6 +718,16 @@
 			"IsPrecompiled": true
 		},
 		{
+			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4-IOSRuntimeSettings.lib",
+			"Type": "StaticLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/Win64/UE4-AugmentedReality.lib",
+			"Type": "StaticLibrary",
+			"IsPrecompiled": true
+		},
+		{
 			"Path": "$(EngineDir)/Binaries/Win64/UE4-BuildPatchServices.lib",
 			"Type": "StaticLibrary",
 			"IsPrecompiled": true
@@ -793,6 +808,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidPermission/AndroidPermission.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/AppleARKit.uplugin",
 			"Type": "UFS"
 		},
 		{

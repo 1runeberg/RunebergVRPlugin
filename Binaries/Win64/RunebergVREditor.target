@@ -7,12 +7,12 @@
 		"MajorVersion": 4,
 		"MinorVersion": 18,
 		"PatchVersion": 0,
-		"Changelist": 3676890,
+		"Changelist": 3709383,
 		"CompatibleChangelist": 0,
 		"IsLicenseeVersion": 0,
 		"IsPromotedBuild": 1,
 		"BranchName": "++UE4+Release-4.18",
-		"BuildId": "3676890"
+		"BuildId": "3709383"
 	},
 	"BuildProducts": [
 		{
@@ -824,6 +824,21 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidPermission/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AndroidPermission.lib",
+			"Type": "ImportLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor-AppleARKit.dll",
+			"Type": "DynamicLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor-AppleARKit.pdb",
+			"Type": "SymbolFile",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AppleARKit.lib",
 			"Type": "ImportLibrary",
 			"IsPrecompiled": true
 		},
@@ -4695,36 +4710,6 @@
 			"IsPrecompiled": true
 		},
 		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSRuntimeSettings.dll",
-			"Type": "DynamicLibrary",
-			"IsPrecompiled": true
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSRuntimeSettings.pdb",
-			"Type": "SymbolFile",
-			"IsPrecompiled": true
-		},
-		{
-			"Path": "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSRuntimeSettings.lib",
-			"Type": "ImportLibrary",
-			"IsPrecompiled": true
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSPlatformEditor.dll",
-			"Type": "DynamicLibrary",
-			"IsPrecompiled": true
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSPlatformEditor.pdb",
-			"Type": "SymbolFile",
-			"IsPrecompiled": true
-		},
-		{
-			"Path": "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSPlatformEditor.lib",
-			"Type": "ImportLibrary",
-			"IsPrecompiled": true
-		},
-		{
 			"Path": "$(EngineDir)/Binaries/Win64/HTML5/UE4Editor-HTML5PlatformEditor.dll",
 			"Type": "DynamicLibrary",
 			"IsPrecompiled": true
@@ -4856,6 +4841,36 @@
 		},
 		{
 			"Path": "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-ClothPainter.lib",
+			"Type": "ImportLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSRuntimeSettings.dll",
+			"Type": "DynamicLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSRuntimeSettings.pdb",
+			"Type": "SymbolFile",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSRuntimeSettings.lib",
+			"Type": "ImportLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSPlatformEditor.dll",
+			"Type": "DynamicLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/Win64/IOS/UE4Editor-IOSPlatformEditor.pdb",
+			"Type": "SymbolFile",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/IOS/UE4Editor-IOSPlatformEditor.lib",
 			"Type": "ImportLibrary",
 			"IsPrecompiled": true
 		},
@@ -5670,6 +5685,21 @@
 			"IsPrecompiled": true
 		},
 		{
+			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-AugmentedReality.dll",
+			"Type": "DynamicLibrary",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-AugmentedReality.pdb",
+			"Type": "SymbolFile",
+			"IsPrecompiled": true
+		},
+		{
+			"Path": "$(EngineDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-AugmentedReality.lib",
+			"Type": "ImportLibrary",
+			"IsPrecompiled": true
+		},
+		{
 			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-BuildPatchServices.dll",
 			"Type": "DynamicLibrary",
 			"IsPrecompiled": true
@@ -5855,6 +5885,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidPermission/AndroidPermission.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/AppleARKit.uplugin",
 			"Type": "UFS"
 		},
 		{
