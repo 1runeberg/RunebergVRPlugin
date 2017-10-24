@@ -12,6 +12,7 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 
 **For a UE 4.17 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.17)**
 
+**For a UE 4.16 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
 
 ## Latest Release Notes (UE 4.18)
 3.0.2:
