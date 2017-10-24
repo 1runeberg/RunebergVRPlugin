@@ -58,7 +58,7 @@ void URunebergVR_Gaze::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 				FVector(GetAttachParent()->GetComponentLocation().X, GetAttachParent()->GetComponentLocation().Y, GetAttachParent()->GetComponentLocation().Z + 25),
 				GetAttachParent()->GetComponentLocation() + (GetAttachParent()->GetComponentRotation().Vector() * GazeRange),
 				FColor(255, 0, 0),
-				false, -1, 0,
+				false, -1.f, 0,
 				12.333
 			);
 		}
