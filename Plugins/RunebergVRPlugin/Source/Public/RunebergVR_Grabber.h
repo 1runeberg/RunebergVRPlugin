@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 #include "Components/ActorComponent.h"
+#include "Engine.h"
 #include "RunebergVR_Grabber.generated.h"
 
 UENUM(BlueprintType)		
@@ -46,7 +47,7 @@ public:
 	// Current Distance of grabbed items from their respective controllers
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "VR")
 	float DistanceFromController = 10.0f;
-
+	
 	/** Min Distance for Controller for grabbed objects  - Customize Push & Pull functions mid action */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	float MinDistanceFromController = 1.0f;

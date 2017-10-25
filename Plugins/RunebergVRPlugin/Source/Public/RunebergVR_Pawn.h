@@ -13,8 +13,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "Camera/CameraComponent.h"
 #include "MotionControllerComponent.h"
 #include "RunebergVR_Pawn.generated.h"

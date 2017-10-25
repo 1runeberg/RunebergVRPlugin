@@ -15,6 +15,9 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **For a UE 4.16 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
 
 ## Latest Release Notes (UE 4.18)
+3.0.3:
+- IWYU Compliance
+
 3.0.2:
 - Gaze category fix, change default rift height offsets, minor refactor
 
