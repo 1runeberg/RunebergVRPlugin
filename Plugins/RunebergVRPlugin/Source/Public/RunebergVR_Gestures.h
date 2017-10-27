@@ -13,10 +13,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
+#include "CoreMinimal.h"
+#include "TimerManager.h"
 #include "Components/SceneComponent.h"
+#include "Components/SplineComponent.h"
+#include "Components/SplineMeshComponent.h"
+#include "Materials/Material.h"
+#include "Materials/MaterialInterface.h"
 #include "RunebergVR_Gestures_Database.h"
 #include "RunebergVR_Gestures.generated.h"
-
 
 USTRUCT(BlueprintType)
 struct FFloatArray

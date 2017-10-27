@@ -14,8 +14,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 #include "Components/SceneComponent.h"
+#include "Components/SphereComponent.h"
 #include "RunebergVR_SimpleGrabber.generated.h"
-
 
 UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_SimpleGrabber : public USceneComponent

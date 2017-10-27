@@ -11,9 +11,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "RunebergVRPluginPrivatePCH.h"
-#include "RunebergVRPlugin.h"
 #include "RunebergVR_Pawn.h"
+#include "Engine/World.h"
+#include "Engine/Engine.h"
+#include "Kismet/HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
 
 // Sets default values
@@ -26,7 +27,12 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	this->BaseEyeHeight = 0.f;
 
 	// Set root scene component - use static mesh to ensure collisions
-	RootComponent = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
+	PawnRootMesh = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
+	PawnRootMesh->SetCollisionProfileName(FName(TEXT("OverlapAll")));
+	RootComponent = PawnRootMesh;
+
+	// Ensure pawn always spawns regardless of collision
+	this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	// Add Scene component (for headset positioning), set to -110 to ensure headset starts at floor
 	Scene = PCIP.CreateDefaultSubobject<USceneComponent>(this, TEXT("VRBaseScene"));

@@ -13,9 +13,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "TimerManager.h"
 #include "Components/ActorComponent.h"
 #include "RunebergVR_Movement.generated.h"
-
 
 UCLASS( ClassGroup=(VR), meta=(BlueprintSpawnableComponent) )
 class RUNEBERGVRPLUGIN_API URunebergVR_Movement : public UActorComponent

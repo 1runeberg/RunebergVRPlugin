@@ -13,8 +13,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "Camera/CameraComponent.h"
 #include "MotionControllerComponent.h"
 #include "RunebergVR_Pawn.generated.h"
@@ -71,6 +73,11 @@ protected:
 public:
 	// Sets default values for this pawn's properties
 	ARunebergVR_Pawn(const class FObjectInitializer& PCIP);
+
+	/** The pawn's root mesh component */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	UStaticMeshComponent* PawnRootMesh;
+
 
 	/** Enable gravity for this pawn */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")

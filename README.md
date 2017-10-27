@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v3.0.2
+# Unreal Engine VR Plugin v3.0.4
 **Demo Project + Plugin Repository**
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
@@ -14,6 +14,12 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 
 
 ## Latest Release Notes (UE 4.16 upwards)
+3.0.4:
+- Set default pawn spawn collision to ignore any colliding assets within the level (VRPawn)
+
+3.0.3:
+- IWYU Compliance
+
 3.0.2:
 - Gaze category fix, change default rift height offsets, minor refactor
 
