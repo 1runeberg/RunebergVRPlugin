@@ -4,7 +4,9 @@ public class RunebergVRPlugin : ModuleRules
 {
     public RunebergVRPlugin(ReadOnlyTargetRules Target)  : base(Target)
     {
-		PublicIncludePaths.AddRange(new string[] { "RunebergVRPlugin/Public" });
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicIncludePaths.AddRange(new string[] { "RunebergVRPlugin/Public" });
 				
 		PrivateIncludePaths.AddRange(new string[] {"RunebergVRPlugin/Private", });
 		

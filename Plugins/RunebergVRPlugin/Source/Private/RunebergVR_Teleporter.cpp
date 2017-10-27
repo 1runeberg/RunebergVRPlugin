@@ -11,9 +11,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Teleporter.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
 
@@ -51,18 +52,13 @@ void URunebergVR_Teleporter::BeginPlay()
 	ArcSpline->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
 
 	// Adjust pawn spawn target offset based on HMD
-	if (GEngine->HMDDevice.IsValid())
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusHMD"), ENameCase::IgnoreCase, true))
 	{
-		// Override height offset for the Oculus Rift
-		switch (GEngine->HMDDevice->GetHMDDeviceType())
-		{
-		case EHMDDeviceType::DT_OculusRift:
-			PawnHeightOffset.Z = OculusHeightOffset;
-			break;
-		default:
-			PawnHeightOffset.Z = SteamVRHeightOffset;
-			break;
-		}
+		PawnHeightOffset.Z = OculusHeightOffset;
+	}
+	else
+	{
+		PawnHeightOffset.Z = SteamVRHeightOffset;
 	}
 
 }

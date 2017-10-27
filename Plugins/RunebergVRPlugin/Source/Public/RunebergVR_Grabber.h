@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 #include "Components/ActorComponent.h"
+#include "Engine.h"
 #include "RunebergVR_Grabber.generated.h"
 
 UENUM(BlueprintType)		

@@ -11,9 +11,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "RunebergVRPluginPrivatePCH.h"
-#include "RunebergVRPlugin.h"
 #include "RunebergVR_Pawn.h"
+#include "Engine/World.h"
+#include "Engine/Engine.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
 
 // Sets default values
@@ -26,7 +27,12 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	this->BaseEyeHeight = 0.f;
 
 	// Set root scene component - use static mesh to ensure collisions
-	RootComponent = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
+	PawnRootMesh = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
+	PawnRootMesh->SetCollisionProfileName(FName(TEXT("OverlapAll")));
+	RootComponent = PawnRootMesh;
+
+	// Ensure pawn always spawns regardless of collision
+	this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	// Add Scene component (for headset positioning), set to -110 to ensure headset starts at floor
 	Scene = PCIP.CreateDefaultSubobject<USceneComponent>(this, TEXT("VRBaseScene"));
@@ -55,7 +61,6 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	MotionController_Right->Hand = EControllerHand::Right;
 	MotionController_Right->AttachToComponent(Scene, FAttachmentTransformRules::KeepRelativeTransform);
 	MotionController_Right->SetRelativeLocation(FVector(0.f, 0.f, 110.f));
-
 }
 
 // Called when the game starts
@@ -64,23 +69,16 @@ void ARunebergVR_Pawn::BeginPlay()
 	Super::BeginPlay();
 
 	// Adjust pawn spawn target offset based on HMD
-	if (GEngine->HMDDevice.IsValid())
+
+	// Override height offset for Oculus Rift
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusHMD"), ENameCase::IgnoreCase, true))
 	{
-
-		// Override height offset for Oculus Rift
-		switch (GEngine->HMDDevice->GetHMDDeviceType())
-		{
-		case EHMDDeviceType::DT_OculusRift:
-			HMDLocationOffset = OculusLocationOffset;   // This ensures we use the Oculus location offset for uneven terrain calculations
-			this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
-			break;
-		default:
-			break;
-		}
-
-		// Set tracking origin (Oculus & Vive)
-		GEngine->HMDDevice->SetTrackingOrigin(EHMDTrackingOrigin::Floor);
+		HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
+		this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
 	}
+
+	// Set tracking origin (Oculus & Vive)
+	UHeadMountedDisplayFunctionLibrary::SetTrackingOrigin(EHMDTrackingOrigin::Floor);
 
 	// Set Current Gravity Strength
 	CurrentGravityStrength = GravityVariables.GravityStrength;
@@ -166,12 +164,9 @@ void ARunebergVR_Pawn::OverridePawnValues(float PawnBaseEyeHeight, float FOV, fl
 // Check if the HMD is worn
 bool ARunebergVR_Pawn::IsHMDWorn()
 {
-	if (GEngine->HMDDevice.IsValid())
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDWornState() == EHMDWornState::Worn)
 	{
-		if (GEngine->HMDDevice->GetHMDWornState() == EHMDWornState::Worn)
-		{
-			return true;
-		}
+		return true;
 	}
 
 	return false;

@@ -13,7 +13,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "GameFramework/Actor.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "RunebergVR_ScalableMesh.generated.h"
 
 UENUM(BlueprintType)

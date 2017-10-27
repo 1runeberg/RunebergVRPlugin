@@ -1,6 +1,5 @@
 // Copyright (C) 2017 Runeberg (github: 1runeberg, UE4 Forums: runeberg)
 
-#include "RunebergVRPluginPrivatePCH.h"
 #include "RunebergVR_Climb.h"
 
 
