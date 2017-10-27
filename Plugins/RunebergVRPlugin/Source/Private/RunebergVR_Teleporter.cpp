@@ -51,7 +51,7 @@ void URunebergVR_Teleporter::BeginPlay()
 	ArcSpline->SetMobility(EComponentMobility::Movable);
 	ArcSpline->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
 
-	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusRift"), ENameCase::IgnoreCase, true))
+	if (UHeadMountedDisplayFunctionLibrary::GetHMDDeviceName().IsEqual(TEXT("OculusHMD"), ENameCase::IgnoreCase, true))
 	{
 		PawnHeightOffset.Z = OculusHeightOffset;
 	}

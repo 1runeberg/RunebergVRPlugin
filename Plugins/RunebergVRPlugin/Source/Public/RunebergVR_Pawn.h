@@ -74,6 +74,10 @@ public:
 	// Sets default values for this pawn's properties
 	ARunebergVR_Pawn(const class FObjectInitializer& PCIP);
 
+	/** The pawn's root mesh component */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
+	UStaticMeshComponent* PawnRootMesh;
+
 	/** Enable gravity for this pawn */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	bool EnableGravity = false;

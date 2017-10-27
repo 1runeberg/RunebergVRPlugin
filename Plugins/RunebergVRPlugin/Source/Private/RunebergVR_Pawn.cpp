@@ -27,7 +27,12 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 	this->BaseEyeHeight = 0.f;
 
 	// Set root scene component - use static mesh to ensure collisions
-	RootComponent = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
+	PawnRootMesh = PCIP.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("SceneRoot"));
+	PawnRootMesh->SetCollisionProfileName(FName(TEXT("OverlapAll")));
+	RootComponent = PawnRootMesh;
+
+	// Ensure pawn always spawns regardless of collision
+	this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	// Add Scene component (for headset positioning), set to -110 to ensure headset starts at floor
 	Scene = PCIP.CreateDefaultSubobject<USceneComponent>(this, TEXT("VRBaseScene"));
