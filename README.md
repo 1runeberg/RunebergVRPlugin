@@ -14,6 +14,8 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 
 **For a UE 4.16 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.16)**
 
+**If you need an empty starter project: https://github.com/1runeberg/RunebergVR_TESTMAP**
+
 ## Latest Release Notes (UE 4.18)
 3.0.4:
 - Fix Oculus Teleport custom height offset not being applied (Teleporter)
