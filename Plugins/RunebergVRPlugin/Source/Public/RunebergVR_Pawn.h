@@ -78,6 +78,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	UStaticMeshComponent* PawnRootMesh;
 
+	/** Override default Left and Right MotionController Settings */
+	UPROPERTY(EditAnywhere, Category = "VR")
+	bool OverrideDefaultMotionControllerHandSettings = false;
+
 	/** Enable gravity for this pawn */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "VR")
 	bool EnableGravity = false;
