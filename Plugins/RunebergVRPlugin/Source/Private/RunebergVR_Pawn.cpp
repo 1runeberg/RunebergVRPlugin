@@ -16,6 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "Engine/Engine.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "IHeadMountedDisplay.h"
+#include "XRMotionControllerBase.h"
 
 // Sets default values
 ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super(PCIP)
@@ -53,12 +54,12 @@ ARunebergVR_Pawn::ARunebergVR_Pawn(const class FObjectInitializer& PCIP) : Super
 
 	// Add Motion Controllers
 	MotionController_Left = PCIP.CreateDefaultSubobject<UMotionControllerComponent>(this, TEXT("MotionController_Left"));
-	MotionController_Left->Hand = EControllerHand::Left;
+	MotionController_Left->MotionSource = FXRMotionControllerBase::LeftHandSourceId;
 	MotionController_Left->AttachToComponent(Scene, FAttachmentTransformRules::KeepRelativeTransform);
 	MotionController_Left->SetRelativeLocation(FVector(0.f, 0.f, 110.f));
 
 	MotionController_Right = PCIP.CreateDefaultSubobject<UMotionControllerComponent>(this, TEXT("MotionController_Right"));
-	MotionController_Right->Hand = EControllerHand::Right;
+	MotionController_Right->MotionSource = FXRMotionControllerBase::RightHandSourceId;
 	MotionController_Right->AttachToComponent(Scene, FAttachmentTransformRules::KeepRelativeTransform);
 	MotionController_Right->SetRelativeLocation(FVector(0.f, 0.f, 110.f));
 
@@ -76,6 +77,13 @@ void ARunebergVR_Pawn::BeginPlay()
 	{
 		HMDLocationOffset = OculusLocationOffset;   // This ensure we use the Oculus location offset for uneven terrain calculations
 		this->SetActorLocation(this->GetActorLocation() + OculusLocationOffset);
+	}
+
+	// Set Motion Controller Hands - backwards compatibility for projects made in UE4.18 and earlier
+	if (!OverrideDefaultMotionControllerHandSettings)
+	{
+		MotionController_Left->MotionSource = FXRMotionControllerBase::LeftHandSourceId;
+		MotionController_Right->MotionSource = FXRMotionControllerBase::RightHandSourceId;
 	}
 
 	// Set tracking origin (Oculus & Vive)
