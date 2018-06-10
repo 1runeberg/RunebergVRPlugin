@@ -260,8 +260,9 @@ void  URunebergVR_Movement::BounceBackFromVRBounds(float MovementSpeed, float Mo
 }
 
 // Full 360 Movement
-void URunebergVR_Movement::Enable360Movement(USceneComponent* MovementDirectionReference, bool LockPitch, bool LockYaw, bool LockRoll, float MovementSpeed, float XAxisInput, float YAxisInput)
+void URunebergVR_Movement::Enable360Movement(USceneComponent* MovementDirectionReference, bool ObeyNavMesh, bool LockPitch, bool LockYaw, bool LockRoll, float MovementSpeed, float XAxisInput, float YAxisInput)
 {
+
 	if (XAxisInput != 0.f || YAxisInput != 0.f)
 	{
 		CurrentMovementDirectionReference = MovementDirectionReference;
@@ -302,7 +303,35 @@ void URunebergVR_Movement::Enable360Movement(USceneComponent* MovementDirectionR
 
 		// Move Pawn
 		FVector TargetLocation = VRPawn->GetActorLocation() + (TargetRotation.Vector() * CurrentMovementSpeed);
-		VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());
+
+		// Check if we need to obey nav mesh
+		if (ObeyNavMesh)
+		{
+			// Check TargetLocation if it's in the nav mesh
+			FVector CheckLocation;
+			bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
+				this,
+				TargetLocation,
+				CheckLocation,
+				(ANavigationData*)0, 0,
+				NavMeshTolerance);
+
+			// Check if target location is within the nav mesh
+			if (bIsWithinNavBounds)
+			{
+
+				// Move Pawn to Target Location
+				VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());
+
+			}
+
+		}
+		else
+		{
+			// Move Pawn to Target Location
+			VRPawn->TeleportTo(TargetLocation, VRPawn->GetActorRotation());
+		}
+
 	}
 	else
 	{
