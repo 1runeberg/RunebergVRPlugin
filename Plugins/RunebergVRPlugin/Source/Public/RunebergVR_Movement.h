@@ -76,7 +76,7 @@ public:
 
 	// Full 360 Movement
 	UFUNCTION(BlueprintCallable, Category = "VR")
-	void Enable360Movement(USceneComponent* MovementDirectionReference = nullptr, bool LockPitch = false, bool LockYaw = false, bool LockRoll = false, float MovementSpeed = 3.f, float XAxisInput = 0.f, float YAxisInput = 0.f);
+	void Enable360Movement(USceneComponent* MovementDirectionReference = nullptr, bool ObeyNavMesh = false, bool LockPitch = false, bool LockYaw = false, bool LockRoll = false, float MovementSpeed = 3.f, float XAxisInput = 0.f, float YAxisInput = 0.f);
 
 	// Disable VR Movement
 	UFUNCTION(BlueprintCallable, Category = "VR")
@@ -110,7 +110,7 @@ private:
 	bool bIsMovingCache = false;
 
 	// Move VR Pawn
-	void MoveVRPawn(float MovementSpeed, USceneComponent* MovementDirectionReference, bool LockXAxis, bool LockYAxis, bool LockZAxis, FRotator CustomDirection);
+	void MoveVRPawn(float MovementSpeed, USceneComponent* MovementDirectionReference, bool LockXAxis, bool LockYAxis, bool LockZAxis, FRotator CustomDirection, bool ShouldObeyNavMesh = false);
 
 	// Disable VR Bounds Bounce Back Movement
 	void DisableVRBounceBack();
