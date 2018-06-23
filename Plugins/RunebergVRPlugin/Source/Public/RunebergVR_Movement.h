@@ -17,6 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "GameFramework/Actor.h"
 #include "TimerManager.h"
 #include "Components/ActorComponent.h"
+#include "Runtime/NavigationSystem/Public/NavigationSystem.h"
 #include "RunebergVR_Movement.generated.h"
 
 

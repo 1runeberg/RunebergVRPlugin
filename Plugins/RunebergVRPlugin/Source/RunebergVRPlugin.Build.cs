@@ -6,11 +6,11 @@ public class RunebergVRPlugin : ModuleRules
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicIncludePaths.AddRange(new string[] { "RunebergVRPlugin/Public" });
+        PublicIncludePaths.AddRange(new string[] { "RunebergVRPlugin/Source/Public" });
 				
-		PrivateIncludePaths.AddRange(new string[] {"RunebergVRPlugin/Private", });
+		PrivateIncludePaths.AddRange(new string[] {"RunebergVRPlugin/Source/Private"});
 		
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay"});
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "NavigationSystem"});
  
         PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore"});
  
