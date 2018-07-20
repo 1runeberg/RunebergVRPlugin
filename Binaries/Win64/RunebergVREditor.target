@@ -7,12 +7,12 @@
 		"MajorVersion": 4,
 		"MinorVersion": 20,
 		"PatchVersion": 0,
-		"Changelist": 4135216,
+		"Changelist": 4212847,
 		"CompatibleChangelist": 0,
 		"IsLicenseeVersion": 0,
 		"IsPromotedBuild": 1,
 		"BranchName": "++UE4+Release-4.20",
-		"BuildId": "4135216"
+		"BuildId": "4212847"
 	},
 	"BuildProducts": [
 		{
@@ -765,30 +765,6 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidDeviceProfileSelector/Binaries/Win64/UE4Editor-AndroidDeviceProfileSelector.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor-AppleARKit.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor-AppleARKit.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Animation/LiveLink/Binaries/Win64/UE4Editor-LiveLink.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Animation/LiveLink/Binaries/Win64/UE4Editor-LiveLink.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Animation/LiveLink/Binaries/Win64/UE4Editor-LiveLinkEditor.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Animation/LiveLink/Binaries/Win64/UE4Editor-LiveLinkEditor.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -3424,30 +3400,6 @@
 			"Type": "SymbolFile"
 		},
 		{
-			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-AugmentedReality.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-AugmentedReality.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-LiveLinkInterface.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-LiveLinkInterface.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-LiveLinkMessageBusFramework.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-LiveLinkMessageBusFramework.pdb",
-			"Type": "SymbolFile"
-		},
-		{
 			"Path": "$(EngineDir)/Binaries/Win64/UE4Editor-BuildPatchServices.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -3677,14 +3629,6 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidDeviceProfileSelector/Binaries/Win64/UE4Editor.modules",
-			"Type": "RequiredResource"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/Binaries/Win64/UE4Editor.modules",
-			"Type": "RequiredResource"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Animation/LiveLink/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
 		{
@@ -3995,14 +3939,6 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Runtime/AndroidDeviceProfileSelector/AndroidDeviceProfileSelector.uplugin",
-			"Type": "UFS"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Runtime/AppleARKit/AppleARKit.uplugin",
-			"Type": "UFS"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Animation/LiveLink/LiveLink.uplugin",
 			"Type": "UFS"
 		},
 		{
