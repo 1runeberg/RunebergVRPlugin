@@ -17,6 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "Components/SplineComponent.h"
 #include "Components/SplineMeshComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Runtime/NavigationSystem/Public/NavigationSystem.h"
 #include "RunebergVR_Teleporter.generated.h"
 
 // World fade settings

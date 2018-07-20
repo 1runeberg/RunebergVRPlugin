@@ -107,12 +107,19 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 	// Show Target Marker (if a valid teleport location)
 	if (bHit)
 	{
-		bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
-			this,
-			PredictResult.HitResult.Location,
-			TargetLocation,
-			(ANavigationData*)0, 0,
-			BeamHitNavMeshTolerance);
+		FNavLocation CheckLocation;
+		UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
+		bool bIsWithinNavBounds = false;
+		CheckLocation.Location = TargetLocation;
+
+		if (NavSystem)
+		{
+			bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
+				PredictResult.HitResult.Location,
+				CheckLocation,
+				BeamHitNavMeshTolerance,
+				(ANavigationData*)0, 0);
+		}
 
 		// Check if arc hit location is within the nav mesh
 		if (bIsWithinNavBounds)
@@ -320,13 +327,18 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 	if (bHit)
 	{
 		// Check if target location is within the nav mesh
-		FVector tempTargetLocation;
-		bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
-			this,
-			Ray_Hit.ImpactPoint,
-			tempTargetLocation,
-			(ANavigationData*)0, 0,
-			BeamHitNavMeshTolerance);
+		FNavLocation tempTargetLocation;
+		UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
+		bool bIsWithinNavBounds = false;
+
+		if (NavSystem)
+		{
+			bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
+				Ray_Hit.ImpactPoint,
+				tempTargetLocation,
+				BeamHitNavMeshTolerance,
+				(ANavigationData*)0, 0);
+		}
 
 		if (bIsWithinNavBounds)
 		{
@@ -563,13 +575,18 @@ bool URunebergVR_Teleporter::ShowMarker()
 		TargetLocation = this->GetComponentLocation() + (this->GetComponentRotation().Vector() * BeamMagnitude);
 
 		// Check if target location is within the nav mesh
-		FVector tempTargetLocation;
-		bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
-			this,
-			TargetLocation,
-			tempTargetLocation,
-			(ANavigationData*)0, 0,
-			BeamHitNavMeshTolerance);
+		FNavLocation tempTargetLocation;
+		UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
+		bool bIsWithinNavBounds = false;
+
+		if (NavSystem)
+		{
+			bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
+				TargetLocation,
+				tempTargetLocation,
+				BeamHitNavMeshTolerance,
+				(ANavigationData*)0, 0);
+		}
 
 		if (bIsWithinNavBounds)
 		{

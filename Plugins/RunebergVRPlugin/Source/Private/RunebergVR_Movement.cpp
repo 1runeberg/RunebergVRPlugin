@@ -13,8 +13,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "RunebergVR_Movement.h"
 #include "Engine/World.h"
-#include "AI/Navigation/NavigationSystem.h"
 #include "Components/SceneComponent.h"
+#include "Runtime/NavigationSystem/Public/NavigationSystem.h"
 #include "IHeadMountedDisplay.h"
 
 // Sets default values for this component's properties
@@ -99,13 +99,18 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 		if (bObeyNavMesh)
 		{
 			// Check TargetLocation if it's in the nav mesh
-			FVector CheckLocation;
-			bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
-				this,
-				TargetLocation,
-				CheckLocation,
-				(ANavigationData*)0, 0,
-				NavMeshTolerance);
+			FNavLocation CheckLocation;
+			UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
+			bool bIsWithinNavBounds = false;
+
+			if (NavSystem)
+			{
+				bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
+					TargetLocation,
+					CheckLocation,
+					NavMeshTolerance,
+					(ANavigationData*)0, 0);
+			}
 
 			// Check if target location is within the nav mesh
 			if (bIsWithinNavBounds)
@@ -131,7 +136,7 @@ void URunebergVR_Movement::TickComponent( float DeltaTime, ELevelTick TickType, 
 
 // Move VR Pawn
 void URunebergVR_Movement::MoveVRPawn(float MovementSpeed, USceneComponent* MovementDirectionReference,  
-	bool LockPitchAngle, bool LockYawAngle, bool LockRollAngle, FRotator CustomDirection, bool bObeyNavMesh)
+	bool LockPitchAngle, bool LockYawAngle, bool LockRollAngle, FRotator CustomDirection, bool ShouldObeyNavMesh)
 {
 	// Check if there's a movement reference actor
 	if (MovementDirectionReference) {
@@ -308,13 +313,18 @@ void URunebergVR_Movement::Enable360Movement(USceneComponent* MovementDirectionR
 		if (ObeyNavMesh)
 		{
 			// Check TargetLocation if it's in the nav mesh
-			FVector CheckLocation;
-			bool bIsWithinNavBounds = GetWorld()->GetNavigationSystem()->K2_ProjectPointToNavigation(
-				this,
-				TargetLocation,
-				CheckLocation,
-				(ANavigationData*)0, 0,
-				NavMeshTolerance);
+			FNavLocation CheckLocation;
+			UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
+			bool bIsWithinNavBounds = false;
+
+			if (NavSystem)
+			{
+				bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
+					TargetLocation,
+					CheckLocation,
+					NavMeshTolerance,
+					(ANavigationData*)0, 0);
+			}
 
 			// Check if target location is within the nav mesh
 			if (bIsWithinNavBounds)
