@@ -62,6 +62,23 @@ void URunebergVR_Teleporter::BeginPlay()
 
 }
 
+bool URunebergVR_Teleporter::IsNavPointReachable(const FVector & Point, FNavLocation & OutLocation, const FVector & Extent)
+{
+	UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
+	TArray<FNavDataConfig> supportedAgents = NavSystem->GetSupportedAgents();
+	if (supportedAgents.Num()>0)
+	{
+		FNavDataConfig adata = NavSystem->GetSupportedAgents()[0];
+		if (adata.IsValid()) 
+			return NavSystem->ProjectPointToNavigation(
+				Point,
+				OutLocation,
+				Extent,
+				&adata.DefaultProperties, 0);
+	}
+	return false;
+}
+
 // Called every frame
 void URunebergVR_Teleporter::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -109,19 +126,11 @@ void URunebergVR_Teleporter::DrawTeleportArc()
 	{
 		FNavLocation CheckLocation;
 		UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
-		bool bIsWithinNavBounds = false;
 		CheckLocation.Location = TargetLocation;
 
-		if (NavSystem)
-		{
-			bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
-				PredictResult.HitResult.Location,
-				CheckLocation,
-				BeamHitNavMeshTolerance,
-				(ANavigationData*)0, 0);
-		}
-
 		// Check if arc hit location is within the nav mesh
+		bool bIsWithinNavBounds = IsNavPointReachable(PredictResult.HitResult.Location, CheckLocation, BeamHitNavMeshTolerance);
+
 		if (bIsWithinNavBounds)
 		{
 			// Set Marker location
@@ -576,18 +585,8 @@ bool URunebergVR_Teleporter::ShowMarker()
 
 		// Check if target location is within the nav mesh
 		FNavLocation tempTargetLocation;
-		UNavigationSystemV1* NavSystem = Cast<UNavigationSystemV1>(GetWorld()->GetNavigationSystem());
-		bool bIsWithinNavBounds = false;
-
-		if (NavSystem)
-		{
-			bIsWithinNavBounds = NavSystem->ProjectPointToNavigation(
-				TargetLocation,
-				tempTargetLocation,
-				BeamHitNavMeshTolerance,
-				(ANavigationData*)0, 0);
-		}
-
+		bool bIsWithinNavBounds = IsNavPointReachable(TargetLocation, tempTargetLocation, BeamHitNavMeshTolerance);
+		
 		if (bIsWithinNavBounds)
 		{
 			// Set Target Marker Visibility

@@ -75,6 +75,8 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	bool IsNavPointReachable(const FVector& Point, FNavLocation& OutLocation, const FVector& Extent);
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
