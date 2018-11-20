@@ -17,6 +17,9 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **If you need an empty starter project: https://github.com/1runeberg/RunebergVR_TESTMAP**
 
 ## Latest Release Notes (UE 4.20)
+3.0.6
+- Hotfix for Teleport Component not working properly if BeamHitNavMeshTolerance is set beyond FVector::ZeroVector
+
 3.0.5:
 - Add Nav mesh checking ability to 360 movement (6 DOF) mechanic
 
