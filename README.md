@@ -1,4 +1,4 @@
-# Unreal Engine VR Plugin v3.0.5
+# Unreal Engine VR Plugin v3.0.6
 **Demo Project + Plugin Repository**
 
 Unreal Engine Virtual Reality Pawn and Components plugin for common VR mechanics. Can be used for either Blueprint or C++ VR projects. All nodes (Blueprint) and Functions (C++) have a range of parameters for full flexibility and compatible with the VIVE Motion Controllers/Room-Scale VR projects. 
@@ -8,15 +8,18 @@ Also available in the [Unreal Engine Marketplace](https://www.unrealengine.com/m
 **Supports both SteamVR/Vive & the Oculus Rift**
 
 ## IMPORTANT:
-**For a plugin only repo (without demo project) [CLICK HERE](https://github.com/1runeberg/RunebergVR_Plugin/tree/4.20)**
+**For a plugin only repo (without demo project) [CLICK HERE](https://github.com/1runeberg/RunebergVR_Plugin/tree/4.21)**
+
+**For a UE 4.20 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.20)**
 
 **For a UE 4.19 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.19)**
 
-**For a UE 4.18 compatible project [CLICK HERE](https://github.com/1runeberg/RunebergVRPlugin/tree/4.18)**
-
 **If you need an empty starter project: https://github.com/1runeberg/RunebergVR_TESTMAP**
 
-## Latest Release Notes (UE 4.20)
+## Latest Release Notes (UE 4.21)
+3.0.6
+- Hotfix for Teleport Component not working properly if BeamHitNavMeshTolerance is set beyond FVector::ZeroVector
+
 3.0.5:
 - Add Nav mesh checking ability to 360 movement (6 DOF) mechanic
 
