@@ -5,6 +5,9 @@ public class RunebergVRPlugin : ModuleRules
     public RunebergVRPlugin(ReadOnlyTargetRules Target)  : base(Target)
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PrivatePCHHeaderFile = "Public/RunebergVRPlugin.h";
+        bEnforceIWYU = true;
+        bFasterWithoutUnity = true;
 
         PublicIncludePaths.AddRange(new string[] { "RunebergVRPlugin/Source/Public" });
 				

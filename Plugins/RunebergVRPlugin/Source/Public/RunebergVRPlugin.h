@@ -9,10 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 #pragma once
-
-#include "ModuleManager.h"
-
-
+#include "Modules/ModuleInterface.h"
 
 class FRunebergVRPluginModule : public IModuleInterface
 {

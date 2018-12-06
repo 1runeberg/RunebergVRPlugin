@@ -6,8 +6,12 @@ public class RunebergVR : ModuleRules
 {
 	public RunebergVR(ReadOnlyTargetRules Target) : base(Target)
     {
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PrivatePCHHeaderFile = "RunebergVR.h";
+        bEnforceIWYU = true;
+        bFasterWithoutUnity = true;
 
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
 		// Uncomment if you are using Slate UI
