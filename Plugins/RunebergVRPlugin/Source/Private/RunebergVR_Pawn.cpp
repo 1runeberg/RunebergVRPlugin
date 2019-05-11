@@ -111,7 +111,7 @@ void ARunebergVR_Pawn::Tick(float DeltaTime)
 
 		// Initialize Gravity Trace Hit Result var
 		RayTraceParams.bTraceComplex = true;
-		RayTraceParams.bTraceAsyncScene = true;
+		//RayTraceParams.bTraceAsyncScene = true;
 		RayTraceParams.bReturnPhysicalMaterial = false;
 		
 		// Do a line trace and check for a component that can be stepped on

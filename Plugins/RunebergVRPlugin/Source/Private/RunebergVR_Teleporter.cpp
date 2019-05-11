@@ -303,7 +303,7 @@ void URunebergVR_Teleporter::DrawTeleportRay()
 	// Setup ray trace
 	FCollisionQueryParams Ray_TraceParams(FName(TEXT("Ray_Trace")), true, this->GetOwner());
 	Ray_TraceParams.bTraceComplex = true;
-	Ray_TraceParams.bTraceAsyncScene = true;
+	//Ray_TraceParams.bTraceAsyncScene = true;
 	Ray_TraceParams.bReturnPhysicalMaterial = false;
 
 	// Initialize Hit Result var
