@@ -494,7 +494,11 @@ bool URunebergVR_Grabber::GrabSun(AActor* Sky_Sphere, float SunCycleRate)
 	{
 		// Check if this is a valid Skysphere
 		SkySphere = Sky_Sphere;
-		UObjectPropertyBase* ObjectProp = FindField<UObjectPropertyBase>(Sky_Sphere->GetClass(), FName("Directional Light Actor"));
+
+		FObjectPropertyBase* ObjectProp = FindFProperty<FObjectProperty>(Sky_Sphere->GetClass(), FName("Directional Light Actor"));
+		
+		//UObjectProperty* ObjectProp = FindFProperty<UObjectProperty>(Sky_Sphere->GetClass(), FName("Directional Light Actor"));
+		//UObjectPropertyBase* ObjectProp = FindField<UObjectPropertyBase>(Sky_Sphere->GetClass(), FName("Directional Light Actor"));
 
 		if (ObjectProp) 
 		{
@@ -537,7 +541,7 @@ bool URunebergVR_Grabber::GrabSun(AActor* Sky_Sphere, float SunCycleRate)
 		ControllerRotation = GetAttachParent()->GetComponentRotation();
 
 		// Set global params
-		RotationDuringGrab = GetAttachParent()->RelativeRotation;
+		RotationDuringGrab = GetAttachParent()->GetRelativeRotation();
 		CycleRate = SunCycleRate;
 
 		// Calculate the Distance from the Sun Reference Point (in case we are grabbing the sun for the day/night cycle mechanic
@@ -569,7 +573,7 @@ void URunebergVR_Grabber::UpdateDayNight()
 
 
 		// WIP: Check for instances of the "reverse dawn" issue and compensate
-		if (GetAttachParent()->RelativeRotation.Pitch < -22.5f && SunDirectionalLightActor->GetActorRotation().Pitch > HorizonPitch)
+		if (GetAttachParent()->GetRelativeRotation().Pitch < -22.5f && SunDirectionalLightActor->GetActorRotation().Pitch > HorizonPitch)
 		{
 			// Do not move beyond controller twist 
 			DeltaRotation = FRotator::ZeroRotator;
@@ -577,7 +581,7 @@ void URunebergVR_Grabber::UpdateDayNight()
 		else if ((bMoveEast && CurrentDistanceFromSun > DistanceFromSun) || (!bMoveEast && CurrentDistanceFromSun < DistanceFromSun))
 		{
 			// Retain current direction boolean (no change) and calculate delta rotation
-			DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetAttachParent()->RelativeRotation, RotationDuringGrab);
+			DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetAttachParent()->GetRelativeRotation(), RotationDuringGrab);
 		}
 		else 
 		{
@@ -585,17 +589,17 @@ void URunebergVR_Grabber::UpdateDayNight()
 			if (CurrentDistanceFromSun < DistanceFromSun)
 			{
 				// Check for a negative pitch rotation for the controller
-				if (GetAttachParent()->RelativeRotation.Pitch <= 0.f)
+				if (GetAttachParent()->GetRelativeRotation().Pitch <= 0.f)
 				{
 					// Negative rotation pitch -- invert direction (keep moving in the same direction to avoid the sun moving back after the controller hits a negative pitch)
-					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetAttachParent()->RelativeRotation, RotationDuringGrab);
+					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetAttachParent()->GetRelativeRotation(), RotationDuringGrab);
 					bMoveEast = true;
 					//UE_LOG(LogTemp, Warning, TEXT("GRABBER - 1"));
 				}
 				else
 				{
 					// Positive rotation pitch -- move in the direction of the controller (towards or away from the westmost reference point)
-					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(RotationDuringGrab, GetAttachParent()->RelativeRotation);
+					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(RotationDuringGrab, GetAttachParent()->GetRelativeRotation());
 					bMoveEast = false;
 					//UE_LOG(LogTemp, Warning, TEXT("GRABBER - 2"));
 				}
@@ -603,17 +607,17 @@ void URunebergVR_Grabber::UpdateDayNight()
 			else
 			{
 				// Check for a negative pitch rotation for the controller
-				if (GetAttachParent()->RelativeRotation.Pitch <= 0.f)
+				if (GetAttachParent()->GetRelativeRotation().Pitch <= 0.f)
 				{
 					// Positive rotation pitch -- move in the direction of the controller (towards or away from the westmost reference point)
-					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(RotationDuringGrab, GetAttachParent()->RelativeRotation);
+					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(RotationDuringGrab, GetAttachParent()->GetRelativeRotation());
 					bMoveEast = false;
 					//UE_LOG(LogTemp, Warning, TEXT("GRABBER - 3"));
 				}
 				else
 				{
 					// Negative rotation pitch -- invert direction (keep moving in the same direction to avoid the sun moving back after the controller hits a negative pitch)
-					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetAttachParent()->RelativeRotation, RotationDuringGrab);
+					DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetAttachParent()->GetRelativeRotation(), RotationDuringGrab);
 					bMoveEast = true;
 					//UE_LOG(LogTemp, Warning, TEXT("GRABBER - 4"));
 				}
@@ -636,10 +640,10 @@ void URunebergVR_Grabber::UpdateDayNight()
 
 		// Update day-night cycle mechanic variables
 		DistanceFromSun = CurrentDistanceFromSun;
-		RotationDuringGrab = GetAttachParent()->RelativeRotation;
+		RotationDuringGrab = GetAttachParent()->GetRelativeRotation();
 
 		// Update the sun's brightness
-		UFloatProperty* FloatProp = FindField<UFloatProperty>(SkySphere->GetClass(), FName("Sun Brightness"));
+		FFloatProperty* FloatProp = FindFProperty<FFloatProperty>(SkySphere->GetClass(), FName("Sun Brightness"));// FindField<FFloatProperty>(SkySphere->GetClass(), FName("Sun Brightness"));
 		if (FloatProp)
 		{
 			void* ValuePtr = FloatProp->ContainerPtrToValuePtr<void>(SkySphere);
